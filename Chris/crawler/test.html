@@ -1,1 +1,645 @@
-['<!DOCTYPE html>', '<html lang="en">', '<head>', '<meta charset="utf-8">', '<title>Securities Class Action Clearinghouse: Case Page</title>', '<meta name="viewport" content="width=device-width, initial-scale=1.0">', '<meta name="description" content="">', '<meta name="author" content="">', '', '<!-- styles -->', '<link href="assets/css/bootstrap.css" rel="stylesheet">', '<link href="assets/css/bootstrap-responsive.css" rel="stylesheet">', '<link href="assets/css/docs.css" rel="stylesheet">', '<link href="assets/css/heatmap.css" rel="stylesheet">', '<link href="assets/css/bootstrap-select.css" rel="stylesheet">', '<link href="assets/js/google-code-prettify/prettify.css" rel="stylesheet">', '', "<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>", '', '<!-- ico fonts -->', '<link rel="stylesheet" href="assets/ico/style.css" />', '<!--[if lte IE 7]><script src="assets/ico/lte-ie7.js"></script><![endif]-->', '', '<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->', '<!--[if lt IE 9]>', '<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>', '<![endif]-->', '', '<!-- fav and touch icons -->', '<link rel="shortcut icon" href="assets/ico/favicon.ico">', '<link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">', '<link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">', '<link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">', '<link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">', '', '<script type="text/javascript" src="https://www.google.com/jsapi"></script>', '<script type="text/javascript">', 'google.load("visualization", "1", {packages:["corechart"]});', '</script>', '', '</head>', '', '<body data-spy="scroll" data-target=".bs-docs-sidebar">', '', '<!-- Navbar', '================================================== -->', '<div class="navbar navbar-fixed-top">', '<div class="navbar-inner">', '<div class="container">', '', '<button style="float: left;" type="button" class="btn btn-navbar hidden-phone" data-toggle="collapse" data-target=".nav-collapse">', 'menu', '</button><h4 class="pull-left hidden-phone hidden-desktop pull-top">&nbsp;|&nbsp;Case Page</h4>', '', '<!-- search and menu for phone view -->', '', '<div class="hidden-desktop hidden-tablet">', '<h5 style="float: left;">&nbsp;|&nbsp;Case Page&nbsp;|</h5>', '<button style="float: right;" type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">', 'menu', '</button>', '<a style="float: right;" data-toggle="modal" href="#myModalOptionsSearchPhone"><span aria-hidden="true" class="icon-search-2" style="font-size: 20px;color: #700000;margin-top: 10px;margin-right: 10px;"></span>', '</a>', '</div>', '', '<!-- search box for desktops and tablets view -->', '<div class="brand hidden-phone" style="float: right;" >', '<div class="input-append" style="margin-top: 4px; margin-bottom: 0px">', '<form action="http://www.stanford.edu/search" method="get" id="search-box" accept-charset="UTF-8" style="margin: 0">', '<input type="hidden" name="cx" value="003265255082301896483:sq5n7qoyfh8" />', '<input type="hidden" name="cof" value="FORID:9" />', '<input type="hidden" name="ie" value="UTF-8" />', '<input id="inputIcon" type="text" name="q" placeholder="Search SCAC Website" />', '<input type="hidden" name="as_sitesearch" value="securities.stanford.edu" />', '<input type="hidden" name="sa" value="Search" />', '<button type="submit" class="add-on btn" style="height: 30px"><i class="icon-search-2"></i></button>', '</form>', '</div>', '</div>', '', '<div class="nav-collapse collapse">', '<ul class="nav">', '<li >', '<a href="index.html">Home</a>', '</li>', '<li class="active">', '<a href="filings.html">Filings Database</a>', '</li>', '<li >', '<a href="resources.html">Resources</a>', '</li>', '<li >', '<a href="litigation-activity-indices.html">Litigation Activity Indices</a>', '</li>', '<li >', '<a href="clearinghouse-research.html">Clearinghouse  Research</a>', '</li>', '<li >', '<a href="about-the-scac.html">About</a>', '</li>', '<!-- search box for phone -->', '<li class="hidden-desktop hidden-tablet" style="float: left;margin-left: 15px;margin-top: 15px;">', '<div class="input-append">', '<form action="http://www.stanford.edu/search" method="get" id="search-box" accept-charset="UTF-8" style="margin: 0">', '<input type="hidden" name="cx" value="003265255082301896483:sq5n7qoyfh8" />', '<input type="hidden" name="cof" value="FORID:9" />', '<input type="hidden" name="ie" value="UTF-8" />', '<input id="inputIcon" type="text" name="q" placeholder="Search SCAC Website" />', '<input type="hidden" name="as_dt" value="i" />', '<input type="hidden" name="as_sitesearch" value="securities.stanford.edu" />', '<input type="hidden" name="sa" value="Search" />', '<button class="add-on btn" style="height:30px;"><i class="icon-search-2"></i></button>', '</form>', '</div>', '</li>', '', '</ul>', '</div>', '', '</div>', '</div>', '</div>', '', '<!-- modal search - more options -->', '<div id="myModalOptionsSearch" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">', '<div class="modal-header">', '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>', '<h4 id="myModalLabel"><span aria-hidden="true" class="icon-search" style="font-size: 16px;color: #000000;margin-top: 4px;margin-bottom: 4px;margin-right: 8px;"></span>Search Filings Database</h4>', '</div>', '', '<form class="navbar-search pull-left" id="optionSearchForm" method="post" action="filings">', '<div class="modal-body">', '<input type="hidden" name="fromSearch" value="true"/>', '<div class="input-append" style="float: left;margin-right: 15px;">', '<input class="span6 top-two-row" id="search" name="search" type="text" placeholder="Filing Name or Company Defendant" value=""/>', '</div>', '', '<div class="input-append" style="float: left;margin-right: 15px;">', '<input class="span3" id="filing_date" name="filing_date" type="text" placeholder="Filing Date" value=""/>', '</div>', '<div class="input-append" style="float: left;margin-right: 15px;">', '<input type="text" class="span3" id="filing_year" name="filing_year" placeholder="Filing Year" value="" data-provide="typeahead" autocomplete="off" data-items="4" data-source=\'[ "2014" ,  "2013" ,  "2012" ,  "2011" ,  "2010" ,  "2009" ,  "2008" ,  "2007" ,  "2006" ,  "2005" ,  "2004" ,  "2003" ,  "2002" ,  "2001" ,  "2000" ,  "1999" ,  "1998" ,  "1997" ,  "1996"  ]\' />', '</div>', '', '<div class="input-append" style="float: left;margin-right: 15px;">', '<input type="text" class="span3" id="filing_quarter" name="filing_quarter" placeholder="Filing Quarter" value="" data-provide="typeahead" autocomplete="off" data-items="4" data-source=\'[ "Q1" ,  "Q2" ,  "Q3" ,  "Q4"  ]\' />', '</div>', '<div class="input-append" style="float: left;margin-right: 15px;">', '<input type="text" class="span3" id="filing_month" name="filing_month" placeholder="Filing Month" value="" data-provide="typeahead" autocomplete="off" data-items="4" data-source=\'[ "January" ,  "February" ,  "March" ,  "April" ,  "May" ,  "June" ,  "July" ,  "August" ,  "September" ,  "October" ,  "November" ,  "December"  ]\' />', '</div>', '', '<div class="input-append" style="float: left;margin-right: 15px;">', '<input type="text" class="span3" id="filing_court" name="filing_court" placeholder="District Court" value="" data-provide="typeahead" autocomplete="off" data-items="4" data-source=\'[ "M.D. Alabama" ,  "N.D. Alabama" ,  "S.D. Alabama" ,  "D. Alaska" ,  "D. Arizona" ,  "E.D. Arkansas" ,  "W.D. Arkansas" ,  "C.D. California" ,  "E.D. California" ,  "N.D. California" ,  "S.D. California" ,  "D. Colorado" ,  "D. Connecticut" ,  "D. Delaware" ,  "D. District Columbia" ,  "M.D. Florida" ,  "N.D. Florida" ,  "S.D. Florida" ,  "M.D. Georgia" ,  "N.D. Georgia" ,  "S.D. Georgia" ,  "D. Guam" ,  "D. Hawaii" ,  "D. Idaho" ,  "C.D. Illinois" ,  "N.D. Illinois" ,  "S.D. Illinois" ,  "N.D. Indiana" ,  "S.D. Indiana" ,  "N.D. Iowa" ,  "S.D. Iowa" ,  "D. Kansas" ,  "E.D. Kentucky" ,  "W.D. Kentucky" ,  "E.D. Louisiana" ,  "M.D. Louisiana" ,  "W.D. Louisiana" ,  "D. Maine" ,  "D. Maryland" ,  "D. Massachusetts" ,  "E.D. Michigan" ,  "W.D. Michigan" ,  "D. Minnesota" ,  "N.D. Mississippi" ,  "S.D. Mississippi" ,  "E.D. Missouri" ,  "W.D. Missouri" ,  "D. Montana" ,  "D. Nebraska" ,  "D. Nevada" ,  "D. New Hampshire" ,  "D. New Jersey" ,  "D. New Mexico" ,  "E.D. New York" ,  "N.D. New York" ,  "S.D. New York" ,  "W.D. New York" ,  "E.D. North Carolina" ,  "M.D. North Carolina" ,  "W.D. North Carolina" ,  "D. North Dakota" ,  "D. Northern Mariana Islands" ,  "N.D. Ohio" ,  "S.D. Ohio" ,  "E.D. Oklahoma" ,  "N.D. Oklahoma" ,  "W.D. Oklahoma" ,  "D. Oregon" ,  "E.D. Pennsylvania" ,  "M.D. Pennsylvania" ,  "W.D. Pennsylvania" ,  "D. Puerto Rico" ,  "D. Rhode Island" ,  "D. South Carolina" ,  "D. South Dakota" ,  "E.D. Tennessee" ,  "M.D. Tennessee" ,  "W.D. Tennessee" ,  "E.D. Texas" ,  "N.D. Texas" ,  "S.D. Texas" ,  "W.D. Texas" ,  "D. Utah" ,  "D. Vermont" ,  "D. Virgin Islands" ,  "E.D. Virginia" ,  "W.D. Virginia" ,  "E.D. Washington" ,  "W.D. Washington" ,  "N.D. West Virginia" ,  "S.D. West Virginia" ,  "E.D. Wisconsin" ,  "W.D. Wisconsin" ,  "D. Wyoming"  ]\' />', '</div>', '<div class="input-append" style="float: left;margin-right: 15px;">', '<input type="text" class="span3" id="filing_court_circuit" name="filing_court_circuit" placeholder="Circuit Court" value="" data-provide="typeahead" autocomplete="off" data-items="4" data-source=\'[ "1st" ,  "2nd" ,  "3rd" ,  "4th" ,  "5th" ,  "6th" ,  "7th" ,  "8th" ,  "9th" ,  "10th" ,  "11th" ,  "D.C."  ]\' />', '</div>', '', '<div class="input-append" style="float: left;margin-right: 15px;">', '<input class="span3" id="filing_judge_name" name="filing_judge_name" type="text" placeholder="Judge Name" value=""/>', '</div>', '<div class="input-append" style="float: left;margin-right: 15px;">', '<input class="span3" id="filing_lead_plaintif_name" name="filing_lead_plaintif_name" type="text" placeholder="Lead Plaintiff" value=""/>', '</div>', '', '<div class="input-append" style="float: left;margin-right: 15px;">', '<input class="span3" id="filing_plaintif_law_firm" name="filing_plaintif_law_firm" type="text" placeholder="Plaintiff Law Firms" value=""/>', '</div>', '<div class="input-append" style="float: left;margin-right: 15px;">', '<input class="span3" id="filing_dependant_law_firm" name="filing_dependant_law_firm" type="text" placeholder="Defendants\' Law Firms" value=""/>', '</div>', '', '<div class="input-append" style="float: left;margin-right: 15px;">', '<input type="text" class="span3" id="filing_type_of_litigation" name="filing_type_of_litigation" placeholder="Type of Litigation" value="" data-provide="typeahead" autocomplete="off" data-items="4" data-source=\'[ "Classic" ,  "Analyst" ,  "IPO Allocation" ,  "Mutual Fund"  ]\' />', '</div>', '<div class="input-append" style="float: left;margin-right: 15px;">', '<input type="text" class="span3" id="filing_historical_trend" name="filing_historical_trend" placeholder="Historical Trend" value="" data-provide="typeahead" autocomplete="off" data-items="4" data-source=\'[ "Classic Case (No-Trend)" ,  "Analyst" ,  "Bid Rigging (Insurance Kickbacks Allegations)" ,  "Credit Crisis" ,  "IPO Allocation" ,  "Madoff-Related Case" ,  "Mutual Fund (Market Timing)" ,  "Option Backdating"  ]\' />', '</div>', '', '<div class="input-append" style="float: left;margin-right: 15px;">', '<input type="text" class="span3" id="filing_allegations" name="filing_allegations" placeholder="Allegations" value="" data-provide="typeahead" autocomplete="off" data-items="4" data-source=\'[ "[Allegation category can\xe2\x80\x99t be determined]" ,  "Insider Trading" ,  "Failure of Disclosure" ,  "Accounting Irregularities (Misrepresentations in Financial Statements)" ,  "Accounting GAAP Violation (explicitly GAAP or GAAS)" ,  "Misrepresentations" ,  "Merger and Acquisition Related Fraud" ,  "Demutualization" ,  "Broker-Market Manipulation" ,  "Insurance (Kickbacks Allegations)" ,  "Bid Rigging" ,  "Ponzi Scheme" ,  "IPO Allegations Fraud" ,  "Churning" ,  "Violations of Fiduciary Duty" ,  "Derivatives" ,  "ERISA Violations" ,  "Product Liability Related Fraud" ,  "Patent Infringement Related Fraud" ,  "RICO Violations" ,  "FCPA Violations - Main Claims" ,  "FCPA Violations - Secondary or Tertiary Claims" ,  "FCPA Violations - Passing Reference" ,  "Broker Practices" ,  "Mutual Fund - Late Trading" ,  "Mutual Fund - Market Timing" ,  "Mutual Fund - Sales Practice"  ]\' />', '</div>', '<div class="input-append" style="float: left;margin-right: 15px;">', '<input type="text" class="span3" id="filing_claims" name="filing_claims" placeholder="Claims" value="" data-provide="typeahead" autocomplete="off" data-items="4" data-source=\'[ "1934 act claims - section 9" ,  "1934 act claims - section 10b" ,  "1934 act claims - section 13d" ,  "1934 act claims - other sec 13" ,  "1934 act claims - section 14a" ,  "1934 act claims - section 14d" ,  "1934 act claims - section 14e" ,  "1934 act claims - section 16" ,  "1934 act claims - section 18" ,  "1934 act claims - section 20a" ,  "1934 act claims - section 20A" ,  "1933 act claims - section 11" ,  "1933 act claims - section 12a1" ,  "1933 act claims - section 12a2" ,  "1933 act claims - section 15" ,  "1933 act claims - section 17a" ,  "Sarbanes-Oxley Act of 2002" ,  "Investment Advisers Act of 1940" ,  "Investment Company Act of 1940" ,  "Other Federal Securities Claims" ,  "Other Federal Non-Securities Claims" ,  "States\' Blue Sky Laws" ,  "Other States\' Claims"  ]\' />', '</div>', '', '<div class="input-append" style="float: left;margin-right: 15px;">', '<input type="text" class="span3" id="filing_exchange_market" name="filing_exchange_market" placeholder="Exchange Market" value="" data-provide="typeahead" autocomplete="off" data-items="4" data-source=\'[ "New York SE" ,  "NASDAQ" ,  "American SE" ,  "Amex Emerging Co." ,  "-" ,  "OTC-BB" ,  "Pink Sheets" ,  "Privately Traded" ,  "-" ,  "Toronto Stock Exchange" ,  "Other Foreign"  ]\' />', '</div>', '<div class="input-append" style="float: left;margin-right: 15px;">', '<input class="span3" id="filing_ticker_symbol" name="filing_ticker_symbol" type="text" placeholder="Ticker Symbol"  value=""/>', '</div>', '', '<div class="input-append" style="float: left;margin-right: 15px;">', '<input type="text" class="span3" id="filing_sector" name="filing_sector" placeholder="Sector Classification" value="" data-provide="typeahead" autocomplete="off" data-items="4" data-source=\'[ "Services" ,  "Capital Goods" ,  "Transportation" ,  "Consumer Cyclical" ,  "Consumer Non-Cyclical" ,  "Healthcare" ,  "Basic Materials" ,  "Energy" ,  "Technology" ,  "Conglomerates" ,  "Financial" ,  "Utilities"  ]\' />', '</div>', '<div class="input-append" style="float: left;margin-right: 15px;">', '<input type="text" class="span3" id="filing_industry" name="filing_industry" placeholder="Industry Classification" value="" data-provide="typeahead" autocomplete="off" data-items="4" data-source=\'[ "Advertising" ,  "Aerospace & Defense" ,  "Air Courier" ,  "Airline" ,  "Apparel/Accessories" ,  "Appliance & Tool" ,  "Audio & Video Equipment" ,  "Auto & Truck Manufacturers" ,  "Auto & Truck Parts" ,  "Beverages (Alcoholic)" ,  "Beverages (Non-Alcoholic)" ,  "Biotechnology & Drugs" ,  "Broadcasting & Cable TV" ,  "Business Services" ,  "Casinos & Gaming" ,  "Chemical Manufacturing" ,  "Chemicals - Plastics & Rubber" ,  "Coal" ,  "Communications Equipment" ,  "Communications Services" ,  "Computer Hardware" ,  "Computer Networks" ,  "Computer Peripherals" ,  "Computer Services" ,  "Computer Storage Devices" ,  "Conglomerates" ,  "Constr. & Agric. Machinery" ,  "Constr. - Supplies & Fixtures" ,  "Construction - Raw Materials" ,  "Construction Services" ,  "Consumer Financial Services" ,  "Containers & Packaging" ,  "Crops" ,  "Electric Utilities" ,  "Electronic Instruments & Controls" ,  "Fabricated Plastic & Rubber" ,  "Fish/Livestock" ,  "Food Processing" ,  "Footwear" ,  "Forestry & Wood Products" ,  "Furniture & Fixtures" ,  "Gold & Silver" ,  "Healthcare Facilities" ,  "Hotels & Motels" ,  "Insurance (Accident & Health)" ,  "Insurance (Life)" ,  "Insurance (Miscellaneous)" ,  "Insurance (Prop. & Casualty)" ,  "Investment Services" ,  "Iron & Steel" ,  "Jewelry & Silverware" ,  "Major Drugs" ,  "Medical Equipment & Supplies" ,  "Metal Mining" ,  "Misc. Capital Goods" ,  "Misc. Fabricated Products" ,  "Misc. Financial Services" ,  "Misc. Transportation" ,  "Mobile Homes & RVs" ,  "Money Center Banks" ,  "Motion Pictures" ,  "Natural Gas Utilities" ,  "Non-Metallic Mining" ,  "Office Equipment" ,  "Office Supplies" ,  "Oil & Gas - Integrated" ,  "Oil & Gas Operations" ,  "Oil Well Services & Equipment" ,  "Paper & Paper Products" ,  "Personal & Household Products" ,  "Personal Services" ,  "Photography" ,  "Printing & Publishing" ,  "Printing Services" ,  "Railroads" ,  "Real Estate Operations" ,  "Recreational Activities" ,  "Recreational Products" ,  "Regional Banks" ,  "Rental & Leasing" ,  "Restaurants" ,  "Retail (Apparel)" ,  "Retail (Catalog & Mail Order)" ,  "Retail (Department & Discount)" ,  "Retail (Drugs)" ,  "Retail (Grocery)" ,  "Retail (Home Improvement)" ,  "Retail (Specialty)" ,  "Retail (Technology)" ,  "S&Ls/Savings Banks" ,  "Schools" ,  "Scientific & Technical Instr." ,  "Security Systems & Services" ,  "Semiconductors" ,  "Software & Programming" ,  "Textiles - Non Apparel" ,  "Tires" ,  "Tobacco" ,  "Trucking" ,  "Waste Management Services" ,  "Water Transportation" ,  "Water Utilities" ,  "Other (Mutual Fund)" ,  "Retail & Repair (Automotive)" ,  "Alternative Energy"  ]\' />', '</div>', '', '<!-- <div style="float: left;position: relative;top: 5px;"><a href="filings.html">Browse Filings Database</a></div> -->', '', '</div>', '<div class="modal-footer">', '<button class="btn" type="button" data-dismiss="modal">Close</button>', '<button class="btn" type="button" onclick="return clearSearch();">Clear Form</button>', '<button class="btn" data-dismiss="modal" type="submit" onclick="$(\'#optionSearchForm\').submit();">Search</button>', '</div>', '</form>', '</div>', '<!-- / modal search - more options -->', '', '<!-- modal search for phone - more options -->', '<div id="myModalOptionsSearchPhone" class="span12 modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">', '<div class="modal-header">', '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>', '<h4 id="myModalLabel"><span aria-hidden="true" class="icon-search" style="font-size: 16px;color: #000000;margin-top: 4px;margin-bottom: 4px;margin-right: 8px;"></span>Search Filings Database</h4>', '</div>', '', '<form class="navbar-search pull-left span12" id="optionSearchFormPhone" method="post" action="filings">', '<div class="modal-body">', '<input type="hidden" name="fromSearch" value="true"/>', '', '<div class="input-append" style="float: left;margin-right: 15px;">', '<input class="span6 top-two-row" id="search" name="search" type="text" placeholder="Filing Name or Comp." value=""/>', '<span class="add-on"><a onclick="$(\'#optionSearchFormPhone\').submit();"><i class="icon-search-2"></i></a></span>', '</div>', '</div>', '<div class="modal-footer">', '<button class="btn" type="button" data-dismiss="modal">Close</button>', '<button class="btn" data-dismiss="modal" type="submit" onclick="$(\'#optionSearchFormPhone\').submit();">Search</button>', '</div>', '</form>', '</div>', '<!-- / modal search - more options -->', '', '<!-- modal register - more options -->', '<div id="myModalOptionsRegister" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">', '<div class="modal-header">', '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>', '<h4 id="myModalLabel"><span aria-hidden="true" class="icon-edit" style="font-size: 16px;color: #000000;margin-top: 4px;margin-bottom: 4px;margin-right: 8px;"></span>Register</h4>', '</div>', '<form id="registerForm" name="registerForm" class="navbar-search pull-left" action="register" method="post">', '<div class="modal-body">', '', '<p>Register here to receive weekly email notices about recently-filed securities class action complaints and news in the area of securities class action litigation.</p>', '<div class="input-append" style="float: left;margin-right: 15px;">', '<input class="span5" id="register_name" type="text" placeholder="Full Name" name="name">', '<span class="add-on"><i class="icon-user"></i></span>', '</div>', '<div class="input-append" style="float: left;margin-right: 15px;">', '<input class="span5" id="register_email" type="text" placeholder="Email Address" name="email">', '<span class="add-on"><i class="icon-envelope"></i></span>', '</div>', '<div class="input-append" style="float: left;margin-right: 15px;">', '<input class="span5" id="register_institution" type="text" placeholder="Institution" name="institution">', '<span class="add-on"><i class="icon-briefcase"></i></span>', '</div>', '', '<!-- <div style="float: left;position: relative;top: 5px;"><a href="filings.html">Browse Filings Database</a></div> -->', '', '</div>', '<div class="modal-footer">', '<button class="btn" type="button" data-dismiss="modal">Close</button>', '<button class="btn" type="button" onclick="return clearRegister();">Clear Form</button>', '<button class="btn" type="submit" onclick="return submitRegister();">Register</button>', '</div>', '</form>', '</div>', '<!-- / modal search - more options -->', '', '<!-- Subhead', '================================================== -->', '<header class="jumbotron subhead" id="overview">', '<!-- Desktop and Tablet view -->', '<div class="container hidden-phone">', '<div class="row-fluid">', '<div class="span7 stanford-seal" style="text-align: left;">', '<!-- <img src="assets/img/scac-logo.png" class="seal" style="max-height: 150px;"> -->', '<img src="assets/img/scac-logo.png" class="seal hidden-tablet" style="max-height: 100px;">', '<img src="assets/img/scac-logo.png" class="seal hidden-desktop" style="max-height: 75px;">', '</div>', '', '<!-- I had a span2 here -->', '<!-- hidden-tablet -->', '<div class="span4 stanford-seal pull-right hidden-tablet" style="text-align: left;margin-right: 15px;">', '<ul class="pull-right unstyled">', '<li class="pull-right">', '<a data-toggle="modal" href="#myModalOptionsSearch" style="color: #ffffff"><span aria-hidden="true" style="font-size: 20px;color: #FFFFFF;margin-bottom: 0px;margin-right: 0px;"><img src="assets/ico/magnifying-glass.png" style="max-height: 18px"></a>&nbsp;<a data-toggle="modal" href="#myModalOptionsSearch" style="color: #ffffff"><strong>Filings Search</strong></a></span>', '</li>', '<li class="pull-right">', '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;', '</li>', '<li class="pull-right"><br />&nbsp;<br /></li>', '<li class="pull-right">', '<a data-toggle="modal" href="#myModalOptionsRegister" style="color: #ffffff"><span aria-hidden="true" style="font-size: 20px;color: #FFFFFF;margin-bottom: 0px;margin-right: 0px;"><img src="assets/ico/box-with-pencil.png" style="max-height: 18px"></a>&nbsp;<a data-toggle="modal" href="#myModalOptionsRegister" style="color: #ffffff"><strong>Register</strong></a></span>', '</li>', '</ul>', '<div class="span12">', '<h4 class="pull-right pull-bottom" style="margin-bottom: 0px;margin-right: 10px;">Case Page</h4>', '</div>', '</div>', '<!-- hidden-desktop -->', '<div class="span3 stanford-seal pull-right hidden-desktop" style="text-align: left;margin-right: 15px;">', '<ul class="pull-right unstyled">', '<li class="pull-right">', '<a data-toggle="modal" href="#myModalOptionsSearch" style="color: #ffffff"><span aria-hidden="true" style="font-size: 20px;color: #FFFFFF;margin-bottom: 0px;margin-right: 0px;"><img src="assets/ico/magnifying-glass.png" style="max-height: 18px"></a>&nbsp;<a data-toggle="modal" href="#myModalOptionsSearch" style="color: #ffffff"><strong>Filings Search</strong></a></span>', '</li>', '<li class="pull-right"><br />&nbsp;<br /></li>', '<li class="pull-right">', '<a data-toggle="modal" href="#myModalOptionsRegister" style="color: #ffffff"><span aria-hidden="true" style="font-size: 20px;color: #FFFFFF;margin-bottom: 0px;margin-right: 0px;"><img src="assets/ico/box-with-pencil.png" style="max-height: 18px"></a>&nbsp;<a data-toggle="modal" href="#myModalOptionsRegister" style="color: #ffffff"><strong>Register</strong></a></span>', '</li>', '</ul>', '</div>', '', '</div>', '</div>', '<!-- Phone view -->', '<div class="container hidden-desktop hidden-tablet" style="padding-left: 0px;padding-right: 0px;padding-bottom: 0px;padding-top: 0px;">', '<div class="row-fluid">', '<img src="assets/img/scac-logo.png">&nbsp;<br /><!--<h1>Case Page</h1>-->', '</div>', '</div>', '', '', '</header>', '', '', '<div class="container">', '', '', '', '', '<!-- Docs nav', '================================================== -->', '<div class="row">', '<div class="span3 bs-docs-sidebar">', '<div class="page-header hidden-tablet hidden-desktop">', '<h3>ABS Industries, Inc.</h3>', '</div>', '<ul class="nav nav-list bs-docs-sidenav">', '<li><a href="#summary" rel="m_PageScroll2id"><i class="icon-chevron-right"></i> Case Summary</a></li>', '<li><a href="#company" rel="m_PageScroll2id"><i class="icon-chevron-right"></i> Company &amp; Securities Info</a></li>', '<li><a href="#fic" rel="m_PageScroll2id"><i class="icon-chevron-right"></i> First Identified Complaint</a></li>', '<li><a href="#ref" rel="m_PageScroll2id"><i class="icon-chevron-right"></i> Reference Complaint</a></li>', '<li><a href="#other" rel="m_PageScroll2id"><i class="icon-chevron-right"></i>  Related District Court Filings</a></li>', '<li><a href="#state" rel="m_PageScroll2id"><i class="icon-chevron-right"></i>  Related State Court Filings</a></li>', '<li><a href="#appeal" rel="m_PageScroll2id"><i class="icon-chevron-right"></i> Courts of Appeal Filings</a></li>', '<li><a href="#supreme" rel="m_PageScroll2id"><i class="icon-chevron-right"></i> Supreme Court Filings</a></li>', '</ul>', '</div>', '', '<div class="span9">', '', '<!-- Case Summary', '================================================== -->', '<section id="summary">', '', '<div class="page-header hidden-phone">', '<h3>Case Summary</h3>', '<h4>ABS Industries, Inc. Securities Litigation</h4>', '</div>', '<div class="page-header hidden-tablet hidden-desktop">', '<h3>Case Summary</h3>', '</div>', '', '<p>', '<strong>Case Status: &nbsp;&nbsp;</strong>', '<span aria-hidden="true" class="icon-check"></span> SETTLED', '', '<br />', 'On or around 01/29/1999 (Date of order of final judgment)', '</p>', '', '<p class="lead">Filing Date: January 19, 1996</p>', '', '<div class="row-fluid">', '<div class="span12" style="background-color: #ffffff;">', 'According to the complaint, the case involves a classic cooked book scheme in which Defendants, among other wrongful acts, knowingly disseminated materially false financial statements reporting "record" and accelerating sales and earnings per share.<br/><br/>Specifically, the complaint alleges that the financial and other misrepresentations disseminated by Defendants during the Class Period created the illusion that ABSI was enjoying unrestrained growth in sales and earnings when, in reality, the growth was attributable in material part to sales improperly recorded as recording revenue, contrary to the Company\'s own criteria for recording revenue only when goods have been shipped and title passed to the buyer.  As a result, Plaintiff and other unsuspecting members of the investing public paid inflated prices as high as $13.00 per share for ABSI shares during the Class Period.  Beginning on January 10, 1996, ABSI began to reveal the Company\'s true financial condition and prospects, and the other adverse information described herein, disclosed that it will restate its financial results for the past three years and that its operating cash flow is not sufficient to support its current obligations.  In response, the trading price of ABSI shares plunged from a price of $6.75 per share on January 10, 1996 to a closing price of $3.00 per share on January 13, 1996, a 55% decline, resulting in damages to the Class well in excess of ten million dollars.<br/><br/>According to the docket, on October 19, 1998, a Stipulation and Settlement Agreement was filed and on January 29, 1999, the Court entered the Final Judgment and Order certifying the class and approving the settlement.  The plantiffs\xe2\x80\x99 counsel was awarded attorneys\xe2\x80\x99 fees in the amount of $205,961.93 and reimbursement of expenses of $6,562.64, paid from the settlement fund. Each named plaintiff in this case and the North Carolina case received $5500.00.  The case was dismissed.', '</div>', '</div>', '', '</section>', '', '<!-- Company and Securities  Information', '================================================== -->', '<section id="company">', '<div class="page-header">', '<h3>Company &amp; Securities  Information</h3>', '<h4>Defendant: ABS Industries, Inc. <small> <a href="">website</a> </small></h4>', '</div>', '', '<p class="lead" style="margin-bottom: 0px"><small>COMPANY INFORMATION:</small></p>', '<div class="row-fluid">', '<div class="span4"><strong>Sector:</strong> Basic Materials</div>', '<div class="span4"><strong>Industry:</strong> Metal Mining</div>', '<div class="span4"><strong>Headquarters:</strong> United States</div>', '</div>', '<br />', '<p class="lead" style="margin-bottom: 0px"><small>SECURITIES INFORMATION:</small></p>', '<div class="row-fluid">', '<div class="span4"><strong>Ticker Symbol:</strong> ABSI</div>', '<div class="span4"><strong>Company Market:</strong> NASDAQ</div>', '<div class="span4"><strong>Market Status:</strong> Public (Listed)</div>', '</div>', '<br/>', '<div class="alert alert-block" style="color: #565656">', '<button type="button" class="close" data-dismiss="alert">&times;</button>', '<h4>About the Company &amp; Securities Data</h4><br />', '<strong>"Company" information</strong> provides the industry and sector classification and headquarters state for the primary company-defendant in the litigation. In general, <strong>"Securities" information </strong>provides the ticker symbol, market, and market status for the underlying securities at issue in the litigation.<br /><br />In most cases, the primary company-defendant actually issued the securities that are the subject of the litigation, and the securities information and company information relate to the same entity. In a small subset of cases, however, the primary company-defendant is not the issuer (for example, cases against third party brokers/dealers), and the securities information and company information do not relate to the same entity.', '</div>', '', '</section>', '', '<!-- FIC', '================================================== -->', '<section id="fic">', '', '<div class="page-header">', '<h3>First Identified Complaint</h3>', '<h4>Leo Hawk, et al. v. ABS Industries, Inc., et al.</h4>', '</div>', '', '<div class="row-fluid">', '<div class="span4"><strong>COURT:</strong> N.D. Ohio</div>', '<div class="span4"><strong>DOCKET #:</strong> 96-CV-109</div>', '<div class="span4"><strong>JUDGE:</strong> Hon. Solomon Oliver, Jr.</div>', '</div>', '<div class="row-fluid">', '<div class="span4"><strong>DATE FILED:</strong> 01/19/1996</div>', '<div class="span4"><strong>CLASS PERIOD START:</strong> 03/17/1993</div>', '<div class="span4"><strong>CLASS PERIOD END:</strong> 01/10/1996</div>', '</div>', '', '<h6>PLAINTIFF FIRMS NAMED IN COMPLAINT:</h6>', '<ol class="styled">', '<li><a href="http://www.strauss-troy.com/" style="color: #353839" target="_blank">Strauss & Troy</a><br />The Federal Reserve Building, 150 East Fourth Street, Strauss & Troy, OH 45202-4018<br />513.621.2120 513.241.8250 &middot; <a href="mailto:wlwoods@strauss-troy.com <wlwoods@strauss-troy.com>" >wlwoods@strauss-troy.com <wlwoods@strauss-troy.com></a></li>', '<li>Weisman, Goldberg & Weisman Co., L.P.<br />101 Prospect Ave, West; 1600 Midland Building, Weisman, Goldberg & Weisman Co., L.P., OH 44115<br />216.781.1111 216.781.6747 &middot; <a href="mailto:" ></a></li>', '<li>White, Getgey & Meyer<br />1700 Central Trust Tower One, West Fourth Street , White, Getgey & Meyer, OH 45202<br />513.241.3685.  &middot; <a href="mailto:" ></a></li>', '</ol>', '<div class="modal-footer" style="background-color: #ffffff;bottom-margin: 0px; top-margin: 0px">', '<div style="float: left;position: relative">', 'First Identified Complaint (FIC) Filings:</a>', '</div>', '</div>', '<table class="table table-bordered table-striped table-hover">', '<thead>', '<tr>', '<th class="hidden-tablet hidden-phone">No</th>', '<th>Document Title</th>', '<th>Filing Date</th>', '</tr>', '</thead>', '<tbody>', '<tr class="table-link" onclick="window.location=\'filings-documents/1009/ABSI96/001.html\'" target="_blank">', '<td class="hidden-tablet hidden-phone">1</td>', '<td>Class Action Complaint</td>', '<td>01/18/1996</td>', '</tr>', '<tr class="table-link" onclick="window.location=\'filings-documents/1009/ABSI96/96cv109docket070600.txt\'" target="_blank">', '<td class="hidden-tablet hidden-phone">2</td>', '<td>Docket</td>', '<td>01/19/1996</td>', '</tr>', '<tr class="table-link" onclick="window.location=\'filings-documents/1009/ABSI96/200073_f03k_96CV109.pdf\'" target="_blank">', '<td class="hidden-tablet hidden-phone">3</td>', '<td>U.S. District Court Civil Docket</td>', '<td>07/03/2000</td>', '</tr>', '</tr>', '</tbody>', '</table>', '', '</section>', '', '<!-- REF', '================================================== -->', '', '<!-- OTH', '================================================== -->', '', '<!-- STATE STC', '================================================== -->', '', '<!-- COA', '================================================== -->', '', '<!-- SC', '================================================== -->', '&nbsp;<br />', '&nbsp;<br />', '<div class="span12"><p><a href="filings-case-pages-url-map.html" style="color: #ffffff"><strong>Cases</strong></a></p></div>', '</div>', '</div>', '', '</div>', '', '<!-- Footer', '================================================== -->', '<footer class="footer" style="background-color: #fbfbfb;padding-top: 10px; padding-bottom: 10px; margin-top: 20px">', '<div class="container">', '<div class="span10" style="margin-left: 0px">', '<div class="span12 row-fluid" style="margin-left: 0px">', '<legend  style="margin-left: 0px;margin-bottom: 0px"><a href="about-the-scac.html" style="color: #565656">About</a></legend>', '<div class="span2" style="margin-left: 0px;margin-top: 0px">', '<dl>', '<dd><a href="about-the-scac.html#about" style="color: #151616">About Us</a></dd>', '<dd><a href="about-the-scac.html#methodology" style="color: #151616">Methodology</a></dd>', '<dd><a href="about-the-scac.html#faq" style="color: #151616">FAQ</a></dd>', '</dl>', '</div>', '<div class="span4" style="margin-left: 0px;margin-right 0px">', '<dl>', '<dd style="color: #565656"><a href="about-the-scac.html#sponsors" style="color: #151616">Sponsors &amp; Partners</a></dd>', '<dd>&middot; <a href="http://rockcenter.law.stanford.edu" style="color: #353839"><em>Rock Center for Corporate Governance</em></a></dd>', '<dd>&middot; <a href="http://www.cornerstone.com" style="color: #353839"><em>Cornerstone Research</em></a></dd>', '</dl>', '</div>', '<div class="span2" style="margin-left: 0px;margin-right 0px">', '<dl>', '<dd><a href="about-the-scac.html#register" style="color: #151616">Register</a></dd>', '<dd><a href="about-the-scac.html#contacts" style="color: #151616">Contact Us</a></dd>', '</dl>', '</div>', '<div class="span2" style="margin-left: 0px;margin-right 0px">', '<dl>', '<dd><a href="about-the-scac.html#legal" style="color: #151616">Legal Notices</a></dd>', '</dl>', '</div>', '<div class="span2" style="margin-left: 0px;margin-right 0px">', '<dl>', '<!-- <dd><a href="about-the-scac.html#sitemap" style="color: #151616">Site Map</a></dd> -->', '</dl>', '</div>', '</div>', '</div>', '<div class="span2 pull-right">', '<dl>', '<p class="pull-right"><a href="#">Back to top</a></p>', '<dd></dd>', '</dl>', '</div>', '<div class="modal-footer span12" style="margin-left: 0px;background-color: #fbfbfb">', '<p align="center" style="color: #565656">Web site managed by the Research Data Services group of the <a href="http://rockcenter.law.stanford.edu/">Arthur and Toni Rembe Rock Center for Corporate Governance.</a> Information licensed under <a href="http://www.stanford.edu/">Stanford University</a>.</p>', '</div>', '</div>', '</footer>', '', '', '<!-- Javascript', '================================================== -->', '<!-- Placed at the end of the document so the pages load faster -->', '<script type="text/javascript" src="assets/js/widgets.js"></script>', '<script src="assets/js/jquery.js"></script>', '<script src="assets/js/google-code-prettify/prettify.js"></script>', '<script src="assets/js/bootstrap-transition.js"></script>', '<script src="assets/js/bootstrap-alert.js"></script>', '<script src="assets/js/bootstrap-modal.js"></script>', '<script src="assets/js/bootstrap-dropdown.js"></script>', '<script src="assets/js/bootstrap-scrollspy.js"></script>', '<script src="assets/js/bootstrap-tab.js"></script>', '<script src="assets/js/bootstrap-tooltip.js"></script>', '<script src="assets/js/bootstrap-popover.js"></script>', '<script src="assets/js/bootstrap-button.js"></script>', '<script src="assets/js/bootstrap-collapse.js"></script>', '<script src="assets/js/bootstrap-carousel.js"></script>', '<script src="assets/js/bootstrap-typeahead.js"></script>', '<script src="assets/js/bootstrap-affix.js"></script>', '<script src="assets/js/application.js"></script>', '', '<script src="assets/js/bootstrap-select.min.js"></script>', '<!-- Animate scroll to page ids -->', '<script src="assets/js/jquery-ui-1.9.0.custom.min.js"></script>', '<script src="assets/js/jquery.malihu.PageScroll2id.js"></script>', '<script>', '(function($){', '$(window).load(function(){', '$("a[rel=\'m_PageScroll2id\']").mPageScroll2id();', '});', '})(jQuery);', '</script>', '', '<!--  show/hide heatmap  -->', '<script type="text/javascript">', '$(document).ready(function(){', "$('.typeahead').typeahead();", '', '$(\'a[data-toggle="tab"]\').on(\'shown.bs.tab\', function (e) {', 'e.preventDefault();', 'e.stopPropagation();', 'var target = $(e.target).attr("href"); // activated tab', 'var ajaxURL = $(target).attr("ajax-ref");', "if (ajaxURL && $(target).is(':empty')) {", 'document.location.href = ajaxURL;', '}', 'return false;', '});', '', "if ($('.nav-tabs')) {", 'var url = document.location.toString();', "if (url.match('#')) {", "$('.nav-tabs a[href=#'+url.split('#')[1]+']').tab('show') ;", '}', '}', '});', '', 'function submitRegister() {', "var name = $('#register_name').val();", "var email = $('#register_email').val();", "var institution = $('#register_institution').val();", 'if (!name || !email || !institution) {', 'alert("All fields are required!");', '} else {', 'var filter = /^([a-zA-Z0-9_\\.\\-])+\\@(([a-zA-Z0-9\\-])+\\.)+([a-zA-Z0-9]{2,4})+$/;', 'if (!filter.test(email)) {', 'alert("Bad email format!");', '} else {', 'document.forms.registerForm.submit();', '}', '}', 'return false;', '}', '', 'function clearRegister() {', '$(\'#register_name\').val("");', '$(\'#register_email\').val("");', '$(\'#register_institution\').val("");', 'return false;', '}', '', 'function clearSearch() {', "var fields = ['search', 'filing_date', 'filing_year', 'filing_quarter', 'filing_month', 'filing_court', 'filing_court_circuit',", "'filing_judge_name', 'filing_lead_plaintif_name', 'filing_plaintif_law_firm', 'filing_dependant_law_firm', 'filing_type_of_litigation',", "'filing_historical_trend', 'filing_allegations', 'filing_claims', 'filing_exchange_market', 'filing_ticker_symbol',", "'filing_sector', 'filing_industry'];", 'for(var i = 0; i < fields.length; i++) {', '$(\'#\'+fields[i]).val("");', '}', 'return false;', '}', '</script>', '', '</body>', '</html>']
+http://securities.stanford.edu/filings-case.html?id=100982
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Securities Class Action Clearinghouse: Case Page</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<!-- styles -->
+<link href="assets/css/bootstrap.css" rel="stylesheet">
+<link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+<link href="assets/css/docs.css" rel="stylesheet">
+<link href="assets/css/heatmap.css" rel="stylesheet">
+<link href="assets/css/bootstrap-select.css" rel="stylesheet">
+<link href="assets/js/google-code-prettify/prettify.css" rel="stylesheet">
+
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+
+<!-- ico fonts -->
+<link rel="stylesheet" href="assets/ico/style.css" />
+<!--[if lte IE 7]><script src="assets/ico/lte-ie7.js"></script><![endif]-->
+
+<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<!-- fav and touch icons -->
+<link rel="shortcut icon" href="assets/ico/favicon.ico">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+<link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+google.load("visualization", "1", {packages:["corechart"]});
+</script>
+
+</head>
+
+<body data-spy="scroll" data-target=".bs-docs-sidebar">
+
+<!-- Navbar
+================================================== -->
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner">
+<div class="container">
+
+<button style="float: left;" type="button" class="btn btn-navbar hidden-phone" data-toggle="collapse" data-target=".nav-collapse">
+menu
+</button><h4 class="pull-left hidden-phone hidden-desktop pull-top">&nbsp;|&nbsp;Case Page</h4>
+
+<!-- search and menu for phone view -->
+
+<div class="hidden-desktop hidden-tablet">
+<h5 style="float: left;">&nbsp;|&nbsp;Case Page&nbsp;|</h5>
+<button style="float: right;" type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+menu
+</button>
+<a style="float: right;" data-toggle="modal" href="#myModalOptionsSearchPhone"><span aria-hidden="true" class="icon-search-2" style="font-size: 20px;color: #700000;margin-top: 10px;margin-right: 10px;"></span>
+</a>
+</div>
+
+<!-- search box for desktops and tablets view -->
+<div class="brand hidden-phone" style="float: right;" >
+<div class="input-append" style="margin-top: 4px; margin-bottom: 0px">
+<form action="http://www.stanford.edu/search" method="get" id="search-box" accept-charset="UTF-8" style="margin: 0">
+<input type="hidden" name="cx" value="003265255082301896483:sq5n7qoyfh8" />
+<input type="hidden" name="cof" value="FORID:9" />
+<input type="hidden" name="ie" value="UTF-8" />
+<input id="inputIcon" type="text" name="q" placeholder="Search SCAC Website" />
+<input type="hidden" name="as_sitesearch" value="securities.stanford.edu" />
+<input type="hidden" name="sa" value="Search" />
+<button type="submit" class="add-on btn" style="height: 30px"><i class="icon-search-2"></i></button>
+</form>
+</div>
+</div>
+
+<div class="nav-collapse collapse">
+<ul class="nav">
+<li >
+<a href="index.html">Home</a>
+</li>
+<li class="active">
+<a href="filings.html">Filings Database</a>
+</li>
+<li >
+<a href="resources.html">Resources</a>
+</li>
+<li >
+<a href="litigation-activity-indices.html">Litigation Activity Indices</a>
+</li>
+<li >
+<a href="clearinghouse-research.html">Clearinghouse  Research</a>
+</li>
+<li >
+<a href="about-the-scac.html">About</a>
+</li>
+<!-- search box for phone -->
+<li class="hidden-desktop hidden-tablet" style="float: left;margin-left: 15px;margin-top: 15px;">
+<div class="input-append">
+<form action="http://www.stanford.edu/search" method="get" id="search-box" accept-charset="UTF-8" style="margin: 0">
+<input type="hidden" name="cx" value="003265255082301896483:sq5n7qoyfh8" />
+<input type="hidden" name="cof" value="FORID:9" />
+<input type="hidden" name="ie" value="UTF-8" />
+<input id="inputIcon" type="text" name="q" placeholder="Search SCAC Website" />
+<input type="hidden" name="as_dt" value="i" />
+<input type="hidden" name="as_sitesearch" value="securities.stanford.edu" />
+<input type="hidden" name="sa" value="Search" />
+<button class="add-on btn" style="height:30px;"><i class="icon-search-2"></i></button>
+</form>
+</div>
+</li>
+
+</ul>
+</div>
+
+</div>
+</div>
+</div>
+
+<!-- modal search - more options -->
+<div id="myModalOptionsSearch" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+<h4 id="myModalLabel"><span aria-hidden="true" class="icon-search" style="font-size: 16px;color: #000000;margin-top: 4px;margin-bottom: 4px;margin-right: 8px;"></span>Search Filings Database</h4>
+</div>
+
+<form class="navbar-search pull-left" id="optionSearchForm" method="post" action="filings">
+<div class="modal-body">
+<input type="hidden" name="fromSearch" value="true"/>
+<div class="input-append" style="float: left;margin-right: 15px;">
+<input class="span6 top-two-row" id="search" name="search" type="text" placeholder="Filing Name or Company Defendant" value=""/>
+</div>
+
+<div class="input-append" style="float: left;margin-right: 15px;">
+<input class="span3" id="filing_date" name="filing_date" type="text" placeholder="Filing Date" value=""/>
+</div>
+<div class="input-append" style="float: left;margin-right: 15px;">
+<input type="text" class="span3" id="filing_year" name="filing_year" placeholder="Filing Year" value="" data-provide="typeahead" autocomplete="off" data-items="4" data-source='[ "2014" ,  "2013" ,  "2012" ,  "2011" ,  "2010" ,  "2009" ,  "2008" ,  "2007" ,  "2006" ,  "2005" ,  "2004" ,  "2003" ,  "2002" ,  "2001" ,  "2000" ,  "1999" ,  "1998" ,  "1997" ,  "1996"  ]' />
+</div>
+
+<div class="input-append" style="float: left;margin-right: 15px;">
+<input type="text" class="span3" id="filing_quarter" name="filing_quarter" placeholder="Filing Quarter" value="" data-provide="typeahead" autocomplete="off" data-items="4" data-source='[ "Q1" ,  "Q2" ,  "Q3" ,  "Q4"  ]' />
+</div>
+<div class="input-append" style="float: left;margin-right: 15px;">
+<input type="text" class="span3" id="filing_month" name="filing_month" placeholder="Filing Month" value="" data-provide="typeahead" autocomplete="off" data-items="4" data-source='[ "January" ,  "February" ,  "March" ,  "April" ,  "May" ,  "June" ,  "July" ,  "August" ,  "September" ,  "October" ,  "November" ,  "December"  ]' />
+</div>
+
+<div class="input-append" style="float: left;margin-right: 15px;">
+<input type="text" class="span3" id="filing_court" name="filing_court" placeholder="District Court" value="" data-provide="typeahead" autocomplete="off" data-items="4" data-source='[ "M.D. Alabama" ,  "N.D. Alabama" ,  "S.D. Alabama" ,  "D. Alaska" ,  "D. Arizona" ,  "E.D. Arkansas" ,  "W.D. Arkansas" ,  "C.D. California" ,  "E.D. California" ,  "N.D. California" ,  "S.D. California" ,  "D. Colorado" ,  "D. Connecticut" ,  "D. Delaware" ,  "D. District Columbia" ,  "M.D. Florida" ,  "N.D. Florida" ,  "S.D. Florida" ,  "M.D. Georgia" ,  "N.D. Georgia" ,  "S.D. Georgia" ,  "D. Guam" ,  "D. Hawaii" ,  "D. Idaho" ,  "C.D. Illinois" ,  "N.D. Illinois" ,  "S.D. Illinois" ,  "N.D. Indiana" ,  "S.D. Indiana" ,  "N.D. Iowa" ,  "S.D. Iowa" ,  "D. Kansas" ,  "E.D. Kentucky" ,  "W.D. Kentucky" ,  "E.D. Louisiana" ,  "M.D. Louisiana" ,  "W.D. Louisiana" ,  "D. Maine" ,  "D. Maryland" ,  "D. Massachusetts" ,  "E.D. Michigan" ,  "W.D. Michigan" ,  "D. Minnesota" ,  "N.D. Mississippi" ,  "S.D. Mississippi" ,  "E.D. Missouri" ,  "W.D. Missouri" ,  "D. Montana" ,  "D. Nebraska" ,  "D. Nevada" ,  "D. New Hampshire" ,  "D. New Jersey" ,  "D. New Mexico" ,  "E.D. New York" ,  "N.D. New York" ,  "S.D. New York" ,  "W.D. New York" ,  "E.D. North Carolina" ,  "M.D. North Carolina" ,  "W.D. North Carolina" ,  "D. North Dakota" ,  "D. Northern Mariana Islands" ,  "N.D. Ohio" ,  "S.D. Ohio" ,  "E.D. Oklahoma" ,  "N.D. Oklahoma" ,  "W.D. Oklahoma" ,  "D. Oregon" ,  "E.D. Pennsylvania" ,  "M.D. Pennsylvania" ,  "W.D. Pennsylvania" ,  "D. Puerto Rico" ,  "D. Rhode Island" ,  "D. South Carolina" ,  "D. South Dakota" ,  "E.D. Tennessee" ,  "M.D. Tennessee" ,  "W.D. Tennessee" ,  "E.D. Texas" ,  "N.D. Texas" ,  "S.D. Texas" ,  "W.D. Texas" ,  "D. Utah" ,  "D. Vermont" ,  "D. Virgin Islands" ,  "E.D. Virginia" ,  "W.D. Virginia" ,  "E.D. Washington" ,  "W.D. Washington" ,  "N.D. West Virginia" ,  "S.D. West Virginia" ,  "E.D. Wisconsin" ,  "W.D. Wisconsin" ,  "D. Wyoming"  ]' />
+</div>
+<div class="input-append" style="float: left;margin-right: 15px;">
+<input type="text" class="span3" id="filing_court_circuit" name="filing_court_circuit" placeholder="Circuit Court" value="" data-provide="typeahead" autocomplete="off" data-items="4" data-source='[ "1st" ,  "2nd" ,  "3rd" ,  "4th" ,  "5th" ,  "6th" ,  "7th" ,  "8th" ,  "9th" ,  "10th" ,  "11th" ,  "D.C."  ]' />
+</div>
+
+<div class="input-append" style="float: left;margin-right: 15px;">
+<input class="span3" id="filing_judge_name" name="filing_judge_name" type="text" placeholder="Judge Name" value=""/>
+</div>
+<div class="input-append" style="float: left;margin-right: 15px;">
+<input class="span3" id="filing_lead_plaintif_name" name="filing_lead_plaintif_name" type="text" placeholder="Lead Plaintiff" value=""/>
+</div>
+
+<div class="input-append" style="float: left;margin-right: 15px;">
+<input class="span3" id="filing_plaintif_law_firm" name="filing_plaintif_law_firm" type="text" placeholder="Plaintiff Law Firms" value=""/>
+</div>
+<div class="input-append" style="float: left;margin-right: 15px;">
+<input class="span3" id="filing_dependant_law_firm" name="filing_dependant_law_firm" type="text" placeholder="Defendants' Law Firms" value=""/>
+</div>
+
+<div class="input-append" style="float: left;margin-right: 15px;">
+<input type="text" class="span3" id="filing_type_of_litigation" name="filing_type_of_litigation" placeholder="Type of Litigation" value="" data-provide="typeahead" autocomplete="off" data-items="4" data-source='[ "Classic" ,  "Analyst" ,  "IPO Allocation" ,  "Mutual Fund"  ]' />
+</div>
+<div class="input-append" style="float: left;margin-right: 15px;">
+<input type="text" class="span3" id="filing_historical_trend" name="filing_historical_trend" placeholder="Historical Trend" value="" data-provide="typeahead" autocomplete="off" data-items="4" data-source='[ "Classic Case (No-Trend)" ,  "Analyst" ,  "Bid Rigging (Insurance Kickbacks Allegations)" ,  "Credit Crisis" ,  "IPO Allocation" ,  "Madoff-Related Case" ,  "Mutual Fund (Market Timing)" ,  "Option Backdating"  ]' />
+</div>
+
+<div class="input-append" style="float: left;margin-right: 15px;">
+<input type="text" class="span3" id="filing_allegations" name="filing_allegations" placeholder="Allegations" value="" data-provide="typeahead" autocomplete="off" data-items="4" data-source='[ "[Allegation category can’t be determined]" ,  "Insider Trading" ,  "Failure of Disclosure" ,  "Accounting Irregularities (Misrepresentations in Financial Statements)" ,  "Accounting GAAP Violation (explicitly GAAP or GAAS)" ,  "Misrepresentations" ,  "Merger and Acquisition Related Fraud" ,  "Demutualization" ,  "Broker-Market Manipulation" ,  "Insurance (Kickbacks Allegations)" ,  "Bid Rigging" ,  "Ponzi Scheme" ,  "IPO Allegations Fraud" ,  "Churning" ,  "Violations of Fiduciary Duty" ,  "Derivatives" ,  "ERISA Violations" ,  "Product Liability Related Fraud" ,  "Patent Infringement Related Fraud" ,  "RICO Violations" ,  "FCPA Violations - Main Claims" ,  "FCPA Violations - Secondary or Tertiary Claims" ,  "FCPA Violations - Passing Reference" ,  "Broker Practices" ,  "Mutual Fund - Late Trading" ,  "Mutual Fund - Market Timing" ,  "Mutual Fund - Sales Practice"  ]' />
+</div>
+<div class="input-append" style="float: left;margin-right: 15px;">
+<input type="text" class="span3" id="filing_claims" name="filing_claims" placeholder="Claims" value="" data-provide="typeahead" autocomplete="off" data-items="4" data-source='[ "1934 act claims - section 9" ,  "1934 act claims - section 10b" ,  "1934 act claims - section 13d" ,  "1934 act claims - other sec 13" ,  "1934 act claims - section 14a" ,  "1934 act claims - section 14d" ,  "1934 act claims - section 14e" ,  "1934 act claims - section 16" ,  "1934 act claims - section 18" ,  "1934 act claims - section 20a" ,  "1934 act claims - section 20A" ,  "1933 act claims - section 11" ,  "1933 act claims - section 12a1" ,  "1933 act claims - section 12a2" ,  "1933 act claims - section 15" ,  "1933 act claims - section 17a" ,  "Sarbanes-Oxley Act of 2002" ,  "Investment Advisers Act of 1940" ,  "Investment Company Act of 1940" ,  "Other Federal Securities Claims" ,  "Other Federal Non-Securities Claims" ,  "States' Blue Sky Laws" ,  "Other States' Claims"  ]' />
+</div>
+
+<div class="input-append" style="float: left;margin-right: 15px;">
+<input type="text" class="span3" id="filing_exchange_market" name="filing_exchange_market" placeholder="Exchange Market" value="" data-provide="typeahead" autocomplete="off" data-items="4" data-source='[ "New York SE" ,  "NASDAQ" ,  "American SE" ,  "Amex Emerging Co." ,  "-" ,  "OTC-BB" ,  "Pink Sheets" ,  "Privately Traded" ,  "-" ,  "Toronto Stock Exchange" ,  "Other Foreign"  ]' />
+</div>
+<div class="input-append" style="float: left;margin-right: 15px;">
+<input class="span3" id="filing_ticker_symbol" name="filing_ticker_symbol" type="text" placeholder="Ticker Symbol"  value=""/>
+</div>
+
+<div class="input-append" style="float: left;margin-right: 15px;">
+<input type="text" class="span3" id="filing_sector" name="filing_sector" placeholder="Sector Classification" value="" data-provide="typeahead" autocomplete="off" data-items="4" data-source='[ "Services" ,  "Capital Goods" ,  "Transportation" ,  "Consumer Cyclical" ,  "Consumer Non-Cyclical" ,  "Healthcare" ,  "Basic Materials" ,  "Energy" ,  "Technology" ,  "Conglomerates" ,  "Financial" ,  "Utilities"  ]' />
+</div>
+<div class="input-append" style="float: left;margin-right: 15px;">
+<input type="text" class="span3" id="filing_industry" name="filing_industry" placeholder="Industry Classification" value="" data-provide="typeahead" autocomplete="off" data-items="4" data-source='[ "Advertising" ,  "Aerospace & Defense" ,  "Air Courier" ,  "Airline" ,  "Apparel/Accessories" ,  "Appliance & Tool" ,  "Audio & Video Equipment" ,  "Auto & Truck Manufacturers" ,  "Auto & Truck Parts" ,  "Beverages (Alcoholic)" ,  "Beverages (Non-Alcoholic)" ,  "Biotechnology & Drugs" ,  "Broadcasting & Cable TV" ,  "Business Services" ,  "Casinos & Gaming" ,  "Chemical Manufacturing" ,  "Chemicals - Plastics & Rubber" ,  "Coal" ,  "Communications Equipment" ,  "Communications Services" ,  "Computer Hardware" ,  "Computer Networks" ,  "Computer Peripherals" ,  "Computer Services" ,  "Computer Storage Devices" ,  "Conglomerates" ,  "Constr. & Agric. Machinery" ,  "Constr. - Supplies & Fixtures" ,  "Construction - Raw Materials" ,  "Construction Services" ,  "Consumer Financial Services" ,  "Containers & Packaging" ,  "Crops" ,  "Electric Utilities" ,  "Electronic Instruments & Controls" ,  "Fabricated Plastic & Rubber" ,  "Fish/Livestock" ,  "Food Processing" ,  "Footwear" ,  "Forestry & Wood Products" ,  "Furniture & Fixtures" ,  "Gold & Silver" ,  "Healthcare Facilities" ,  "Hotels & Motels" ,  "Insurance (Accident & Health)" ,  "Insurance (Life)" ,  "Insurance (Miscellaneous)" ,  "Insurance (Prop. & Casualty)" ,  "Investment Services" ,  "Iron & Steel" ,  "Jewelry & Silverware" ,  "Major Drugs" ,  "Medical Equipment & Supplies" ,  "Metal Mining" ,  "Misc. Capital Goods" ,  "Misc. Fabricated Products" ,  "Misc. Financial Services" ,  "Misc. Transportation" ,  "Mobile Homes & RVs" ,  "Money Center Banks" ,  "Motion Pictures" ,  "Natural Gas Utilities" ,  "Non-Metallic Mining" ,  "Office Equipment" ,  "Office Supplies" ,  "Oil & Gas - Integrated" ,  "Oil & Gas Operations" ,  "Oil Well Services & Equipment" ,  "Paper & Paper Products" ,  "Personal & Household Products" ,  "Personal Services" ,  "Photography" ,  "Printing & Publishing" ,  "Printing Services" ,  "Railroads" ,  "Real Estate Operations" ,  "Recreational Activities" ,  "Recreational Products" ,  "Regional Banks" ,  "Rental & Leasing" ,  "Restaurants" ,  "Retail (Apparel)" ,  "Retail (Catalog & Mail Order)" ,  "Retail (Department & Discount)" ,  "Retail (Drugs)" ,  "Retail (Grocery)" ,  "Retail (Home Improvement)" ,  "Retail (Specialty)" ,  "Retail (Technology)" ,  "S&Ls/Savings Banks" ,  "Schools" ,  "Scientific & Technical Instr." ,  "Security Systems & Services" ,  "Semiconductors" ,  "Software & Programming" ,  "Textiles - Non Apparel" ,  "Tires" ,  "Tobacco" ,  "Trucking" ,  "Waste Management Services" ,  "Water Transportation" ,  "Water Utilities" ,  "Other (Mutual Fund)" ,  "Retail & Repair (Automotive)" ,  "Alternative Energy"  ]' />
+</div>
+
+<!-- <div style="float: left;position: relative;top: 5px;"><a href="filings.html">Browse Filings Database</a></div> -->
+
+</div>
+<div class="modal-footer">
+<button class="btn" type="button" data-dismiss="modal">Close</button>
+<button class="btn" type="button" onclick="return clearSearch();">Clear Form</button>
+<button class="btn" data-dismiss="modal" type="submit" onclick="$('#optionSearchForm').submit();">Search</button>
+</div>
+</form>
+</div>
+<!-- / modal search - more options -->
+
+<!-- modal search for phone - more options -->
+<div id="myModalOptionsSearchPhone" class="span12 modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+<h4 id="myModalLabel"><span aria-hidden="true" class="icon-search" style="font-size: 16px;color: #000000;margin-top: 4px;margin-bottom: 4px;margin-right: 8px;"></span>Search Filings Database</h4>
+</div>
+
+<form class="navbar-search pull-left span12" id="optionSearchFormPhone" method="post" action="filings">
+<div class="modal-body">
+<input type="hidden" name="fromSearch" value="true"/>
+
+<div class="input-append" style="float: left;margin-right: 15px;">
+<input class="span6 top-two-row" id="search" name="search" type="text" placeholder="Filing Name or Comp." value=""/>
+<span class="add-on"><a onclick="$('#optionSearchFormPhone').submit();"><i class="icon-search-2"></i></a></span>
+</div>
+</div>
+<div class="modal-footer">
+<button class="btn" type="button" data-dismiss="modal">Close</button>
+<button class="btn" data-dismiss="modal" type="submit" onclick="$('#optionSearchFormPhone').submit();">Search</button>
+</div>
+</form>
+</div>
+<!-- / modal search - more options -->
+
+<!-- modal register - more options -->
+<div id="myModalOptionsRegister" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+<h4 id="myModalLabel"><span aria-hidden="true" class="icon-edit" style="font-size: 16px;color: #000000;margin-top: 4px;margin-bottom: 4px;margin-right: 8px;"></span>Register</h4>
+</div>
+<form id="registerForm" name="registerForm" class="navbar-search pull-left" action="register" method="post">
+<div class="modal-body">
+
+<p>Register here to receive weekly email notices about recently-filed securities class action complaints and news in the area of securities class action litigation.</p>
+<div class="input-append" style="float: left;margin-right: 15px;">
+<input class="span5" id="register_name" type="text" placeholder="Full Name" name="name">
+<span class="add-on"><i class="icon-user"></i></span>
+</div>
+<div class="input-append" style="float: left;margin-right: 15px;">
+<input class="span5" id="register_email" type="text" placeholder="Email Address" name="email">
+<span class="add-on"><i class="icon-envelope"></i></span>
+</div>
+<div class="input-append" style="float: left;margin-right: 15px;">
+<input class="span5" id="register_institution" type="text" placeholder="Institution" name="institution">
+<span class="add-on"><i class="icon-briefcase"></i></span>
+</div>
+
+<!-- <div style="float: left;position: relative;top: 5px;"><a href="filings.html">Browse Filings Database</a></div> -->
+
+</div>
+<div class="modal-footer">
+<button class="btn" type="button" data-dismiss="modal">Close</button>
+<button class="btn" type="button" onclick="return clearRegister();">Clear Form</button>
+<button class="btn" type="submit" onclick="return submitRegister();">Register</button>
+</div>
+</form>
+</div>
+<!-- / modal search - more options -->
+
+<!-- Subhead
+================================================== -->
+<header class="jumbotron subhead" id="overview">
+<!-- Desktop and Tablet view -->
+<div class="container hidden-phone">
+<div class="row-fluid">
+<div class="span7 stanford-seal" style="text-align: left;">
+<!-- <img src="assets/img/scac-logo.png" class="seal" style="max-height: 150px;"> -->
+<img src="assets/img/scac-logo.png" class="seal hidden-tablet" style="max-height: 100px;">
+<img src="assets/img/scac-logo.png" class="seal hidden-desktop" style="max-height: 75px;">
+</div>
+
+<!-- I had a span2 here -->
+<!-- hidden-tablet -->
+<div class="span4 stanford-seal pull-right hidden-tablet" style="text-align: left;margin-right: 15px;">
+<ul class="pull-right unstyled">
+<li class="pull-right">
+<a data-toggle="modal" href="#myModalOptionsSearch" style="color: #ffffff"><span aria-hidden="true" style="font-size: 20px;color: #FFFFFF;margin-bottom: 0px;margin-right: 0px;"><img src="assets/ico/magnifying-glass.png" style="max-height: 18px"></a>&nbsp;<a data-toggle="modal" href="#myModalOptionsSearch" style="color: #ffffff"><strong>Filings Search</strong></a></span>
+</li>
+<li class="pull-right">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</li>
+<li class="pull-right"><br />&nbsp;<br /></li>
+<li class="pull-right">
+<a data-toggle="modal" href="#myModalOptionsRegister" style="color: #ffffff"><span aria-hidden="true" style="font-size: 20px;color: #FFFFFF;margin-bottom: 0px;margin-right: 0px;"><img src="assets/ico/box-with-pencil.png" style="max-height: 18px"></a>&nbsp;<a data-toggle="modal" href="#myModalOptionsRegister" style="color: #ffffff"><strong>Register</strong></a></span>
+</li>
+</ul>
+<div class="span12">
+<h4 class="pull-right pull-bottom" style="margin-bottom: 0px;margin-right: 10px;">Case Page</h4>
+</div>
+</div>
+<!-- hidden-desktop -->
+<div class="span3 stanford-seal pull-right hidden-desktop" style="text-align: left;margin-right: 15px;">
+<ul class="pull-right unstyled">
+<li class="pull-right">
+<a data-toggle="modal" href="#myModalOptionsSearch" style="color: #ffffff"><span aria-hidden="true" style="font-size: 20px;color: #FFFFFF;margin-bottom: 0px;margin-right: 0px;"><img src="assets/ico/magnifying-glass.png" style="max-height: 18px"></a>&nbsp;<a data-toggle="modal" href="#myModalOptionsSearch" style="color: #ffffff"><strong>Filings Search</strong></a></span>
+</li>
+<li class="pull-right"><br />&nbsp;<br /></li>
+<li class="pull-right">
+<a data-toggle="modal" href="#myModalOptionsRegister" style="color: #ffffff"><span aria-hidden="true" style="font-size: 20px;color: #FFFFFF;margin-bottom: 0px;margin-right: 0px;"><img src="assets/ico/box-with-pencil.png" style="max-height: 18px"></a>&nbsp;<a data-toggle="modal" href="#myModalOptionsRegister" style="color: #ffffff"><strong>Register</strong></a></span>
+</li>
+</ul>
+</div>
+
+</div>
+</div>
+<!-- Phone view -->
+<div class="container hidden-desktop hidden-tablet" style="padding-left: 0px;padding-right: 0px;padding-bottom: 0px;padding-top: 0px;">
+<div class="row-fluid">
+<img src="assets/img/scac-logo.png">&nbsp;<br /><!--<h1>Case Page</h1>-->
+</div>
+</div>
+
+
+</header>
+
+
+<div class="container">
+
+
+
+
+<!-- Docs nav
+================================================== -->
+<div class="row">
+<div class="span3 bs-docs-sidebar">
+<div class="page-header hidden-tablet hidden-desktop">
+<h3>ABS Industries, Inc.</h3>
+</div>
+<ul class="nav nav-list bs-docs-sidenav">
+<li><a href="#summary" rel="m_PageScroll2id"><i class="icon-chevron-right"></i> Case Summary</a></li>
+<li><a href="#company" rel="m_PageScroll2id"><i class="icon-chevron-right"></i> Company &amp; Securities Info</a></li>
+<li><a href="#fic" rel="m_PageScroll2id"><i class="icon-chevron-right"></i> First Identified Complaint</a></li>
+<li><a href="#ref" rel="m_PageScroll2id"><i class="icon-chevron-right"></i> Reference Complaint</a></li>
+<li><a href="#other" rel="m_PageScroll2id"><i class="icon-chevron-right"></i>  Related District Court Filings</a></li>
+<li><a href="#state" rel="m_PageScroll2id"><i class="icon-chevron-right"></i>  Related State Court Filings</a></li>
+<li><a href="#appeal" rel="m_PageScroll2id"><i class="icon-chevron-right"></i> Courts of Appeal Filings</a></li>
+<li><a href="#supreme" rel="m_PageScroll2id"><i class="icon-chevron-right"></i> Supreme Court Filings</a></li>
+</ul>
+</div>
+
+<div class="span9">
+
+<!-- Case Summary
+================================================== -->
+<section id="summary">
+
+<div class="page-header hidden-phone">
+<h3>Case Summary</h3>
+<h4>ABS Industries, Inc. Securities Litigation</h4>
+</div>
+<div class="page-header hidden-tablet hidden-desktop">
+<h3>Case Summary</h3>
+</div>
+
+<p>
+<strong>Case Status: &nbsp;&nbsp;</strong>
+<span aria-hidden="true" class="icon-check"></span> SETTLED
+
+<br />
+On or around 01/29/1999 (Date of order of final judgment)
+</p>
+
+<p class="lead">Filing Date: January 19, 1996</p>
+
+<div class="row-fluid">
+<div class="span12" style="background-color: #ffffff;">
+According to the complaint, the case involves a classic cooked book scheme in which Defendants, among other wrongful acts, knowingly disseminated materially false financial statements reporting "record" and accelerating sales and earnings per share.<br/><br/>Specifically, the complaint alleges that the financial and other misrepresentations disseminated by Defendants during the Class Period created the illusion that ABSI was enjoying unrestrained growth in sales and earnings when, in reality, the growth was attributable in material part to sales improperly recorded as recording revenue, contrary to the Company's own criteria for recording revenue only when goods have been shipped and title passed to the buyer.  As a result, Plaintiff and other unsuspecting members of the investing public paid inflated prices as high as $13.00 per share for ABSI shares during the Class Period.  Beginning on January 10, 1996, ABSI began to reveal the Company's true financial condition and prospects, and the other adverse information described herein, disclosed that it will restate its financial results for the past three years and that its operating cash flow is not sufficient to support its current obligations.  In response, the trading price of ABSI shares plunged from a price of $6.75 per share on January 10, 1996 to a closing price of $3.00 per share on January 13, 1996, a 55% decline, resulting in damages to the Class well in excess of ten million dollars.<br/><br/>According to the docket, on October 19, 1998, a Stipulation and Settlement Agreement was filed and on January 29, 1999, the Court entered the Final Judgment and Order certifying the class and approving the settlement.  The plantiffs’ counsel was awarded attorneys’ fees in the amount of $205,961.93 and reimbursement of expenses of $6,562.64, paid from the settlement fund. Each named plaintiff in this case and the North Carolina case received $5500.00.  The case was dismissed.
+</div>
+</div>
+
+</section>
+
+<!-- Company and Securities  Information
+================================================== -->
+<section id="company">
+<div class="page-header">
+<h3>Company &amp; Securities  Information</h3>
+<h4>Defendant: ABS Industries, Inc. <small> <a href="">website</a> </small></h4>
+</div>
+
+<p class="lead" style="margin-bottom: 0px"><small>COMPANY INFORMATION:</small></p>
+<div class="row-fluid">
+<div class="span4"><strong>Sector:</strong> Basic Materials</div>
+<div class="span4"><strong>Industry:</strong> Metal Mining</div>
+<div class="span4"><strong>Headquarters:</strong> United States</div>
+</div>
+<br />
+<p class="lead" style="margin-bottom: 0px"><small>SECURITIES INFORMATION:</small></p>
+<div class="row-fluid">
+<div class="span4"><strong>Ticker Symbol:</strong> ABSI</div>
+<div class="span4"><strong>Company Market:</strong> NASDAQ</div>
+<div class="span4"><strong>Market Status:</strong> Public (Listed)</div>
+</div>
+<br/>
+<div class="alert alert-block" style="color: #565656">
+<button type="button" class="close" data-dismiss="alert">&times;</button>
+<h4>About the Company &amp; Securities Data</h4><br />
+<strong>"Company" information</strong> provides the industry and sector classification and headquarters state for the primary company-defendant in the litigation. In general, <strong>"Securities" information </strong>provides the ticker symbol, market, and market status for the underlying securities at issue in the litigation.<br /><br />In most cases, the primary company-defendant actually issued the securities that are the subject of the litigation, and the securities information and company information relate to the same entity. In a small subset of cases, however, the primary company-defendant is not the issuer (for example, cases against third party brokers/dealers), and the securities information and company information do not relate to the same entity.
+</div>
+
+</section>
+
+<!-- FIC
+================================================== -->
+<section id="fic">
+
+<div class="page-header">
+<h3>First Identified Complaint</h3>
+<h4>Leo Hawk, et al. v. ABS Industries, Inc., et al.</h4>
+</div>
+
+<div class="row-fluid">
+<div class="span4"><strong>COURT:</strong> N.D. Ohio</div>
+<div class="span4"><strong>DOCKET #:</strong> 96-CV-109</div>
+<div class="span4"><strong>JUDGE:</strong> Hon. Solomon Oliver, Jr.</div>
+</div>
+<div class="row-fluid">
+<div class="span4"><strong>DATE FILED:</strong> 01/19/1996</div>
+<div class="span4"><strong>CLASS PERIOD START:</strong> 03/17/1993</div>
+<div class="span4"><strong>CLASS PERIOD END:</strong> 01/10/1996</div>
+</div>
+
+<h6>PLAINTIFF FIRMS NAMED IN COMPLAINT:</h6>
+<ol class="styled">
+<li><a href="http://www.strauss-troy.com/" style="color: #353839" target="_blank">Strauss & Troy</a><br />The Federal Reserve Building, 150 East Fourth Street, Strauss & Troy, OH 45202-4018<br />513.621.2120 513.241.8250 &middot; <a href="mailto:wlwoods@strauss-troy.com <wlwoods@strauss-troy.com>" >wlwoods@strauss-troy.com <wlwoods@strauss-troy.com></a></li>
+<li>Weisman, Goldberg & Weisman Co., L.P.<br />101 Prospect Ave, West; 1600 Midland Building, Weisman, Goldberg & Weisman Co., L.P., OH 44115<br />216.781.1111 216.781.6747 &middot; <a href="mailto:" ></a></li>
+<li>White, Getgey & Meyer<br />1700 Central Trust Tower One, West Fourth Street , White, Getgey & Meyer, OH 45202<br />513.241.3685.  &middot; <a href="mailto:" ></a></li>
+</ol>
+<div class="modal-footer" style="background-color: #ffffff;bottom-margin: 0px; top-margin: 0px">
+<div style="float: left;position: relative">
+First Identified Complaint (FIC) Filings:</a>
+</div>
+</div>
+<table class="table table-bordered table-striped table-hover">
+<thead>
+<tr>
+<th class="hidden-tablet hidden-phone">No</th>
+<th>Document Title</th>
+<th>Filing Date</th>
+</tr>
+</thead>
+<tbody>
+<tr class="table-link" onclick="window.location='filings-documents/1009/ABSI96/001.html'" target="_blank">
+<td class="hidden-tablet hidden-phone">1</td>
+<td>Class Action Complaint</td>
+<td>01/18/1996</td>
+</tr>
+<tr class="table-link" onclick="window.location='filings-documents/1009/ABSI96/96cv109docket070600.txt'" target="_blank">
+<td class="hidden-tablet hidden-phone">2</td>
+<td>Docket</td>
+<td>01/19/1996</td>
+</tr>
+<tr class="table-link" onclick="window.location='filings-documents/1009/ABSI96/200073_f03k_96CV109.pdf'" target="_blank">
+<td class="hidden-tablet hidden-phone">3</td>
+<td>U.S. District Court Civil Docket</td>
+<td>07/03/2000</td>
+</tr>
+</tr>
+</tbody>
+</table>
+
+</section>
+
+<!-- REF
+================================================== -->
+
+<!-- OTH
+================================================== -->
+
+<!-- STATE STC
+================================================== -->
+
+<!-- COA
+================================================== -->
+
+<!-- SC
+================================================== -->
+&nbsp;<br />
+&nbsp;<br />
+<div class="span12"><p><a href="filings-case-pages-url-map.html" style="color: #ffffff"><strong>Cases</strong></a></p></div>
+</div>
+</div>
+
+</div>
+
+<!-- Footer
+================================================== -->
+<footer class="footer" style="background-color: #fbfbfb;padding-top: 10px; padding-bottom: 10px; margin-top: 20px">
+<div class="container">
+<div class="span10" style="margin-left: 0px">
+<div class="span12 row-fluid" style="margin-left: 0px">
+<legend  style="margin-left: 0px;margin-bottom: 0px"><a href="about-the-scac.html" style="color: #565656">About</a></legend>
+<div class="span2" style="margin-left: 0px;margin-top: 0px">
+<dl>
+<dd><a href="about-the-scac.html#about" style="color: #151616">About Us</a></dd>
+<dd><a href="about-the-scac.html#methodology" style="color: #151616">Methodology</a></dd>
+<dd><a href="about-the-scac.html#faq" style="color: #151616">FAQ</a></dd>
+</dl>
+</div>
+<div class="span4" style="margin-left: 0px;margin-right 0px">
+<dl>
+<dd style="color: #565656"><a href="about-the-scac.html#sponsors" style="color: #151616">Sponsors &amp; Partners</a></dd>
+<dd>&middot; <a href="http://rockcenter.law.stanford.edu" style="color: #353839"><em>Rock Center for Corporate Governance</em></a></dd>
+<dd>&middot; <a href="http://www.cornerstone.com" style="color: #353839"><em>Cornerstone Research</em></a></dd>
+</dl>
+</div>
+<div class="span2" style="margin-left: 0px;margin-right 0px">
+<dl>
+<dd><a href="about-the-scac.html#register" style="color: #151616">Register</a></dd>
+<dd><a href="about-the-scac.html#contacts" style="color: #151616">Contact Us</a></dd>
+</dl>
+</div>
+<div class="span2" style="margin-left: 0px;margin-right 0px">
+<dl>
+<dd><a href="about-the-scac.html#legal" style="color: #151616">Legal Notices</a></dd>
+</dl>
+</div>
+<div class="span2" style="margin-left: 0px;margin-right 0px">
+<dl>
+<!-- <dd><a href="about-the-scac.html#sitemap" style="color: #151616">Site Map</a></dd> -->
+</dl>
+</div>
+</div>
+</div>
+<div class="span2 pull-right">
+<dl>
+<p class="pull-right"><a href="#">Back to top</a></p>
+<dd></dd>
+</dl>
+</div>
+<div class="modal-footer span12" style="margin-left: 0px;background-color: #fbfbfb">
+<p align="center" style="color: #565656">Web site managed by the Research Data Services group of the <a href="http://rockcenter.law.stanford.edu/">Arthur and Toni Rembe Rock Center for Corporate Governance.</a> Information licensed under <a href="http://www.stanford.edu/">Stanford University</a>.</p>
+</div>
+</div>
+</footer>
+
+
+<!-- Javascript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script type="text/javascript" src="assets/js/widgets.js"></script>
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/google-code-prettify/prettify.js"></script>
+<script src="assets/js/bootstrap-transition.js"></script>
+<script src="assets/js/bootstrap-alert.js"></script>
+<script src="assets/js/bootstrap-modal.js"></script>
+<script src="assets/js/bootstrap-dropdown.js"></script>
+<script src="assets/js/bootstrap-scrollspy.js"></script>
+<script src="assets/js/bootstrap-tab.js"></script>
+<script src="assets/js/bootstrap-tooltip.js"></script>
+<script src="assets/js/bootstrap-popover.js"></script>
+<script src="assets/js/bootstrap-button.js"></script>
+<script src="assets/js/bootstrap-collapse.js"></script>
+<script src="assets/js/bootstrap-carousel.js"></script>
+<script src="assets/js/bootstrap-typeahead.js"></script>
+<script src="assets/js/bootstrap-affix.js"></script>
+<script src="assets/js/application.js"></script>
+
+<script src="assets/js/bootstrap-select.min.js"></script>
+<!-- Animate scroll to page ids -->
+<script src="assets/js/jquery-ui-1.9.0.custom.min.js"></script>
+<script src="assets/js/jquery.malihu.PageScroll2id.js"></script>
+<script>
+(function($){
+$(window).load(function(){
+$("a[rel='m_PageScroll2id']").mPageScroll2id();
+});
+})(jQuery);
+</script>
+
+<!--  show/hide heatmap  -->
+<script type="text/javascript">
+$(document).ready(function(){
+$('.typeahead').typeahead();
+
+$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+e.preventDefault();
+e.stopPropagation();
+var target = $(e.target).attr("href"); // activated tab
+var ajaxURL = $(target).attr("ajax-ref");
+if (ajaxURL && $(target).is(':empty')) {
+document.location.href = ajaxURL;
+}
+return false;
+});
+
+if ($('.nav-tabs')) {
+var url = document.location.toString();
+if (url.match('#')) {
+$('.nav-tabs a[href=#'+url.split('#')[1]+']').tab('show') ;
+}
+}
+});
+
+function submitRegister() {
+var name = $('#register_name').val();
+var email = $('#register_email').val();
+var institution = $('#register_institution').val();
+if (!name || !email || !institution) {
+alert("All fields are required!");
+} else {
+var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+if (!filter.test(email)) {
+alert("Bad email format!");
+} else {
+document.forms.registerForm.submit();
+}
+}
+return false;
+}
+
+function clearRegister() {
+$('#register_name').val("");
+$('#register_email').val("");
+$('#register_institution').val("");
+return false;
+}
+
+function clearSearch() {
+var fields = ['search', 'filing_date', 'filing_year', 'filing_quarter', 'filing_month', 'filing_court', 'filing_court_circuit',
+'filing_judge_name', 'filing_lead_plaintif_name', 'filing_plaintif_law_firm', 'filing_dependant_law_firm', 'filing_type_of_litigation',
+'filing_historical_trend', 'filing_allegations', 'filing_claims', 'filing_exchange_market', 'filing_ticker_symbol',
+'filing_sector', 'filing_industry'];
+for(var i = 0; i < fields.length; i++) {
+$('#'+fields[i]).val("");
+}
+return false;
+}
+</script>
+
+</body>
+</html>

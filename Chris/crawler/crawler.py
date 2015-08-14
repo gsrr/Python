@@ -21,8 +21,10 @@ def extractDataFromURL(data):
     url_temp="http://securities.stanford.edu/filings-case.html?id=%s"
     for i in range(1, len(data)):
         url_path = url_temp%(data[i])
+        print url_path
         url_data = myLib.myUrl(url_path)
-        print url_data
+        for line in url_data:
+             print line
         break
 
         
