@@ -1,3 +1,4 @@
+import time
 
 class State:
     def __init__(self):
@@ -19,20 +20,26 @@ class StatusState(State):
     def parse(self, line, context):
         if "icon-check" in line:
             context.result.append( line.split()[-1])
-            context.state = context.stateMap['Filing']
+            context.state = context.stateMap['Around']
             
 
-class FilingState(State):
+class AroundState(State):
     def parse(self, line, context):
-        if "Filing Date" in line:
-            context.result.append( line.split(">")[1].strip("</p"))
+        if "On or around" in line:
+            context.result.append( line.split()[3])
             context.state = context.stateMap['Desc']
+
+class ExtractState(State):
+    def parse(self, line, context):
+        context.result.append( line.strip().replace("<br/>", ""))
+        context.state = context.stateMap['End']
 
 class DescState(State):
     def parse(self, line, context):
-        if "According" in line:
-            context.result.append(line)
-            context.state = context.stateMap['End']
+        if "span12" in line:
+            context.state = context.stateMap['Extract']
+            extract = True
+
 
 class EndState(State):
     def parse(self, line, context):
@@ -45,8 +52,9 @@ class Context(State):
         self.stateMap={
                 'Start':StartState(),
                 'Status':StatusState(),
-                'Filing':FilingState(),
+                'Around':AroundState(),
                 'Desc':DescState(),
+                'Extract':ExtractState(),
                 'End':EndState(),
         }
         self.result = []
@@ -66,7 +74,9 @@ class ParserManager:
         for line in self.data:
             self.parser.parse(line)
         
-        print self.parser.result
+    def result(self):
+        return self.parser.result
+
 
 def main():
     parser = Context(StartState())
@@ -74,6 +84,7 @@ def main():
         data = f.readlines()
         pm = ParserManager(data, parser)
         pm.startParse()
+        print pm.result()
 
 if __name__ == "__main__":
     main()

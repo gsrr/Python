@@ -1,8 +1,8 @@
 import myLib
 import urllib
-
-
-
+import CaseParser
+import time
+import random
 
 def extractID(line):
     return line.strip().split()[0]
@@ -17,17 +17,37 @@ def readFile(func):
             line = fr.readline()
     return data
 
+
+def showResult(fd, index, data):
+    ret = [index, data[1], data[0]]
+    if "DISMISSED" == data[0]: 
+        if "voluntary" in data[2]:
+            ret.append("1")
+        else:
+            ret.append("0")
+    else:
+        ret.append("0")
+
+    ret.append(data[2])
+    print " ".join(ret)
+    fd.write(" ".join(ret) + "\n")
+    fd.flush()
+
 def extractDataFromURL(data):
+    fd = open("./result", "a")
     url_temp="http://securities.stanford.edu/filings-case.html?id=%s"
     for i in range(1, len(data)):
         url_path = url_temp%(data[i])
-        print url_path
+        print i, url_path,
         url_data = myLib.myUrl(url_path)
-        for line in url_data:
-             print line
-        break
-
+        parser = CaseParser.Context(CaseParser.StartState())
+        pm = CaseParser.ParserManager(url_data, parser)
+        pm.startParse()
+        showResult(fd, data[i], pm.result())
+        sleep_time = random.randint(1,3)
+        #time.sleep(sleep_time)
         
+    fd.close()
 
 def main():
     data = readFile(extractID);
