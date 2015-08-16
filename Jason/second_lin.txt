@@ -1,0 +1,89 @@
+
+
+
+第二部分篩選狀況有點小改
+
+資料格式一樣   但篩選條件不同
+
+這次是以每個家族為主  隨機挑出家族的所有人數湊到所設定比例的人數  
+
+然後這個家族所在的欄位是可以在程式中設定的
+
+例如程式設定成去抓family or column A這個欄位
+
+這是資料格式
+family, name, no.of.kids   # my dataset.csv
+A, John, 1
+A, John2, 2 
+A, Cathy, 1  # We have 3 ppl in A family
+B, Mary, 4
+B, Roy, 2
+B, Wall, 1
+B, Byan, 2   # We have 4 ppl in B 
+C, Lisa, 3
+C, Roger, 1  # We have 2 ppl in C
+D, Dave, 2   # We have 1 ppl in D
+E, Lee, 1    # We have 1 ppl in E
+...
+...
+..
+.
+
+首先先知道全部總共多少人  與每一家族有多少人
+
+To sum up, so now we have 
+  A: 3
+  B: 4
+  C: 2
+  D: 1
++)E: 1
+-----
+Tot: 11
+
+
+然後我要依照家族把所有人分成25% 與剩下的75% (這數值 X 請設定成我可以手動更改)
+假設我要挑X=25%出來  11*25%=2.75, 四捨五入後 = 3
+
+那B家族就不能被挑進25%  因為3 < 4, exclude B family  只有ACDE可進入篩選
+
+  
+
+
+所以在25%之下  我會有以下三種可能的file1.csv組合
+
+Example output 1.
+family, name, no.of.kids
+A, John, 1
+A, John2, 2   # same name 
+A, Cathy, 1   # 3 all from A family, saved as file1.csv  家族不能被拆  三個人都從A家族來   
+
+Example output 2.
+family, name, no.of.kids
+C, Lisa, 3
+C, Roger, 1  
+E, Lee, 1    # 2 from C and 1 from E, saved as file1.csv   二個從C家來  一個從E家來  
+
+Example output 3.
+family, name, no.of.kids
+C, Lisa, 3
+C, Roger, 1   
+D, Dave, 2   # 2 from C and 1 from D, saved as file1.csv   二個從C來  一個從D來   
+
+
+剩下沒被挑到的人通通存到file2.csv
+
+和第一支程式不一樣    第一支是從每個家族裡  按照所設定的比例  平均隨機挑人出來 
+
+第二部分的程式重點是家族裡面的人不可以被拆掉    必須依照每個家族的人口數   隨機去湊成25%的總人數(11*25%=2.75=3) 存成file1.csv
+ 
+所以超過所設定的人數的家族  例如B家有4人 因4>3  就會被直接排除  存到file2.csv去
+
+輸出檔案時  第二欄 name這個欄位一定要存成是non-float 非浮點類型 例如string
+
+最後  跟第一支一樣   也是可以讓我設定n = 多少 
+例如n=5 則產生五組file1.csv 與 file2.csv  
+每組的產生都是隨機且獨立的  n=1 一組  n=2 二組 類推
+
+
+
+

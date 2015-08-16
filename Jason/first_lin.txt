@@ -1,0 +1,95 @@
+
+ 
+
+第一部分
+
+假設我有一個資料長這樣  我想要平均且隨機的從每個家族挑人出來
+輸入檔案格式是XXXX.csv 
+
+然後這個家族所在的欄位是可以在程式中設定的
+例如程式設定成去抓family or column A這個欄位
+
+family, name, no.of.kids   # my dataset.csv
+A, John, 1
+A, John2, 2  # same name John
+A, Cathy, 1  # We have 3 ppl in A
+B, Mary, 4
+B, Roy, 2
+B, Wall, 1
+B, Byan, 2   # We have 4 ppl in B 
+C, Lisa, 3
+C, Roger, 1  # We have 2 ppl in C
+D, Dave, 2   # We have 1 ppl in D
+...
+...
+..
+.
+
+To sum up, so now we have 
+根據資料讀取   A家有三人  B家四人  類推
+A: 3
+B: 4
+C: 2
+D: 1
+
+ 
+然後設定一個比例 例如25% (這數字X=25%請設定讓我可以手動改) 
+我要平均的從每個家族裡面隨機挑出25%的人
+
+
+
+A: 0.75  (3 * 0.25 = 0.75)
+B: 1     (4 * 0.25 = 1)
+C: 0.5   (2 * 0.25 = 0.5)
+D: 0.25  (1 * 0.25 = 0.25)
+
+
+人數則以四捨五入  例如0.75則代表挑出1人   小於0.5則0人  類推此規則
+A: 1   (0.75 to 1)
+B: 1   (1 to 1)
+C: 1   (0.5 to 1)
+D: 0   (0.25 to 0)
+
+
+
+挑完之後分成二個檔案   一檔是那些被挑的  做成一個file1.csv檔   另一檔是沒被挑中的 做成file2.csv檔
+第二欄 name這個欄位一定要存成是non-float 非浮點類型 例如string
+
+我的python版本是2.7      
+
+輸出例子長這樣  file1.csv
+family, name, no.of.kids  # file1.csv example
+A, John2, 2    # randomly select John2 from A 
+B, Wall, 1   # randomly select Wall from B
+C, Lisa, 3
+...
+..
+
+這是file2.csv
+family, name, no. of kids   # file2.csv  example
+A, John, 1     # all others to file2.csv
+A, Cathy, 1 
+B, Mary, 4
+B, Roy, 2
+B, Byan, 2  
+C, Roger, 1  
+D, Dave, 2   
+...
+..
+
+最後
+程式要讓我可以設定跑幾次  產生多少檔   例如設定n=5次  這個程式可以自行產生5組隨機挑選的檔 
+每組包含一個file1.csv 與一個 file2.csv
+最後也就是產生五個file1.csv 與 五個file2.csv檔
+每組的產生都是隨機且獨立的  n=1 一組  n=2 二組 類推
+
+file1.csv file2.csv  #第一組
+
+file1.1.csv  file2.1.csv  # 第二組
+
+file1.2.csv  file2.2.csv  # 第三組
+..類推到第n組   n值我可以設定
+
+
+
+
