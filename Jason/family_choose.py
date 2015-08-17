@@ -6,10 +6,11 @@ import random
 import os
 import copy
 
-file_title="givid,id,family,sire,dam,sex,weight,length,kfactor5,BW,lice+1,logeLC,LC+1/BW,logeLD,logeweight,log10weight,logelength,log10length,logekfactor5,log10kfactor5"
+file_title = ""
 slash = "/"
 
 def readFile(path):
+    global file_title
     data = []
     with open(path, "r") as fr:
         line = fr.readline()
@@ -17,6 +18,7 @@ def readFile(path):
             line = line.strip()
             data.append(line)
             line = fr.readline()
+    file_title = data[0]
     return data[1:]
 
 
