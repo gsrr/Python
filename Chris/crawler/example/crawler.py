@@ -33,6 +33,7 @@ def showResult(fd, index, data):
     fd.write(" ".join(ret) + "\n")
     fd.flush()
 
+
 def extractDataFromURL(data):
     fd = open("./result", "a")
     url_temp="http://securities.stanford.edu/filings-case.html?id=%s"
@@ -45,13 +46,27 @@ def extractDataFromURL(data):
         pm.startParse()
         showResult(fd, data[i], pm.result())
         sleep_time = random.randint(1,3)
-        #time.sleep(sleep_time)
+        time.sleep(sleep_time)
         
     fd.close()
 
+def crawl_webPage(data):
+    url_temp="http://securities.stanford.edu/filings-case.html?id=%s"
+    for i in range(1, len(data)):
+        url_path = url_temp%(data[i])
+        print i, url_path
+        url_data = myLib.myUrl(url_path)
+        with open("./sample/%s"%data[i], "w") as f:
+            for line in url_data:
+                f.write(line + "\n")
+
+        sleep_time = random.randint(1,3)
+        time.sleep(sleep_time)
+
 def main():
     data = readFile(extractID);
-    extractDataFromURL(data)
+    #extractDataFromURL(data)
+    crawl_webPage(data)
 
 if __name__ == "__main__":
     main()
