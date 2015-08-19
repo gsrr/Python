@@ -18,6 +18,42 @@ def test_browseList():
     data = webData(urlPath)
     browseList(data)
 
+def cleanData(data):
+    data_clean = []
+    for line in data:
+        line = line.strip()
+        data_clean.append(line)
+
+    return data_clean
+
+def test_cleanData():
+    global urlPath
+    data = webData(urlPath)
+    data = cleanData(data)
+    browseList(data)
+
+def extractStatus(data):
+    flag = False
+    for line in data:
+        if flag == True:
+            flag = False
+            print line
+            lineArr = line.split()
+            print lineArr
+            return lineArr[-1]
+
+        if "Status" in line:
+            flag = True
+
+
+def test_extractStatus():
+    global urlPath
+    data = webData(urlPath)
+    data = cleanData(data)
+    print extractStatus(data)
+    
+    
+
 def main():
     func = getattr(sys.modules[__name__], sys.argv[1])
     func()
