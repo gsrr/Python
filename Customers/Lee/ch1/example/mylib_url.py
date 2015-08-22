@@ -49,8 +49,21 @@ def extractStatus(data):
 def test_extractStatus():
     global urlPath
     data = webData(urlPath)
-    data = cleanData(data)
-    print extractStatus(data)
+    target_line = ""
+    flag = False
+    for line in data:
+        if flag == True:
+            target_line = line
+            break
+        if "Case Status" in line:
+            flag = True
+            print line
+
+    line_list = target_line.strip().split(" ") 
+    print line_list
+    print line_list[-1]
+    #data = cleanData(data)
+    #print extractStatus(data)
     
     
 

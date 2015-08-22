@@ -1,20 +1,16 @@
-import myLib
+import mylib
+import myparser
 import urllib
-import CaseParser
 import time
 import random
 
-def extractID(line):
-    return line.strip().split()[0]
-
-
-def readFile(func):
+def readFile(path):
     data = []
-    with open("Lien_Data_20150812.txt", "r") as fr:
-        line = fr.readline()
-        while line:
-            data.append(func(line))
-            line = fr.readline()
+    with open(path, "r") as fr:
+        lines = fr.readlines()
+        for line in lines:
+            line = line.strip()
+            data.append(line)
     return data
 
 
@@ -63,10 +59,39 @@ def crawl_webPage(data):
         sleep_time = random.randint(1,3)
         time.sleep(sleep_time)
 
+
+def debug_list(msg):
+    for line in msg:
+        print line
+
+def debug(msg):
+    t = type(msg)
+    if t == list:
+        debug_list(msg)
+
+
+def start_crawl(title, url):
+    data = mylib.myurl(url)
+    func = getattr(myparser, title)
+    func(data)
+    
+
+
 def main():
-    data = readFile(extractID);
-    #extractDataFromURL(data)
-    crawl_webPage(data)
+    try:
+        data = readFile("./webpage")
+        debug(data)
+        for line in data:
+            line = line.strip()
+            if line:
+                title = line.split()[0]
+                url = line.split()[1]
+                start_crawl(title, url)
+    except:
+        print traceback.format_exc()
+
+
+    #crawl_webPage(data)
 
 if __name__ == "__main__":
     main()
