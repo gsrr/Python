@@ -3,6 +3,8 @@ import myparser
 import urllib
 import time
 import random
+import urlparse
+import traceback
 
 def readFile(path):
     data = []
@@ -70,16 +72,22 @@ def debug(msg):
         debug_list(msg)
 
 
+def createObj(title, paras):
+    if title == "kmdn_news":
+        return myparser.Kmdn_news(paras)
+
 def start_crawl(title, url):
-    data = mylib.myurl(url)
-    func = getattr(myparser, title)
-    func(data)
+    #print urlparse.urljoin(url , "../aaa")
+    paras = {
+        'title' : title,
+        'url': url,
+    }
+    class_obj = createObj(title, paras)
+    class_obj.start()
     
-
-
 def main():
     try:
-        data = readFile("./webpage")
+        data = readFile("./webpage.cfg")
         debug(data)
         for line in data:
             line = line.strip()
