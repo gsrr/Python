@@ -13,7 +13,9 @@ def myurl(urlPath):
 
 
 def test_myurl():
-    data = myurl("http://www.kmdn.gov.tw/ch/News_NewsList.aspx")
+    #data = myurl("http://www.kmdn.gov.tw/ch/News_NewsList.aspx")
+    #data = myurl("http://www.cwb.gov.tw/V7/observe/real/46711.htm")
+    data = myurl("http://www.cwb.gov.tw/V7/observe/radar/")
     for line in data:
         print line
 

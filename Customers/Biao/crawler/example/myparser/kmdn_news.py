@@ -67,7 +67,6 @@ class Context:
     def result(self):
         return self.ret
 
-
 class Kmdn_news:
     def __init__(self, paras):
         self.url = paras['url']
