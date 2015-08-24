@@ -7,6 +7,7 @@ import traceback
 from myparser import kmdn_news
 from myparser import kmdn_weather
 from myparser import kmdn_radar
+from myparser import kmdn_uv
 
 def readFile(path):
     data = []
@@ -35,6 +36,8 @@ def createObj(title, paras):
         return kmdn_weather.Kmdn_weather(paras)
     elif title == "kmdn_radar":
         return kmdn_radar.Kmdn_radar(paras)
+    elif title == "kmdn_uv":
+        return kmdn_uv.Kmdn_uv(paras)
 
 def start_crawl(title, url):
     #print urlparse.urljoin(url , "../aaa")
