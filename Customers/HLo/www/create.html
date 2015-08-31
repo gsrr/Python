@@ -1,0 +1,54 @@
+
+<html>
+    <head>
+        <script>
+            function startCreateDB($dialog)
+            {
+                var data = {
+                    "user":$("#user").val(),
+                    "passwd":$("#passwd").val(),
+                    "db":$("#db").val(),
+                    "table":$("#table").val(),
+                };
+                data = $(this).serialize() + "&" + $.param(data);
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    url: "createDB.php", //Relative or absolute path to response.php file
+                    data: data,
+                    success: function(data) {
+                       alert(data);
+                    },
+                    error: function(data) {
+                       alert("bbbbbb, error");
+                    }
+                    
+                });
+            }
+            $("document").ready(function(){
+                ;
+            });
+        </script>
+    </head>
+    <body>
+        <table>
+        <tr>
+            <td >User name:</td>
+            <td><input id="user" type="text" size="20"></td>
+        </tr>
+        <tr>
+            <td >Password:</td>
+            <td><input id="passwd" type="text" size="20"></td>
+        </tr>
+        <tr>
+            <td >DB:</td>
+            <td><input id="db" type="text" size="20" disabled="disabled" value="subjects"></td>
+        </tr>
+        <tr>
+            <td >Table::</td>
+            <td><input id="table" type="text" size="20"></td>
+        </tr>
+        </table>
+    </body>
+    
+</html>
