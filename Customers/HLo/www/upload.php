@@ -36,23 +36,24 @@ function uploadFile($target_dir, $name, $tmp_name, $size)
     }
     
     if ($uploadOk == 1) 
-    {
-        //Generate fileID
-            //1. read all data from data table
-            
-        //write information to db
-        
+    {   
         //insert id into docx
-            // 1.write fileName fileID into tmp file
+            // 1.write filePath into tmp file
+        $filename = "tmp_info";
+        $file = fopen( $filename, "a" );
+        fwrite( $file,  "filepath=" . $target_file);
+        fclose( $file );
         
-        $cmd = 'C:\\Python27\\python.exe docApi.py ' . $file_id;
+        $cmd = 'C:\\Python27\\python.exe docApi.py ';
         $hd = popen($cmd , "r");
         $data = fread($hd,1024);
         pclose($hd);
-        echo $data;
+        echo json_encode($data);
     }
 }
 #$target_dir = "C:\\AppServ\\www\\uploads\\";
+
+
 foreach ($_FILES as $key => &$val) 
 {
     echo $key . "<br>";
@@ -63,7 +64,6 @@ foreach ($_FILES as $key => &$val)
     }
 }
 $target_dir = $dir_path;
-
 for($i=0; $i<count($_FILES[$key]['name']); $i++) 
 {
     $name = $_FILES[$key]['name'][$i];

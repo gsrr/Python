@@ -6,7 +6,7 @@
   function startProcess()
   {
         $( "#file_submit" ).trigger( "click" );
-        alert("aaa")
+        alert("aaa");
   }
     
   function tableDiag()
@@ -35,23 +35,32 @@
   }
   
   $("document").ready(function(){
-    $(".js-ajax-php-json").submit(function(){
+    $("#myform").submit(function(){
         alert("submit");
         var data = {
-            "action": "uploadFile"
+            "action": "uploadFile",
+            "user" : $("#user").val(),
+            "password" : $("#passwd").val(),
+            "db" : $("#db").val(),
+            "tableName" : $("#tableName").val(),
         };
         data = $(this).serialize() + "&" + $.param(data);
+        console.log(data);
+        alert(data);
         $.ajax({
             type: "POST",
             dataType: "json",
-            url: "upload.php", //Relative or absolute path to response.php file
+            url: "write.php", //Relative or absolute path to response.php file
             data: data,
             success: function(data) {
                 console.log(data);
                 alert("Form submitted successfully.\nReturned json: " + data["json"]);
-            }
+            },
+            error: function(xhr) {
+                            alert('Ajax request error');
+            },
         });
-        return false;
+        return true;
     });
     $( "#selectTable" ).click(tableDiag);
   });
@@ -60,11 +69,11 @@
 <table>
         <tr>
             <td >User name:</td>
-            <td><input id="user" type="text" size="20"></td>
+            <td><input id="user" type="text" size="20" value="root"></td>
         </tr>
         <tr>
             <td >Password:</td>
-            <td><input id="passwd" type="text" size="20"></td>
+            <td><input id="passwd" type="text" size="20" value="root0119"></td>
         </tr>
         <tr>
             <td >DB:</td>

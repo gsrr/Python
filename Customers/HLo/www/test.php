@@ -1,33 +1,25 @@
 
 <html>
     <head>
+        <script src="./js/callPython.js"></script>
         <script type="text/javascript">
             function startProcess()
             {
-                alert("aaa");
                $( "#foo" ).trigger( "click" );
             }
-        
+            
+            function printData(ret)
+            {
+                alert(ret['data']);
+            }
             $("document").ready(function(){
                 $( "#foo" ).hide();
                 $(".js-ajax-php-json").submit(function(){
                     var data = {
-                        "action": "test"
+                        "prog" : "docxApi",
+                        "op" : "hello",
                     };
-                    data = $(this).serialize() + "&" + $.param(data);
-                    $.ajax({
-                        type: "POST",
-                        dataType: "json",
-                        url: "response.php", //Relative or absolute path to response.php file
-                        data: data,
-                        success: function(data) {
-                            console.log(data);
-                            alert("Form submitted successfully.\nReturned json: " + data["json"]);
-                        },
-                        error: function(xhr) {
-                            alert('Ajax request µo¥Í¿ù»~');
-                        },
-                    });
+                    callPython(data, printData);
                     return false;  // don't reload page after submit.
                 });
                 
