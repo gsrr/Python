@@ -2,6 +2,7 @@
 
 function callPython(paras,func)
 {
+    alert("call Python");
     $.ajax({
         type: "POST",
         dataType: "json",

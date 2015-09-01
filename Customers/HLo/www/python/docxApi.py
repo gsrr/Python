@@ -5,6 +5,9 @@ import lib
 def hello(paras):
     print "Hello World"
 
+def insertID(paras):
+    print "complete"
+    
 def main():
     paras = lib.readParas()
     func = getattr(sys.modules[__name__], paras['op'])

@@ -2,11 +2,20 @@
 <html>
 <body>
 
+<script src="./js/callPython.js"></script>
 <script>
   function startProcess()
   {
-        $( "#file_submit" ).trigger( "click" );
-        alert("aaa");
+    var data = {
+        "prog" : "docxApi",
+        "op" : "insertID",
+        "user" : $("#user").val(),
+        "password" : $("#passwd").val(),
+        "db" : $("#db").val(),
+        "tableName" : $("#tableName").val(),
+    };
+    alert("Convert");
+    callPython(data, function(ret){alert(ret);});
   }
     
   function tableDiag()
@@ -35,34 +44,9 @@
   }
   
   $("document").ready(function(){
-    $("#myform").submit(function(){
-        alert("submit");
-        var data = {
-            "action": "uploadFile",
-            "user" : $("#user").val(),
-            "password" : $("#passwd").val(),
-            "db" : $("#db").val(),
-            "tableName" : $("#tableName").val(),
-        };
-        data = $(this).serialize() + "&" + $.param(data);
-        console.log(data);
-        alert(data);
-        $.ajax({
-            type: "POST",
-            dataType: "json",
-            url: "write.php", //Relative or absolute path to response.php file
-            data: data,
-            success: function(data) {
-                console.log(data);
-                alert("Form submitted successfully.\nReturned json: " + data["json"]);
-            },
-            error: function(xhr) {
-                            alert('Ajax request error');
-            },
-        });
-        return true;
-    });
     $( "#selectTable" ).click(tableDiag);
+    $('#myform').prop("target", 'my_iframe');
+    //document.getElementById('my_form').target = 'my_iframe';
   });
 </script>
 
@@ -81,7 +65,7 @@
         </tr>
         <tr>
             <td><button id="selectTable" >Select a table</button></td>
-            <td><input type="text" size="20" disabled="disabled" id="tableName"></td>
+            <td><input type="text" size="20" disabled="disabled" id="tableName" value="q111"></td>
         </tr>
 </table>
 
@@ -90,8 +74,10 @@
     Select file to upload:
     <input type="file" name="fileToUpload[]" id="fileToUpload" multiple></br></br>
     Save Location<input name="dir_path" value="D:\My Documents\Desktop\code_test\uploads\" type="text" size="35"></br>
-    <input id="file_submit" type="submit" name="submit" value="Submit form" style="display:none"/></br>  
-    </br>    
+    </br>  
+    <input id="file_submit" type="submit" name="submit" value="Upload"/></br>  
+    </br>
+    <iframe id='my_iframe' name='my_iframe' src="">    
     
 </form>
 

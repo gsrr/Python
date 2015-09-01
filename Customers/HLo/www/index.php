@@ -10,6 +10,7 @@
   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
   <script src="https://cdn.datatables.net/1.10.8/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.10.8/js/dataTables.jqueryui.min.js"></script>
+  <script src="./js/callPython.js"></script>
   
   <script>
   

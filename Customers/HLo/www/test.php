@@ -1,7 +1,6 @@
 
 <html>
     <head>
-        <script src="./js/callPython.js"></script>
         <script type="text/javascript">
             function startProcess()
             {
