@@ -37,11 +37,9 @@
     $conn = new mysqli($servername, $username, $password, $db);
     //create data table
     $sql = "CREATE TABLE " . $table . " (
-            id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
-            label VARCHAR(30) NOT NULL,
-            subject VARCHAR(255) NOT NULL,
-            short_ans VARCHAR(255),
-            detail VARCHAR(255)
+            ID  CHAR(20) NOT NULL, 
+            LABEL  CHAR(32),
+            PATH  CHAR(255)
     )";
             
     if ($conn->query($sql) === TRUE) 

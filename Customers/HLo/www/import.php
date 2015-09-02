@@ -4,20 +4,6 @@
 
 <script src="./js/callPython.js"></script>
 <script>
-  function startProcess()
-  {
-    var data = {
-        "prog" : "docxApi",
-        "op" : "insertID",
-        "user" : $("#user").val(),
-        "password" : $("#passwd").val(),
-        "db" : $("#db").val(),
-        "tableName" : $("#tableName").val(),
-    };
-    alert("Convert");
-    callPython(data, function(ret){alert(ret);});
-  }
-    
   function tableDiag()
   {
     alert("select buttion");
