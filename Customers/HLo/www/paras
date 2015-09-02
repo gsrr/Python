@@ -1,5 +1,6 @@
-prog=docxApi
-op=insertID
+prog=mySql
+op=dropTable
 user=root
 password=root0119
 db=subjects
+table=test222

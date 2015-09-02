@@ -15,7 +15,7 @@
         buttons: { 
             "OK": function() {tableOK($(this));},
             "Create": function() {createDB();},
-            "Delete": function() {},
+            "Delete": function() {deleteTable();},
         },
         close: function(event, ui) 
         { 
@@ -43,7 +43,7 @@
         </tr>
         <tr>
             <td >Password:</td>
-            <td><input id="passwd" type="text" size="20" value="root0119"></td>
+            <td><input id="passwd" type="password" size="20" value="root0119"></td>
         </tr>
         <tr>
             <td >DB:</td>

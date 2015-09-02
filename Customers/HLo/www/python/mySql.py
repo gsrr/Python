@@ -24,7 +24,7 @@ def createDB(paras):
 def connectDB(func):
     def warp_func(paras):
         print "warp"
-        connection = MySQLdb.connect(host='127.0.0.1', user=paras['user'], passwd=paras['password'], db='mysql')
+        connection = MySQLdb.connect(host='127.0.0.1', user=paras['user'], passwd=paras['password'], db=paras['db'])
         cursor = connection.cursor()
         paras['cursor'] = cursor
         return func(paras)
@@ -61,6 +61,12 @@ def insertElement(paras):
     sql = "INSERT INTO %s VALUES ('%s', '%s', '%s');"%(paras['table'], paras['id'], paras['label'], paras['path'])
     print sql
     cursor.execute(sql)
+
+def dropTable(paras):
+    cursor = paras['cursor']
+    sql = "DROP TABLE %s"%(paras['table'])
+    cursor.execute(sql)
+    print "Delete Table Complete"
     
 @connectDB
 def main(paras):
