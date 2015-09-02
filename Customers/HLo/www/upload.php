@@ -38,7 +38,7 @@ function uploadFile($target_dir, $name, $tmp_name, $size)
     {   
         $filename = "files";
         $file = fopen( $filename, "a" );
-        fwrite( $file,  "filepath=" . $target_file . "\n");
+        fwrite( $file, $target_file . "\n");
         fclose( $file );
     }
     echo json_encode($ret);

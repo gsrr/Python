@@ -3,4 +3,4 @@ op=insertID
 user=root
 password=root0119
 db=subjects
-tableName=q111
+table=bbbb
