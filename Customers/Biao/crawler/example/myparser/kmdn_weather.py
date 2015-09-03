@@ -11,7 +11,7 @@ class MyHTMLParser(HTMLParser):
     def handle_data(self, data):
         print "Encountered some data  :", data
 
-class Kmdn_weather:
+class Parser:
     def __init__(self, paras):
         self.url = paras['url']
         self.queue = []

@@ -3,7 +3,7 @@ import re
 import ast
 import urlparse
 
-class Kmdn_radar:
+class Parser:
     def __init__(self, paras):
         self.url = paras['url']
         self.queue = []

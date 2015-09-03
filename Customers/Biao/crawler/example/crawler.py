@@ -4,10 +4,12 @@ import time
 import random
 import urlparse
 import traceback
-from myparser import kmdn_news
-from myparser import kmdn_weather
-from myparser import kmdn_radar
-from myparser import kmdn_uv
+import os
+import sys
+sys.path.append("myparser")
+
+
+Modules = {}
 
 def readFile(path):
     data = []
@@ -28,16 +30,9 @@ def debug(msg):
     if t == list:
         debug_list(msg)
 
-
 def createObj(title, paras):
-    if title == "kmdn_news":
-        return kmdn_news.Kmdn_news(paras)
-    elif title == "kmdn_weather":
-        return kmdn_weather.Kmdn_weather(paras)
-    elif title == "kmdn_radar":
-        return kmdn_radar.Kmdn_radar(paras)
-    elif title == "kmdn_uv":
-        return kmdn_uv.Kmdn_uv(paras)
+    parser = Modules[title][0]
+    return parser.Parser(paras)
 
 def start_crawl(title, url):
     #print urlparse.urljoin(url , "../aaa")
@@ -47,9 +42,20 @@ def start_crawl(title, url):
     }
     class_obj = createObj(title, paras)
     class_obj.start()
-    
+
+def loadModules():
+    global Modules
+    names = []
+    files = os.listdir("myparser")
+    for file in files:
+        if file.endswith(".py") and file != "__init__.py":
+            name = file.split(".")[0]
+            names.append(name)
+            Modules[name] = map(__import__, [name])
+            
 def main():
     try:
+        loadModules()
         data = readFile("./webpage.cfg")
         debug(data)
         for line in data:
