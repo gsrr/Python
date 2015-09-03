@@ -59,7 +59,6 @@ def showItems(paras):
 def insertElement(paras):
     cursor = paras['cursor']
     sql = "INSERT INTO %s VALUES ('%s', '%s', '%s');"%(paras['table'], paras['id'], paras['label'], paras['path'])
-    print sql
     cursor.execute(sql)
 
 def dropTable(paras):

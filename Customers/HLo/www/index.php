@@ -26,9 +26,10 @@
                     "password": $("#passwd").val(),
                     "db": $("#db").val(),
                     "table": $("#tableName").val(),
+                    "prefix": $("#id_prefix").val(),
                 };
                 callPython(data, function(ret) {
-                    alert(ret);
+                    alert(ret['data']);
                 });
                 $dia.dialog("close");
             }
