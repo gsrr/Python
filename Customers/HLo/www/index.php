@@ -25,7 +25,7 @@
                     "user": $("#user").val(),
                     "password": $("#passwd").val(),
                     "db": $("#db").val(),
-                    "table": $("#table").val(),
+                    "table": $("#tableName").val(),
                 };
                 callPython(data, function(ret) {
                     alert(ret);
