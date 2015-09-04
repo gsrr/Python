@@ -1,5 +1,5 @@
 <?php
-function uploadFile($target_dir, $name, $tmp_name, $size)
+function uploadFile($target_dir, $name, $tmp_name, $size, $file)
 {
     $ret = array('status' => 0, 'msg' => '');
     $target_file = $target_dir . basename($name);
@@ -36,22 +36,22 @@ function uploadFile($target_dir, $name, $tmp_name, $size)
     
     if ($uploadOk == 1) 
     {   
-        $filename = "files";
-        $file = fopen( $filename, "a" );
-        fwrite( $file, $target_file . "\n");
-        fclose( $file );
+        fwrite( $file, $target_file . "\r\n");
     }
     echo json_encode($ret);
 }
 
 $key="fileToUpload";
 $target_dir = $dir_path;
+$filename = "files";
+$file = fopen( $filename, "w" );
 for($i=0; $i<count($_FILES[$key]['name']); $i++) 
 {
     $name = $_FILES[$key]['name'][$i];
     $tmp_name = $_FILES[$key]['tmp_name'][$i];
     $size = $_FILES["fileToUpload"]["size"][$i];
-    uploadFile($target_dir, $name, $tmp_name, $size);
+    uploadFile($target_dir, $name, $tmp_name, $size, $file);
 }
+fclose( $file );
 
 ?>

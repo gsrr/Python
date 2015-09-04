@@ -51,7 +51,12 @@
         </tr>
         <tr>
             <td><button id="selectTable" >Select a table</button></td>
-            <td><input type="text" size="20" disabled="disabled" id="tableName" value="q111"></td>
+            <td><input type="text" size="20" disabled="disabled" id="tableName" value=""></td>
+        </tr>
+        <tr/>
+        <tr>
+            <td >Prefix of ID:</td>
+            <td><input type="text" size="10" id="id_prefix" value="test"></td>
         </tr>
 </table>
 
@@ -59,11 +64,11 @@
 <form id="myform" action="upload.php" method="post" enctype="multipart/form-data">
     Select file to upload:
     <input type="file" name="fileToUpload[]" id="fileToUpload" multiple></br></br>
-    Save Location<input name="dir_path" value="D:\My Documents\Desktop\code_test\uploads\" type="text" size="35"></br>
+    Save Location<input name="dir_path" value="D:\My Documents\Desktop\code_test\uploads\" type="text" size="50"></br>
     </br>  
     <input id="file_submit" type="submit" name="submit" value="Upload"/></br>  
     </br>
-    <iframe id='my_iframe' name='my_iframe' src="">    
+    <iframe id='my_iframe' name='my_iframe' src="" width="500">    
     
 </form>
 
