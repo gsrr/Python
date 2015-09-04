@@ -15,6 +15,7 @@ def myurl(urlPath):
 
 def test():
     #data = myurl("http://www.kmdn.gov.tw/ch/News_NewsList.aspx")
+    data = myurl("http://www.kmdn.gov.tw/ch/News_NewsContent.aspx?NewsID=257767&PageType=0&Language=0&CategoryID=0&DepartmentID=&Keyword=")
     #data = myurl("http://www.cwb.gov.tw/V7/observe/real/46711.htm")
     #data = myurl("http://www.cwb.gov.tw/V7/observe/radar/")
     #data = myurl("http://www.cwb.gov.tw/V7/observe/UVI/UVI.htm")
@@ -23,7 +24,7 @@ def test():
     #data = myurl("http://www.cwb.gov.tw/V7/forecast/taiwan/Kinmen_County.htm")
     #data = myurl("http://www.cwb.gov.tw//V7/forecast/week/week.htm")
     #data = myurl("http://www.kma.gov.tw/Main/MoreArrival.aspx")
-    data = myurl("http://port.kinmen.gov.tw/realtimeshow1.php")
+    #data = myurl("http://port.kinmen.gov.tw/realtimeshow1.php")
     for line in data:
         print line
 

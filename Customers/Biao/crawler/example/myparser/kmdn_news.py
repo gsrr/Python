@@ -70,7 +70,6 @@ class Context:
 class Parser:
     def __init__(self, paras):
         self.url = paras['url']
-        self.queue = []
 
     def parse(self):
         cxt = Context()
