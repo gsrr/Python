@@ -71,22 +71,36 @@ class Context:
         return self.ret
 
 
+def retryUrl(url):
+    cnt = 0
+    while cnt < 3:
+        try:
+            data = mylib.myurl(url)
+            return data
+        except:
+            print "retry:", cnt
+            pass
+        cnt += 1
+    return []
+
 class Parser:
     def __init__(self, paras):
+        print paras['url']
         self.url = paras['url']
 
     def parse(self):
         cxt = Context()
-        data = mylib.myurl(self.url)
+        data = retryUrl(self.url)
         for line in data:
             cxt.do(line)
         
-        ret = cxt.result()
-        print ret[0]
-        print ret[1]
+        self.ret = cxt.result()
     def start(self):
+        print "start"
         self.parse()
-
+    
+    def result(self):
+        return self.ret
 
 
 if __name__ == "__main__":

@@ -1,5 +1,13 @@
 import mylib
 import re
+import urlparse
+import kmdn_news_content
+
+
+def newsContent(url):
+    nc = kmdn_news_content.Parser({'url' : url})
+    nc.start()    
+    return nc.result()
 
 class State:
     def __init__(self):
@@ -17,7 +25,8 @@ class LinkState(State):
             if m != None:
                 line = m.group(0)
                 lineArr = line.split("\">")
-                cxt.ret.append(lineArr[0].lstrip("href=\""))
+                url = lineArr[0].lstrip("href=\"")
+                cxt.ret.append(newsContent(urlparse.urljoin(cxt.url,  "../" + url)))
                 cxt.ret.append(lineArr[1].rstrip("<"))
             cxt.changeState("department")
             
@@ -44,13 +53,14 @@ class ParseDate(State):
 
 
 class Context:
-    def __init__(self):
+    def __init__(self, url):
         self.state_map = {
             'link' : LinkState(),
             'department' : DepartState(),
             'date' : ParseDate(),
             #'description' : Desc(),
         }
+        self.url = url
         self.state = self.state_map['link']
         self.ret = []
 
@@ -72,7 +82,7 @@ class Parser:
         self.url = paras['url']
 
     def parse(self):
-        cxt = Context()
+        cxt = Context(self.url)
         data = mylib.myurl(self.url)
         for line in data:
             cxt.do(line)
