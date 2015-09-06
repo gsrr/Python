@@ -1,11 +1,12 @@
 import mylib
 import re
 import urlparse
-import kmdn_news_content
+import kmdn_gov_sub_content
 
 
 def newsContent(url):
-    nc = kmdn_news_content.Parser({'url' : url})
+    #print url.replace("amp;", "")
+    nc = kmdn_gov_sub_content.Parser({'url' : url.replace("amp;", "")})
     nc.start()    
     return nc.result()
 
@@ -26,21 +27,10 @@ class LinkState(State):
                 line = m.group(0)
                 lineArr = line.split("\">")
                 url = lineArr[0].lstrip("href=\"")
-                cxt.ret.append(newsContent(urlparse.urljoin(cxt.url,  "../" + url)))
+                cxt.ret.append(newsContent(urlparse.urljoin(cxt.url,  "../../" + url)))
                 cxt.ret.append(lineArr[1].rstrip("<"))
-            cxt.changeState("department")
-            
-
-class DepartState(State):
-    def do(self, paras):
-        line = paras['line']
-        cxt = paras['context']
-        if "lblDepartment" in line:
-            m = re.search(">.+<", line)
-            if m != None:             
-                cxt.ret.append(m.group(0)[1:-1])
             cxt.changeState("date")
-
+            
 class ParseDate(State):
     def do(self, paras):
         line = paras['line']
@@ -61,7 +51,6 @@ class Context:
     def __init__(self, url):
         self.state_map = {
             'link' : LinkState(),
-            'department' : DepartState(),
             'date' : ParseDate(),
             'end' : End(),
         }
@@ -102,7 +91,7 @@ class Parser:
             if type(item) == str:
                 fw.write(item + '@@__@@')
             else:
-                self._write(item, fw)
+                self.write(item, fw)
 
     def write(self, result):
         with open("result/kmdn_news.result", "w") as fw:

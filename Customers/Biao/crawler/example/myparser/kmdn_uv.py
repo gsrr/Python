@@ -16,7 +16,12 @@ class Parser:
                 image_line = line
                 break
         image_str = image_line.split()[1].split("=")[1].strip("\"")
-        print urlparse.urljoin(self.url, image_str)
+        ret = urlparse.urljoin(self.url, image_str)
+        self.write(ret)
+
+    def write(self,result):
+        with open("result/kmdn_uv.result", "w") as fw:
+            fw.write(result)
         
     def start(self):
         self.parse()

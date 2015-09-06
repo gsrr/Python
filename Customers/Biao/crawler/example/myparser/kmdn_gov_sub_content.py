@@ -15,16 +15,16 @@ class Desc(State):
     def do(self, paras):
         line = paras['line']
         cxt = paras['context']
-        if "Body end" in line:
-            cxt.changeState('end')
-        else:
+        print line
+        if "</p>" in line:
             cxt.ret.append(line)
+            cxt.changeState('end')
 
 class Image(State):
     def do(self, paras):
         line = paras['line']
         cxt = paras['context']
-        if "<br />" in line:
+        if "</div>" in line:
             cxt.changeState('desc')
         else:
            m = re.search("<img.+'", line)
@@ -38,6 +38,28 @@ class Start(State):
         cxt = paras['context']
         if "<!-- Body start  -->" in line:
             cxt.changeState('image')
+'''
+class Image(State):
+    def do(self, paras):
+        line = paras['line']
+        cxt = paras['context']
+        m = re.search("<img.+'", line)
+        if m != None:
+            cxt.ret.append( m.group(0).split()[1].lstrip('src=').strip("'"))
+            cxt.changeState('desc')
+    
+
+class Start(State):
+    def do(self, paras):
+        line = paras['line']
+        cxt = paras['context']
+        if "bigright" in line:
+            if "none" in line:
+                cxt.changeState('desc')
+            elif "block" in line:
+                cxt.changeState('image')
+
+'''     
 
 
 
@@ -95,6 +117,7 @@ class Parser:
             cxt.do(line)
         
         self.ret = cxt.result()
+
     def start(self):
         print "start"
         self.parse()
@@ -104,5 +127,5 @@ class Parser:
 
 
 if __name__ == "__main__":
-    p = Parser({'url':"http://www.kmdn.gov.tw/ch/News_NewsContent.aspx?NewsID=257780&PageType=0&Language=0&CategoryID=0&DepartmentID=&Keyword="})
+    p = Parser({'url':"http://www.kinmen.gov.tw/Layout/main_ch/News_NewsContent.aspx?NewsID=155338&path=5730&LanguageType=1"})
     p.start()

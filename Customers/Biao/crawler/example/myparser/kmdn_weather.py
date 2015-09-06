@@ -17,7 +17,6 @@ class Parser:
         self.queue = []
 
     def parse(self):
-        #cxt = Context()
         data = mylib.myurl(self.url)
         s = 0
         for i in range(len(data)):
@@ -28,9 +27,13 @@ class Parser:
         data_clean = data[s:]
         for line in data_clean:
             print line
-        #parser = MyHTMLParser()
-        #parser.feed("\n".join(data_clean))
 
+        self.write(data_clean)
+
+    def write(self, result):
+        with open("result/kmdn_weather.result", "w") as fw:
+            for item in result:
+                fw.write(item)
 
     def start(self):
         self.parse()

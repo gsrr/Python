@@ -57,7 +57,6 @@ def main():
     try:
         loadModules()
         data = readFile("./webpage.cfg")
-        debug(data)
         for line in data:
             line = line.strip()
             if line and line[0] != "#":
