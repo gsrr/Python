@@ -36,11 +36,11 @@ class Parser:
         for item in result:
             if type(item) == str:
                 if item == "\n":
-                    fw.write(item + '@@__@@')
-                else:
                     fw.write(item + key + '@@_@@')
+                else:
+                    fw.write(item + '@@__@@')
             else:
-                self._write(item, fw)
+                self._write(key, item, fw)
 
     def write(self, result):
         with open("result/%s.result"%self.title, "w") as fw:
