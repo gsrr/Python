@@ -107,6 +107,7 @@ class Parser:
     def write(self, result):
         with open("result/kmdn_news.result", "w") as fw:
             for item in result:
+                fw.write("/n")
                 if type(item) == str:
                     fw.write(item + '@@__@@')
                 else:

@@ -5,6 +5,8 @@ class Parser:
     def __init__(self, paras):
         self.url = paras['url']
         self.title = paras['title']
+        self.url_obj = urlparse.urlparse(self.url)
+        self.host = self.url_obj.scheme + "://" + self.url_obj.netloc
 
     def parse(self):
         data = mylib.myurl(self.url)
@@ -21,7 +23,7 @@ class Parser:
 
     def write(self, result):
         with open("result/%s.result"%(self.title), "w") as fw:
-            fw.write(result)
+            fw.write(result.replace("src='", "src='" + self.host))
 
     def start(self):
         self.parse()
