@@ -1,0 +1,10 @@
+1. Create new table of database
+2. Delete table of database
+3. List all tables of database
+2. Upload Multiple Files
+3. Add a id into word file
+4. Insert item into data table
+
+
+bug:
+1. 寫files不能用append.

@@ -58,8 +58,28 @@
             dia.load(url);
             dia.dialog("open");
         }
+        function callIframe(url, callback) {
+            $(document.body).append('<IFRAME id="myId" ...>');
+            $('iframe#myId').attr('src', url);
+
+            $('iframe#myId').load(function() {
+                callback(this);
+            });
+        }
         $(function() {
+            function listData()
+            {
+                 var paras = [];
+                paras['url'] = "./list/table.php";
+                paras['button'] = {};
+                $dia = createDialog(paras);
+                $dia.dialog("open");
+                //$("#mydiv").empty().load("./list/table.php");
+            }
             $("button").button();
+             $("#list").click(function() {
+                listData();
+            });
             $("#test").click(function() {
                 test();
             });
