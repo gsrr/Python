@@ -1,6 +1,8 @@
 import sys
 import MySQLdb
 import lib
+import copy
+import json
 
 
 def connectSQL(paras):
@@ -10,12 +12,15 @@ def connectSQL(paras):
 
     
 def showDB(paras):
-    connection, cursor = connectSQL(paras)
+    cursor = paras['cursor']
     sql = "SHOW DATABASES;"
     cursor.execute(sql)
     response = cursor.fetchall()
-    connection.close()
-    print response
+    ret = []
+    for item in response:
+        ret.append(item[0])
+    print ret
+    return ret
     
 
 def createDB(paras):
@@ -23,8 +28,11 @@ def createDB(paras):
 
 def connectDB(func):
     def warp_func(paras):
-        print "warp"
-        connection = MySQLdb.connect(host='127.0.0.1', user=paras['user'], passwd=paras['password'], db=paras['db'])
+        connection = None
+        if paras['op'] == "showDB":
+            connection = MySQLdb.connect(host='127.0.0.1', user=paras['user'], passwd=paras['password'])
+        else:
+            connection = MySQLdb.connect(host='127.0.0.1', user=paras['user'], passwd=paras['password'], db=paras['db'])
         cursor = connection.cursor()
         paras['cursor'] = cursor
         return func(paras)
@@ -36,7 +44,11 @@ def showTable(paras):
     sql = "SHOW TABLES;"
     cursor.execute(sql)
     response = cursor.fetchall()
-    print response
+    ret = []
+    for item in response:
+        ret.append(item[0])
+    print ret
+    return ret
 
 def createTable(paras):
     cursor = paras['cursor']
@@ -48,13 +60,30 @@ def createTable(paras):
 
     cursor.execute(sql)
 
-    
+def sqlCondition(condStr):
+    ret = ""
+    strArr = condStr.split()
+    for i in range(0, len(strArr), 2):
+        item = "Label LIKE '%%%s%%' "%(strArr[i])
+        ret += item
+        if i+1 < len(strArr):
+            ret += (strArr[i+1] + " ")
+    return ret
 def showItems(paras):
     cursor = paras['cursor']
-    sql = "SELECT * FROM %s;"%paras['table']
+    
+    if paras.has_key("condition") and paras["condition"] != "":
+        sql = "SELECT * FROM %s WHERE %s;"%(paras['table'], sqlCondition(paras['condition']))
+    else:
+        sql = "SELECT * FROM %s;"%(paras['table'])
     cursor.execute(sql)
     response = cursor.fetchall()
-    return response
+    ret = []
+    for item in response:
+        data = [item[0], item[1] , item[2]]
+        ret.append(copy.deepcopy(data))
+    print json.dumps(ret)
+    return ret
 
 def insertElement(paras):
     cursor = paras['cursor']

@@ -10,9 +10,18 @@
     
     $cmd = 'C:\\Python27\\python.exe python\\' . $_POST['prog'] . '.py';
     $hd = popen($cmd , "r");
-    $data = fread($hd, 10240);
+     $contents = "";
+      do {
+        $data = @fread($hd, 8192);
+        if (strlen($data) == 0) {
+          break;
+        }
+        $contents .= $data;
+      } while(true);
+    //$data = fread($hd, 102400);
     pclose($hd);
+    
     $ret['cmd'] = $cmd;
-    $ret['data'] = $data;
+    $ret['data'] = $contents;
     echo json_encode($ret);
 ?>

@@ -4,39 +4,78 @@
 
 <script src="./js/callPython.js"></script>
 <script>
-  function tableDiag()
-  {
-    alert("select buttion");
-    var url = "./table.php";
+   function createDB()
+ {
+    var url = "./create.html";
     var dia = $( "<div></div>" ).dialog({ 
         autoOpen: false,
         height: 'auto',
         width: 'auto',
         buttons: { 
-            "OK": function() {tableOK($(this));},
-            "Create": function() {createDB();},
-            "Delete": function() {deleteTable();},
+            "OK": function() {startCreateDB($(this));},
         },
         close: function(event, ui) 
         { 
-            $(this).dialog('close');
+            $(this).dialog('close'); 
             $(this).dialog('destroy').remove()
         } 
         
     });
     dia.load(url);
     dia.dialog("open");
-    return false;  // avoid aubmit action
-  }
-  
+    
+ }
+ function selectAppend(selector , data)
+     {
+        for (i in data)
+        {
+            selector.append($('<option>', {
+                value: data[i],
+                text: data[i],
+            }));
+        }
+     }
+  function showDb()
+     {
+        var data = {
+            "prog": "mySql",
+            "op": "showDB",
+            "user": $("#user").val(),
+            "password": $("#passwd").val(),
+        };
+        callPython(data, function(ret) {
+            var data = eval(ret['data']);
+            selectAppend($("#db_menu"), data);
+            showTable();
+        });
+     }
+     function showTable()
+     {
+        var data = {
+            "prog": "mySql",
+            "op": "showTable",
+            "user": $("#user").val(),
+            "password": $("#passwd").val(),
+            "db" : $("#db_menu option:selected").val(),
+        };
+        callPython(data, function(ret) {
+            var data = eval(ret['data']);
+            $("#table_menu").empty();
+            selectAppend($("#table_menu"), data);
+        });
+     }
   $("document").ready(function(){
-    $( "#selectTable" ).click(tableDiag);
     $('#myform').prop("target", 'my_iframe');
+    $('#showDb').click(showDb);
+    $('#showTable').click(showTable);
+    $("#db_menu").change(showTable);
+    $("#create").click(createDB);
     //document.getElementById('my_form').target = 'my_iframe';
   });
 </script>
 
 <table>
+        
         <tr>
             <td >User name:</td>
             <td><input id="user" type="text" size="20" value="root"></td>
@@ -46,12 +85,21 @@
             <td><input id="passwd" type="password" size="20" value="root0119"></td>
         </tr>
         <tr>
-            <td >DB:</td>
-            <td><input id="db" type="text" size="20" disabled="disabled" value="subjects"></td>
+            <td><button id="create" style="width:100%">Create DB and Table</button></td>
         </tr>
         <tr>
-            <td><button id="selectTable" >Select a table</button></td>
-            <td><input type="text" size="20" disabled="disabled" id="tableName" value=""></td>
+            <td><button id="showDb" style="width:100%">show db</button></td>
+            <td>
+                <select name="menu" id="db_menu" style="min-width:200px;">
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><button id="showTable" style="width:100%">show table</button></td>
+             <td>
+                <select name="menu" id="table_menu" style="min-width:200px;">
+                </select>
+            </td>
         </tr>
         <tr/>
         <tr>
