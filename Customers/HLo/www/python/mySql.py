@@ -3,6 +3,7 @@ import MySQLdb
 import lib
 import copy
 import json
+import urllib
 
 
 def connectSQL(paras):
@@ -73,7 +74,8 @@ def showItems(paras):
     cursor = paras['cursor']
     
     if paras.has_key("condition") and paras["condition"] != "":
-        sql = "SELECT * FROM %s WHERE %s;"%(paras['table'], sqlCondition(paras['condition']))
+        #sql = "SELECT * FROM %s WHERE %s;"%(paras['table'], sqlCondition(paras['condition']))
+        sql = "SELECT * FROM %s WHERE %s;"%(paras['table'], urllib.unquote(paras['condition']))
     else:
         sql = "SELECT * FROM %s;"%(paras['table'])
     cursor.execute(sql)

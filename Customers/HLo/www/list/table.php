@@ -8,10 +8,11 @@
             
             $(".addRow").each(function(){
                 $(this).find('td').each (function() {
-                  console.log($(this).html());
+                  //var text = $(this).html().replace(/,/g, ";")
                   csvContent += $(this).html();
+                  csvContent += ";";
                 });
-                csvContent += "\n";
+                csvContent += "\r\n";
             });
             var encodedUri = encodeURI(csvContent);
             window.open(encodedUri);
@@ -26,7 +27,7 @@
                 "password":$("#passwd").val(),
                 "db" : $("#db_menu option:selected").val(),
                 "table" : $("#table_menu option:selected").val(),
-                "condition" : $("#condition").val(),
+                "condition" : escape($("#condition").val()),
             };
 
             callPython(paras, function(ret) {

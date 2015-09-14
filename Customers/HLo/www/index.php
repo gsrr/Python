@@ -15,6 +15,7 @@
     <script src="./js/dialog.js"></script>
 
     <script>
+        
         function importDialog() {
             var $dia;
             function startProcess() 
@@ -24,8 +25,8 @@
                     "op": "insertID",
                     "user": $("#user").val(),
                     "password": $("#passwd").val(),
-                    "db": $("#db").val(),
-                    "table": $("#tableName").val(),
+                    "db": $("#db_menu option:selected").val(),
+                    "table": $("#table_menu option:selected").val(),
                     "prefix": $("#id_prefix").val(),
                 };
                 callPython(data, function(ret) {
@@ -76,15 +77,27 @@
                 $dia.dialog("open");
                 //$("#mydiv").empty().load("./list/table.php");
             }
+            function generateSubject()
+            {
+                alert("generate");
+                var paras = [];
+                paras['url'] = "./generate/table.php";
+                paras['button'] = {};
+                $dia = createDialog(paras);
+                $dia.dialog("open");
+            }
             $("button").button();
-             $("#list").click(function() {
-                listData();
-            });
             $("#test").click(function() {
                 test();
             });
             $("#import").click(function() {
                 importDialog();
+            });
+            $("#list").click(function() {
+                listData();
+            });
+            $("#generate").click(function() {
+                generateSubject();
             });
         });
     </script>
