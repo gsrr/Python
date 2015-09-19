@@ -6,7 +6,7 @@ function callPython(paras,func)
     $.ajax({
         type: "POST",
         dataType: "json",
-        url: "channel.php",
+        url: "http://127.0.0.1/channel.php",
         data: paras,
         success: function(ret) {;
             func(ret);

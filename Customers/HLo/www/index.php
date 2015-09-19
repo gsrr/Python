@@ -77,15 +77,6 @@
                 $dia.dialog("open");
                 //$("#mydiv").empty().load("./list/table.php");
             }
-            function generateSubject()
-            {
-                alert("generate");
-                var paras = [];
-                paras['url'] = "./generate/table.php";
-                paras['button'] = {};
-                $dia = createDialog(paras);
-                $dia.dialog("open");
-            }
             $("button").button();
             $("#test").click(function() {
                 test();
@@ -97,7 +88,7 @@
                 listData();
             });
             $("#generate").click(function() {
-                generateSubject();
+               window.location.href = "./generate/generate.html";
             });
         });
     </script>

@@ -4,6 +4,7 @@ function createDialog(paras)
         autoOpen: false,
         height: 'auto',
         width: 'auto',
+        resizable: true,
         buttons: paras["button"],
         close: function(event, ui) 
         { 
