@@ -75,7 +75,8 @@ def showItems(paras):
     
     if paras.has_key("condition") and paras["condition"] != "":
         #sql = "SELECT * FROM %s WHERE %s;"%(paras['table'], sqlCondition(paras['condition']))
-        sql = "SELECT * FROM %s WHERE %s;"%(paras['table'], urllib.unquote(paras['condition']))
+        #sql = "SELECT * FROM %s WHERE %s;"%(paras['table'], urllib.unquote(paras['condition']))
+        sql = urllib.unquote(paras['condition'])
     else:
         sql = "SELECT * FROM %s;"%(paras['table'])
     cursor.execute(sql)
@@ -84,8 +85,12 @@ def showItems(paras):
     for item in response:
         data = [item[0], item[1] , item[2]]
         ret.append(copy.deepcopy(data))
-    print json.dumps(ret)
-    return ret
+        
+    if paras.has_key("internal"):
+        return ret
+    else:
+        print json.dumps(ret)
+    
 
 def insertElement(paras):
     cursor = paras['cursor']

@@ -78,11 +78,11 @@
         
         <tr>
             <td >User name:</td>
-            <td><input id="user" type="text" size="20" value="root"></td>
+            <td><input id="user" type="text" size="20" value=""></td>
         </tr>
         <tr>
             <td >Password:</td>
-            <td><input id="passwd" type="password" size="20" value="root0119"></td>
+            <td><input id="passwd" type="password" size="20" value=""></td>
         </tr>
         <tr>
             <td><button id="create" style="width:100%">Create DB and Table</button></td>
@@ -104,7 +104,7 @@
         <tr/>
         <tr>
             <td >Prefix of ID:</td>
-            <td><input type="text" size="10" id="id_prefix" value="test"></td>
+            <td><input type="text" size="10" id="id_prefix" value=""></td>
         </tr>
 </table>
 
@@ -112,7 +112,7 @@
 <form id="myform" action="upload.php" method="post" enctype="multipart/form-data">
     Select file to upload:
     <input type="file" name="fileToUpload[]" id="fileToUpload" multiple></br></br>
-    Save Location<input name="dir_path" value="D:\My Documents\Desktop\code_test\uploads\" type="text" size="50"></br>
+    Save Location<input name="dir_path" value="" type="text" size="50"></br>
     </br>  
     <input id="file_submit" type="submit" name="submit" value="Upload"/></br>  
     </br>

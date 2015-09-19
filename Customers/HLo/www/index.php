@@ -99,7 +99,6 @@
     <button id="import">Import</button>
     <button id="list">List</button>
     <button id="generate">Generate</button>
-    <button id="test">Test</button>
 </body>
 
 </html>

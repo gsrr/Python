@@ -22,6 +22,7 @@ def createID(paras):
         id_list.append(i)
     
     paras['op'] = "showItems"
+    paras['internal'] = True
     data = mySql.main(paras)
     for line in data:
         num = int(line[0].split("_")[1])
@@ -46,7 +47,6 @@ def getLabel(file):
     cell = table.rows[0].cells[0]
     paragraph = cell.paragraphs[0]
     text = paragraph.text
-    print text
     return text
 
 def dbInsert(paras, id, file):

@@ -15,7 +15,6 @@
             
             function mixItems()
             {
-                alert("mixItems");
                 var data = [];
                 $('#undo_redo_to > option').each(function(){
                     data.push($(this).val());
@@ -49,7 +48,6 @@
             
             function generateResult()
             {
-                alert("generate");
                 var data = [];
                 $('#undo_redo_to > option').each(function(){
                     data.push($(this).val());
@@ -64,12 +62,30 @@
                     alert(ret['data']);
                 });
             }
+            
+            function convertToHtml()
+            {
+                alert("Convert file need spend a lot of time");
+                var data = [];
+                $('#undo_redo_to > option').each(function(){
+                    data.push($(this).val());
+                })
+                
+                var data = {
+                    "prog": "generate",
+                    "op": "convertFiles",
+                    "files":data.join("@@"),
+                };
+                callPython(data, function(ret) {
+                    alert(ret['data']);
+                });
+            }
+            
             $("document").ready(function(){
                 $("button").button(); 
                 $('#undo_redo').multiselect();
                 function initialTable(contents)
                 {
-                    alert("initialTable");
                     $('#undo_redo').find('option').remove().end()
                     var res = contents.split("\r\n");
                     for(var i = 0 ; i < res.length ; i++)
@@ -82,19 +98,20 @@
                 function readCsvFile(evt) 
                 {
                     //Retrieve the first (and only!) File from the FileList object
-                    alert("read csv file");
                     var f = evt.target.files[0]; 
                     if (f) 
                     {
                       var r = new FileReader();
                       r.onload = function(e) { 
                           var contents = e.target.result;
+                          /*
                         alert( "Got the file.n" 
                               +"name: " + f.name + "\n"
                               +"type: " + f.type + "\n"
                               +"size: " + f.size + " bytesn" + "\n"
                               + "starts with: " + contents.substr(1, contents.indexOf("n"))
                         );  
+                        */
                         initialTable(contents.trim());
                       }
                       r.readAsText(f);
@@ -107,7 +124,6 @@
                 
                 function importCSV()
                 {
-                    alert("import");
                     $( "#csvfile" ).trigger( "click" );
                 }
                 document.getElementById('csvfile').addEventListener('change', readCsvFile, false);
@@ -115,6 +131,7 @@
                 $("#mix").click(mixItems);
                 $("#output").click(outputItems);
                 $("#generate").click(generateResult);
+                $("#convertToHtml").click(convertToHtml);
              });
         </script>
     </head>
@@ -123,22 +140,9 @@
         <h1 style="margin:150px auto 50px auto; text-align:center">Mix and Generate</h1>
         <div class="col-xs-5">
             <select name="from" id="undo_redo" class="form-control" size="13" multiple="multiple"> 
-                <option value="2">C#</option>
-                <option value="1">C++</option>
-                <option value="3">Haskell</option>
-                <option value="4">Java</option>
-                <option value="5">JavaScript</option>
-                <option value="6">Lisp</option>
-                <option value="7">Lua</option>
-                <option value="8">MATLAB</option>
-                <option value="9">NewLISP</option>
-                <option value="10">PHP</option>
-                <option value="11">Perl</option>
-                <option value="12">SQL</option>
-                <option value="13">Unix shell</option>
             </select>
              <br/>
-             <button id="import" style="width:100px">Import</button>
+             <button id="import" style="width:100px">Import CSV</button>
              <input id="csvfile" type="file" style="display:none"/>
         </div>
        
@@ -155,9 +159,10 @@
         <div class="col-xs-5">
             <select name="to" id="undo_redo_to" class="form-control" size="13" multiple="multiple"></select>
             <br/>
-            <button id="output" style="width:100px">Output</button>
+            <button id="output" style="width:100px">Output CSV</button>
             <button id="mix" style="width:100px">Mix</button>
             <button id="generate" style="width:100px">Generate</button>
+            <button id="convertToHtml" style="width:100px">Convert File</button>
         </div>
 
     </body>

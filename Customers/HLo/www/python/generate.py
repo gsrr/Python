@@ -5,9 +5,16 @@ import shutil
 import win32Convert
 import traceback 
 import re
+import json
 
 
 dstDir = ".\\uploads"
+tempplateDir = ".\\template"
+abs_dstDir = os.path.abspath(dstDir)
+abs_template = os.path.abspath(tempplateDir)
+
+templateFiles = [abs_template + "\\QuestionTemplate.docx", abs_template + "\\ShortAnswerTemplate.docx", abs_template + "\\LongAnswerTemplate.docx"]
+templateHtml = [abs_dstDir + "\\QuestionTemplate.html", abs_dstDir + "\\ShortAnswerTemplate.html", abs_dstDir + "\\LongAnswerTemplate.html"]
 
 def clearUploadDir():
     dst_path = os.path.abspath(dstDir)
@@ -32,7 +39,9 @@ def copyFiles(paths):
         docFiles.append(dst)
     return docFiles
     
-def convertFiles(paths):
+def convertFiles(paras):
+    paths = paras['paths']
+    paths += templateFiles
     htmls = []
     for path in paths:
         name = os.path.basename(path)
@@ -41,17 +50,29 @@ def convertFiles(paths):
         dst_path = os.path.abspath(dstDir) + "\\%s.html"%(name.split(".")[0])
         win32Convert.convertToHTML(abs_path, dst_path)
         htmls.append(dst_path)
+        
     return htmls
 
-def writeToHtml(path, tr_string):  
+def writeToHtml(templateFile, path, tr_string): 
+    print templateFile
     with open(path , "w") as fw:
-        fw.write("<html>\n")
-        fw.write("<body>\n")
-        fw.write("<table>\n")
-        fw.write(tr_string)
-        fw.write("</table>\n")
-        fw.write("</body>\n")
-        fw.write("</html>\n")
+        with open(templateFile, "r") as fr:
+            lines = fr.readlines()
+            ignore = False
+            for line in lines:
+                if "<table" in line:
+                    fw.write(line)
+                    fw.write(tr_string)
+                    ignore = True
+                    continue
+                if "</table>" in line:
+                    fw.write(line)
+                    ignore = False
+                    continue
+                
+                if not ignore:
+                    fw.write(line)
+
         
 def extractTR(htmls):
     subject = ""
@@ -71,9 +92,19 @@ def extractTR(htmls):
             shortAns += "<tr>\n"+ td_index + items[2] + "</tr>\n"
             detailAns += "<tr>\n"+ td_index + items[3] + "</tr>\n"
      
-    writeToHtml(dstDir + "\\subject.html", subject)
-    writeToHtml(dstDir + "\\shortAns.html", shortAns)
-    writeToHtml(dstDir + "\\detailAns.html", detailAns)
+    writeToHtml(templateHtml[0], dstDir + "\\question.html", subject)
+    writeToHtml(templateHtml[1], dstDir + "\\shortAnswer.html", shortAns)
+    writeToHtml(templateHtml[2], dstDir + "\\LongAnswer.html", detailAns)
+    return 0
+
+
+def getHtmlFromPath(paths):
+    htmls = []
+    for path in paths:
+        name = os.path.basename(path)
+        dst_path = os.path.abspath(dstDir) + "\\%s.html"%(name.split(".")[0])
+        htmls.append(dst_path)
+    return htmls
     
 def generate(paras):
     outFiles = [dstDir + "\\subject.html", dstDir + "\\shortAns.html" , dstDir + "\\detailAns.html"]
@@ -82,15 +113,12 @@ def generate(paras):
             os.remove(outFile)
         except:
             pass
-    '''
-    files = paras["files"].split("@@")
-    paths = []
-    for file in files:
-        paths.append(file.split(";")[2])
     
-    clearUploadDir()
+    
+    paths = paras['paths']
+    #clearUploadDir()
     #docFiles = copyFiles(paths)
-    htmls = convertFiles(paths)
+    htmls = getHtmlFromPath(paths)
     '''
     files = os.listdir(dstDir)
     htmls = []
@@ -98,8 +126,12 @@ def generate(paras):
         if file.endswith(".html"):
             htmls.append(dstDir + "\\" + file)
     print htmls
-    extractTR(htmls)
-    
+    '''
+    ret = extractTR(htmls)
+    if ret == 0:
+        print json.dumps(outFiles)
+    else:
+        print "error"
      
 
 def test(paras):
@@ -107,6 +139,11 @@ def test(paras):
     
 def main():
     paras = lib.readParas()
+    files = paras["files"].split("@@")
+    paths = []
+    for file in files:
+        paths.append(file.split(";")[2])
+    paras['paths'] = paths
     func = getattr(sys.modules[__name__], paras['op'])
     func(paras)
  

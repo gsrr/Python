@@ -2,7 +2,7 @@
 function uploadFile($target_dir, $name, $tmp_name, $size, $file)
 {
     $ret = array('status' => 0, 'msg' => '');
-    $target_file = $target_dir . basename($name);
+    $target_file = $target_dir . "\\" . basename($name);
     $uploadOk = 1;
     // Check if file already exists
     if (file_exists($target_file)) 

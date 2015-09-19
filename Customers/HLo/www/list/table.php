@@ -3,7 +3,6 @@
         <script>
          function outputToFile()
          {
-            alert("output to file");
             var csvContent = "data:text/csv;charset=utf-8,";
             
             $(".addRow").each(function(){
@@ -119,11 +118,11 @@
         <table>
             <tr>
                 <td >User name:</td>
-                <td><input id="user" type="text" size="20" value="root"></td>
+                <td><input id="user" type="text" size="20" value=""></td>
             </tr>
             <tr>
                 <td >Password:</td>
-                <td><input id="passwd" type="password" size="20" value="root0119"></td>
+                <td><input id="passwd" type="password" size="20" value=""></td>
             </tr>
             <tr>
                 <td><button id="showDb" style="width:100%">show db</button></td>
