@@ -40,6 +40,8 @@ def copyFiles(paths):
     return docFiles
     
 def convertFiles(paras):
+    if len(sys.argv) == 1:
+        return
     paths = paras['paths']
     paths += templateFiles
     htmls = []
@@ -48,7 +50,7 @@ def convertFiles(paras):
         #win32Convert.convertToHTML(path, dstDir + "\\%s.html"%(name.split(".")[0]))
         abs_path = os.path.abspath(path)
         dst_path = os.path.abspath(dstDir) + "\\%s.html"%(name.split(".")[0])
-        win32Convert.convertToHTML(abs_path, dst_path)
+        win32Convert.convertToHTML(abs_path, dst_path) #word around for bug#0013
         htmls.append(dst_path)
         
     return htmls
@@ -84,7 +86,7 @@ def extractTR(htmls):
         td_index = str("<td>%d</td>\n"%index)
         with open(html, "r") as fr:
             data = fr.read()
-            items = re.findall(r'<tr>(.*?)</tr>', data , re.M|re.I|re.S)
+            items = re.findall(r'<tr(.*?)</tr>', data , re.M|re.I|re.S)
             # for item in items:
                 # print "<tr>\n" + item + "</tr>\n"
             # break

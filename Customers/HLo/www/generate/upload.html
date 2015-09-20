@@ -1,0 +1,82 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <script src="../js/jquery-1.11.2.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        <script src="../js/callPython.js"></script>
+        <script>
+            $("document").ready(function(){
+               $('.myform').prop("target", 'my_iframe');
+                document.getElementById("q_uploadBtn").onchange = function () {
+                    document.getElementById("q_uploadFile").value = this.value;
+                    $( "#q_file_submit" ).trigger( "click" );
+                    
+                };
+                document.getElementById("sa_uploadBtn").onchange = function () {
+                    document.getElementById("sa_uploadFile").value = this.value;
+                    $( "#sa_file_submit" ).trigger( "click" );
+                    
+                };
+                document.getElementById("la_uploadBtn").onchange = function () {
+                    document.getElementById("la_uploadFile").value = this.value;
+                    $( "#la_file_submit" ).trigger( "click" );
+                    
+                };
+              });
+        </script>
+    </head>
+    <body>
+        <style type="text/css">
+            .fileUpload {
+                position: relative;
+                overflow: hidden;
+                margin: 10px;
+            }
+            .fileUpload input.upload {
+                position: absolute;
+                top: 0;
+                right: 0;
+                margin: 0;
+                padding: 0;
+                font-size: 20px;
+                cursor: pointer;
+                opacity: 0;
+                filter: alpha(opacity=0);
+            }
+        </style>
+        <div>
+        <form class="myform" action="/generate/upload.php" method="post" enctype="multipart/form-data">
+            <input style="margin:10px auto 10px 20px;" id="q_uploadFile" placeholder="Choose File" disabled="disabled" />
+                <div class="fileUpload btn btn-primary">
+                    <span>Question Template Upload</span>
+                    <input id="q_uploadBtn" name="fileToUpload[]" type="file" class="upload" multiple />
+                    <input name="file_path" value="..\\template\\QuestionTemplate.docx" type="text" size="50" style="display:none">
+                    <input id="q_file_submit" type="submit" name="submit" value="Upload" style="display:none"/>
+                </div>
+        </form>   
+         
+         <form class="myform" action="/generate/upload.php" method="post" enctype="multipart/form-data">
+            <input style="margin:10px auto 10px 20px;" id="sa_uploadFile" placeholder="Choose File" disabled="disabled" />
+                <div class="fileUpload btn btn-primary">
+                    <span>Short_Answer Template Upload</span>
+                    <input id="sa_uploadBtn" name="fileToUpload[]" type="file" class="upload" multiple />
+                    <input name="file_path" value="..\\template\\ShortAnswerTemplate.docx" type="text" size="50" style="display:none">
+                    <input id="sa_file_submit" type="submit" name="submit" value="Upload" style="display:none"/>
+                </div>
+        </form>  
+        
+        <form class="myform" action="/generate/upload.php" method="post" enctype="multipart/form-data">
+            <input style="margin:10px auto 10px 20px;" id="la_uploadFile" placeholder="Choose File" disabled="disabled" />
+                <div class="fileUpload btn btn-primary">
+                    <span>Long_Answer Template Upload</span>
+                    <input id="la_uploadBtn" name="fileToUpload[]" type="file" class="upload" multiple />
+                    <input name="file_path" value="..\\template\\LongAnswerTemplate.docx" type="text" size="50" style="display:none">
+                    <input id="la_file_submit" type="submit" name="submit" value="Upload" style="display:none"/>
+                    
+                </div>
+        </form>
+        <iframe style="margin:10px auto 10px 20px;" id='my_iframe' name='my_iframe' src="" width="500">     
+        </div>
+    </body>
+</html>
