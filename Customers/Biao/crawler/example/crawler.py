@@ -44,7 +44,6 @@ def start_crawl(title, url):
     class_obj.start()
 
 def loadModules():
-    global Modules
     names = []
     files = os.listdir("myparser")
     for file in files:
