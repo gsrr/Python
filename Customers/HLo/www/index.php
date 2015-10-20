@@ -90,6 +90,9 @@
             $("#generate").click(function() {
                window.location.href = "./generate/generate.html";
             });
+            $("#labelop").click(function() {
+               window.location.href = "./fileManager/index.html";
+            });
         });
     </script>
 </head>
@@ -99,6 +102,7 @@
     <button id="import">Import</button>
     <button id="list">List</button>
     <button id="generate">Generate</button>
+    <button id="labelop">Add Label</button>
 </body>
 
 </html>

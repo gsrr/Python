@@ -74,6 +74,37 @@ def insertID(paras):
     
     print "status:0 , msg:Complete"
 
+def labelDecor(func):
+    def wrap_func(paras):
+        try:
+            files = paras["files"].split("_@@_")[1:]
+            for file in files:
+                doc = Document(file)
+                paras['doc'] = doc
+                func(paras)
+                doc.save(file)
+                
+            print "successful"
+        except:
+            print traceback.format_exc()
+    return wrap_func
+
+@labelDecor
+def addLabel(paras):
+    doc = paras['doc']
+    table = doc.tables[0]
+    cell = table.rows[0].cells[0]
+    paragraph = cell.paragraphs[0]
+    paragraph.text = paragraph.text + ", " + paras['label']
+    
+@labelDecor        
+def coverLabel(paras):
+    doc = paras['doc']
+    table = doc.tables[0]
+    cell = table.rows[0].cells[0]
+    paragraph = cell.paragraphs[0]
+    paragraph.text = paras['label']
+  
 def test(paras):
     pass
     

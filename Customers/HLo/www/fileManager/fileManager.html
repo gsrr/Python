@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>jQuery File Tree Demo</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+
+<style type="text/css">
+BODY,
+	HTML {
+padding: 0px;
+margin: 0px;
+	}
+BODY {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+background: #EEE;
+padding: 15px;
+}
+
+H1 {
+	font-family: Georgia, serif;
+	font-size: 20px;
+	font-weight: normal;
+}
+
+H2 {
+	font-family: Georgia, serif;
+	font-size: 16px;
+	font-weight: normal;
+margin: 0px 0px 10px 0px;
+}
+
+.example {
+float: left;
+margin: 15px;
+}
+
+.demo {
+width: 400px;
+height: 400px;
+	border-top: solid 1px #BBB;
+	border-left: solid 1px #BBB;
+	border-bottom: solid 1px #FFF;
+	border-right: solid 1px #FFF;
+background: #FFF;
+overflow: scroll;
+padding: 5px;
+}
+
+label {
+width:100px;
+float:left;
+      font-size:14px;
+      line-height:24px;
+      font-weight:bold;
+
+}
+#init {
+    margin-top: 0px;
+    margin-bottom: 10px;
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+</style>
+<script src="../js/callPython.js"></script>
+<script type="text/javascript">
+
+function selectUploadDir()
+ {
+    $("#dir_path").val($(".selected").html() + "\\");
+ }
+function selectDir()
+{
+    $(".dirs").css("color", "black").attr("class","dirs");;
+    $(this).css("color","red");
+    $(this).attr("class","dirs selected");
+    selectUploadDir();
+}
+
+function moveIntoDir()
+{
+    var baseDir = $(".selected").html() + "\\"
+    $('#init_path').val(baseDir);
+    updateDirBrowser(baseDir);
+}
+function updateDirBrowser(baseDir)
+{
+    var data = {
+        "prog": "fileManager",
+        "op": "browseDir",
+        "path" : baseDir, 
+    };
+    callPython(data, function(ret) {
+        var data = jQuery.parseJSON(ret['data']);
+        $("li").each(function(){
+            $(this).remove();
+        });
+        for(var i = 0 ; i < data.length ; i++)
+        {
+            data[i] = data[i].replace(/\\\\/g, '\\');
+            $("#fileTreeDemo_1").append($("<li></li>").html(data[i]).attr("class", "dirs").css("color","black"));
+        }
+        $(".dirs").click(selectDir);
+        $(".dirs").dblclick(moveIntoDir);
+    });
+}
+$(document).ready( function() {
+        $('#init_path').bind('input', function() { 
+			if($(this).val().slice(-1) == "\\")
+			{
+                updateDirBrowser($(this).val());
+                
+			}
+	    });
+        updateDirBrowser($("#init_path").val());
+	});
+
+</script>
+
+</head>
+
+<body>
+
+<div class="example">
+<div id="init">
+	<h2 style="display:inline">Initial path:</h2>
+	<input type="text" id="init_path" size="30" value="C:\">
+</div>
+<div id="fileTreeDemo_1" class="demo"></div>
+</div>
+
+
+</body>
+
+</html>

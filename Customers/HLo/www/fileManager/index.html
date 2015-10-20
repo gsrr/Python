@@ -57,6 +57,18 @@ float:left;
       font-weight:bold;
 
 }
+#init {
+    margin-top: 0px;
+    margin-bottom: 10px;
+    margin-right: 0px;
+    margin-left: 0px;
+}
+.label {
+    margin-top: 0px;
+    margin-bottom: 10px;
+    margin-right: 0px;
+    margin-left: 0px;
+}
 
 </style>
 
@@ -90,7 +102,8 @@ function removeFile()
 function changeFileTree(val)
 {
 	$('#fileTreeDemo_1').fileTree({ root: val, script: 'connectors/jqueryFileTree.php' }, function(file) { 
-			$("#fileTreeDemo_2").append($("<li></li>").html(file).attr("class", "docFile selected").css("color","black"));
+            var file_path = file.replace("/", "\\");
+			$("#fileTreeDemo_2").append($("<li></li>").html(file_path).attr("class", "docFile selected").css("color","black"));
 			$(".docFile").click(convertFile);
 			$(".docFile").dblclick(removeFile);
 		});
@@ -107,44 +120,55 @@ function getFiles()
 	return files;
 }
 
+
+function removeFiles()
+{
+    $(".selected").each(function(){
+		$(this).remove();
+	});
+}
 function addLabel()
 {
 	alert("add label");
 	var data = {
-	    "prog": "labelOp",
+	    "prog": "docxApi",
 	    "op": "addLabel",
 	    "label" : $("#addText").val(), 
 	    "files": getFiles(),
-	};
-	console.log(data);
-	/*
+	};	
 	callPython(data, function(ret) {
-	    alert(ret['data']);
+        alert(ret['data']);
+        if (ret['data'].trim() == "successful")
+        {
+            removeFiles();
+        }
 	});
-	*/
+	
 }
 
 function coverLabel()
 {
 	alert("cover label")	
 	var data = {
-	    "prog": "labelOp",
+	    "prog": "docxApi",
 	    "op": "coverLabel",
 	    "label" : $("#coverText").val(), 
 	    "files": getFiles(),
 	};
-	/*
 	callPython(data, function(ret) {
-	    alert(ret['data']);
+        alert(ret['data']);
+	    if (ret['data'].trim() == "successful")
+        {
+            removeFiles();
+        }
 	});
-	*/
 }
 
 $(document).ready( function() {
 		$("#add_label").click(addLabel);
 		$("#cover_label").click(coverLabel);
 		$('#init_path').bind('input', function() { 
-			if($(this).val().slice(-1) == "/")
+			if($(this).val().slice(-1) == "\\")
 			{
 				changeFileTree($(this).val());
 			}
@@ -161,10 +185,10 @@ $(document).ready( function() {
 <h1>Add(Cover) Label</h1>
 
 <div class="example">
-<span>
+<div id="init">
 	<h2 style="display:inline">Initial path:</h2>
-	<input type="text" id="init_path" size="10" value="/home/jerry.cheng/Desktop/">
-</span>
+	<input type="text" id="init_path" size="30" value="C:\">
+</div>
 <div id="fileTreeDemo_1" class="demo"></div>
 </div>
 
@@ -172,17 +196,16 @@ $(document).ready( function() {
 <h2>Selected Files</h2>
 	<div id="fileTreeDemo_2" class="demo">
 	</div>
-<button>remove</button>
 </div>
 
 <div class="example">
 	<h2>Operation</h2>
-	<input id="addText" type="text" size="10">
+	<input id="addText" type="text" size="30" class="label"><br/>
 	<button id="add_label">Add Label</button>
 	<br/>
 	<br/>
-	<input id="coverText" type="text" size="10">
-	<button id="cover_label">Cover Label</button>
+	<input id="coverText" type="text" size="50" class="label"><br/>
+	<button id="cover_label" >Cover Label</button>
 </div>
 
 

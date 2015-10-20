@@ -64,12 +64,22 @@
             selectAppend($("#table_menu"), data);
         });
      }
+     
+     function fileManager()
+     {
+        var paras = [];
+        paras['url'] = "./fileManager/fileManager.html";
+        paras['button'] = {};
+        $dia = createDialog(paras);
+        $dia.dialog("open");
+     }
   $("document").ready(function(){
     $('#myform').prop("target", 'my_iframe');
     $('#showDb').click(showDb);
     $('#showTable').click(showTable);
     $("#db_menu").change(showTable);
     $("#create").click(createDB);
+    $("#fileManager").click(fileManager);
     //document.getElementById('my_form').target = 'my_iframe';
   });
 </script>
@@ -112,7 +122,9 @@
 <form id="myform" action="upload.php" method="post" enctype="multipart/form-data">
     Select file to upload:
     <input type="file" name="fileToUpload[]" id="fileToUpload" multiple></br></br>
-    Save Location<input name="dir_path" value="" type="text" size="50"></br>
+    Save Location
+    <button id="fileManager">Browse</button>
+    <input id="dir_path" name="dir_path" value="" type="text" size="50"></br>
     </br>  
     <input id="file_submit" type="submit" name="submit" value="Upload"/></br>  
     </br>
