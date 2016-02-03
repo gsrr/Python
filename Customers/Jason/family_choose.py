@@ -21,7 +21,7 @@ def readFile(path):
     file_title = data[0]
     return data[1:]
 
-
+# Distribute data according the categorty
 def familyMap(data, paras):
     cate = paras['category']
     fmap = {}
@@ -43,16 +43,19 @@ def probMap(fmap, prob):
 
 
 def firSelectPeople(pmap, fmap):
-    d1 = []
-    d2 = []
+    print len(fmap)
+    d1 = []     #selected
+    d2 = []     #except
     for key in pmap.keys():
         if pmap[key] != 0:
             for i in range(pmap[key]):
                 c_i = random.randint(0, len(fmap[key]) - 1)
                 d1.append(fmap[key].pop(c_i))
-
+        '''
         for i in range(0, len(fmap[key])):
             d2.append(fmap[key].pop())
+        '''
+    print fmap
     return d1, d2
 
 def output(folder, index, d1, d2):
@@ -68,23 +71,17 @@ def output(folder, index, d1, d2):
         for line in d2:
             fw.write(line + "\n")
 
-def fir(index, paras):
-    data = readFile("./data_example.csv")
-    fmap = familyMap(data, paras)
+def fir(index, paras, fmap):
     pmap = probMap(fmap, paras['prob'])
     d1, d2 = firSelectPeople(pmap, fmap)
-    print len(data), len(d1), len(d2)
+    print len(fmap), len(d1), len(d2)
     output("fir", index, d1, d2)
-
 
 def sumProb(fmap, prob):
     sum_prob = 0
     for key in fmap.keys():
         sum_prob += len(fmap[key])
     return int(round(sum_prob * prob))
-    
-
-
 
 def randomalize(class_pool):
     for i in range(len(class_pool)):
@@ -100,32 +97,21 @@ def sumNodes(class_pool, nodes, fmap):
 
     return sum_nodes
 
-
-def nodesInOldClass(nodes, old_class):
-    for ns in old_class:
-        if len(ns) != len(nodes):
-            continue
-        for item in ns:
-            if item not in nodes:
-                continue
-        return True
-   
-    return False
-
 def selectClassFromPool(class_pool, nodes, fmap, total, old_class):
     sum_nodes = sumNodes(class_pool, nodes, fmap) 
+    print sum_nodes, total
     if sum_nodes == total:
-        if nodesInOldClass(nodes, old_class):
-            return 2
+        time.sleep(1)
         return 0
 
     if sum_nodes > total:
         return 1
     
-
     for i in range(len(class_pool)):
-        if i not in nodes:
+        if (i not in nodes) and (i not in old_class):
             nodes.append(i)
+            print nodes
+            time.sleep(1)
             ret = selectClassFromPool(class_pool, nodes,  fmap, total, old_class)
             if ret == 0:
                 return 0
@@ -153,10 +139,8 @@ def secOutput(index, nodes, class_pool, fmap):
     fw1.close()
     fw2.close()
 
-def sec(index, paras):
+def sec(index, paras, fmap):
     old_class_list = paras['old_class']
-    data = readFile("./data_example.csv")
-    fmap = familyMap(data, paras)
     select_total = sumProb(fmap, paras['prob'])
     class_pool = fmap.keys()
     randomalize(class_pool)
@@ -164,9 +148,19 @@ def sec(index, paras):
     selectClassFromPool(class_pool, nodes,  fmap, select_total, old_class_list)
     if nodes:
         secOutput(index, nodes, class_pool, fmap)
-        old_class_list.append(copy.copy(nodes))
+        #old_class_list.append(copy.copy(nodes))
+        old_class_list += nodes
     else:
         print "can not find class combination!!"
+
+
+def mkdir():
+    try:
+        os.mkdir("fir")
+        os.mkdir("sec")
+    except:
+        pass
+        
 
 if __name__ == "__main__":
     if len(sys.argv) < 4:
@@ -178,11 +172,10 @@ if __name__ == "__main__":
     paras['n'] = int(sys.argv[3])
     paras['category'] = int(sys.argv[4])
     paras['old_class'] = []
-    try:
-        os.mkdir("fir")
-        os.mkdir("sec")
-    except:
-        pass
+    mkdir()
+    data = readFile("./data_example.csv")
+    fmap = familyMap(data, paras)
     func = getattr(sys.modules[__name__], paras['op'])
     for i in range(paras['n']):
-        func(i+1, paras)
+        func(i+1, paras, fmap)
+        print paras['old_class']
