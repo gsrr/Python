@@ -172,7 +172,7 @@ def random_selectClassFromPool(class_pool, nodes, fmap, total, old_class, index)
             nodes.pop()
         i += 1
 
-def selectClassFromPool(class_pool, nodes, fmap, total, old_class):
+def selectClassFromPool(class_pool, nodes, fmap, total, old_class, index):
     sum_nodes = sumNodes(class_pool, nodes, fmap) 
     if sum_nodes == total:
         if nodesInOldClass(nodes, old_class):
@@ -182,14 +182,15 @@ def selectClassFromPool(class_pool, nodes, fmap, total, old_class):
     if sum_nodes > total:
         return 1
     
-
-    for i in range(len(class_pool)):
+    i = index
+    while i < len(class_pool):
         if i not in nodes:
             nodes.append(i)
-            ret = selectClassFromPool(class_pool, nodes,  fmap, total, old_class)
+            ret = selectClassFromPool(class_pool, nodes,  fmap, total, old_class, i+1)
             if ret == 0:
                 return 0
             nodes.pop()
+        i += 1
 
 def secOutput(folder, index, nodes, class_pool, fmap):
     file1 = folder + slash + "pheno_v" + str(index) + ".csv"
@@ -213,8 +214,8 @@ def secOutput(folder, index, nodes, class_pool, fmap):
     fw1.close()
     fw2.close()
 
+
 def random_unrelated_pop(index, paras):  # second
-    global test_file
     old_class_list = paras['old_class']
     select_total = sumProb(fmap, paras['prob'])
     class_pool = paras['class_pool']
@@ -227,16 +228,13 @@ def random_unrelated_pop(index, paras):  # second
         print "can not find class combination!!"
 
 def unrelated_pop(index, paras):  # second
-    global test_file
     old_class_list = paras['old_class']
-    data = readFile(test_file)
-    fmap = familyMap(data, paras)
+    fmap = paras['fmap']
     select_total = sumProb(fmap, paras['prob'])
-    class_pool = fmap.keys()
-    class_pool.sort()
+    class_pool = paras['class_pool']
     randomalize(class_pool)
     nodes = []
-    selectClassFromPool(class_pool, nodes,  fmap, select_total, old_class_list)
+    selectClassFromPool(class_pool, nodes,  fmap, select_total, old_class_list, 0)
     if nodes:
         secOutput("unrelated_pop", index, nodes, class_pool, fmap)
         old_class_list.append(copy.copy(nodes))
@@ -288,9 +286,10 @@ if __name__ == "__main__":
         func(paras)
     else:
         data = readFile(test_file)
-        paras['fmap'] = familyMap(data, paras)
+        fmap = familyMap(data, paras)
         class_pool = fmap.keys()
         randomalize(class_pool)
+        paras['fmap'] = fmap
         paras['class_pool'] = class_pool
         for i in range(paras['n']):
             func(i+1, paras)
