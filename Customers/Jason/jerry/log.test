@@ -1,0 +1,302 @@
+resursive final:[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 15]
+select nodes:[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 15]
+unrelated_pop/pheno_v1.csv unrelated_pop/pheno_except_v1.csv
+write nodes; [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 15]
+pool: AA001 CT072
+pool: AP016 DR096
+pool: AQ017 HL194
+pool: AR018 HI191
+pool: AT020 HP198
+pool: AV022 FO145
+pool: AZ026 GY181
+pool: BH034 FW153
+pool: BJ036 FL142
+pool: BS045 CV074
+pool: CD056 BJ036
+pool: CE057 CK063
+pool: CF058 AQ017
+pool: CI061 AP016
+pool: CK063 EX128
+pool: CQ069 HB184
+pool: CS071 CD056
+pool: CT072 FU151
+pool: CV074 GR174
+pool: CW075 DM091
+pool: DD082 EK115
+pool: DG085 FN144
+pool: DH086 DZ104
+pool: DI087 DI087
+pool: DJ088 BH034
+pool: DM091 CW075
+pool: DO093 CQ069
+pool: DR096 DJ088
+pool: DU099 DG085
+pool: DZ104 FZ156
+pool: EK115 CF058
+pool: EL116 EY129
+pool: EM117 AZ026
+pool: ER122 EM117
+pool: ET124 HR200
+pool: EX128 DU099
+pool: EY129 DO093
+pool: FA131 DD082
+pool: FB132 BS045
+pool: FJ140 ER122
+pool: FL142 AR018
+pool: FN144 GZ182
+pool: FO145 AV022
+pool: FU151 CI061
+pool: FW153 CS071
+pool: FZ156 AA001
+pool: GR174 FA131
+pool: GT176 ET124
+pool: GX180 HN196
+pool: GY181 AT020
+pool: GZ182 FB132
+pool: HA183 HC185
+pool: HB184 HA183
+pool: HC185 GX180
+pool: HI191 FJ140
+pool: HL194 EL116
+pool: HN196 DH086
+pool: HP198 GT176
+pool: HR200 CE057
+AA001
+AP016
+AQ017
+AR018
+AT020
+AV022
+AZ026
+BH034
+BJ036
+BS045
+CD056
+CE057
+CQ069
+resursive final:[12, 13, 14, 16, 17, 18, 19, 20, 21, 22, 23, 29]
+select nodes:[12, 13, 14, 16, 17, 18, 19, 20, 21, 22, 23, 29]
+unrelated_pop/pheno_v2.csv unrelated_pop/pheno_except_v2.csv
+write nodes; [12, 13, 14, 16, 17, 18, 19, 20, 21, 22, 23, 29]
+pool: AA001 EX128
+pool: AP016 CE057
+pool: AQ017 FA131
+pool: AR018 EM117
+pool: AT020 AR018
+pool: AV022 BJ036
+pool: AZ026 CF058
+pool: BH034 AV022
+pool: BJ036 CS071
+pool: BS045 DH086
+pool: CD056 GZ182
+pool: CE057 DI087
+pool: CF058 AA001
+pool: CI061 DR096
+pool: CK063 HC185
+pool: CQ069 CV074
+pool: CS071 CI061
+pool: CT072 ET124
+pool: CV074 AT020
+pool: CW075 DO093
+pool: DD082 FJ140
+pool: DG085 GR174
+pool: DH086 BS045
+pool: DI087 HB184
+pool: DJ088 DM091
+pool: DM091 HA183
+pool: DO093 GT176
+pool: DR096 EY129
+pool: DU099 HP198
+pool: DZ104 EK115
+pool: EK115 FO145
+pool: EL116 DZ104
+pool: EM117 AP016
+pool: ER122 FN144
+pool: ET124 ER122
+pool: EX128 FZ156
+pool: EY129 FL142
+pool: FA131 FB132
+pool: FB132 CQ069
+pool: FJ140 GY181
+pool: FL142 HN196
+pool: FN144 HL194
+pool: FO145 CK063
+pool: FU151 HI191
+pool: FW153 DD082
+pool: FZ156 EL116
+pool: GR174 GX180
+pool: GT176 DG085
+pool: GX180 HR200
+pool: GY181 FW153
+pool: GZ182 DJ088
+pool: HA183 BH034
+pool: HB184 AQ017
+pool: HC185 CW075
+pool: HI191 DU099
+pool: HL194 CD056
+pool: HN196 FU151
+pool: HP198 CT072
+pool: HR200 AZ026
+CF058
+CI061
+CK063
+CS071
+CT072
+CV074
+CW075
+DD082
+DG085
+DH086
+DI087
+DZ104
+resursive final:[24, 25, 26, 27, 28, 30, 31, 32, 33, 34, 35, 38, 39]
+select nodes:[24, 25, 26, 27, 28, 30, 31, 32, 33, 34, 35, 38, 39]
+unrelated_pop/pheno_v3.csv unrelated_pop/pheno_except_v3.csv
+write nodes; [24, 25, 26, 27, 28, 30, 31, 32, 33, 34, 35, 38, 39]
+pool: AA001 EL116
+pool: AP016 AV022
+pool: AQ017 DI087
+pool: AR018 FB132
+pool: AT020 CE057
+pool: AV022 ET124
+pool: AZ026 DH086
+pool: BH034 CD056
+pool: BJ036 DG085
+pool: BS045 CW075
+pool: CD056 AA001
+pool: CE057 AQ017
+pool: CF058 GY181
+pool: CI061 FL142
+pool: CK063 HB184
+pool: CQ069 FZ156
+pool: CS071 AP016
+pool: CT072 CI061
+pool: CV074 HA183
+pool: CW075 CF058
+pool: DD082 GZ182
+pool: DG085 HC185
+pool: DH086 ER122
+pool: DI087 EY129
+pool: DJ088 AZ026
+pool: DM091 FU151
+pool: DO093 HL194
+pool: DR096 HI191
+pool: DU099 DU099
+pool: DZ104 CK063
+pool: EK115 HN196
+pool: EL116 GT176
+pool: EM117 CT072
+pool: ER122 CV074
+pool: ET124 FO145
+pool: EX128 FN144
+pool: EY129 DO093
+pool: FA131 BS045
+pool: FB132 EX128
+pool: FJ140 DZ104
+pool: FL142 FW153
+pool: FN144 DD082
+pool: FO145 DR096
+pool: FU151 AT020
+pool: FW153 EM117
+pool: FZ156 HR200
+pool: GR174 GX180
+pool: GT176 CS071
+pool: GX180 DJ088
+pool: GY181 BH034
+pool: GZ182 GR174
+pool: HA183 FA131
+pool: HB184 HP198
+pool: HC185 CQ069
+pool: HI191 AR018
+pool: HL194 BJ036
+pool: HN196 FJ140
+pool: HP198 DM091
+pool: HR200 EK115
+DJ088
+DM091
+DO093
+DR096
+DU099
+EK115
+EL116
+EM117
+ER122
+ET124
+EX128
+FB132
+FJ140
+resursive final:[36, 37, 40, 41, 42, 43, 44, 45, 46, 47, 53]
+select nodes:[36, 37, 40, 41, 42, 43, 44, 45, 46, 47, 53]
+unrelated_pop/pheno_v4.csv unrelated_pop/pheno_except_v4.csv
+write nodes; [36, 37, 40, 41, 42, 43, 44, 45, 46, 47, 53]
+pool: AA001 HB184
+pool: AP016 CW075
+pool: AQ017 EX128
+pool: AR018 DZ104
+pool: AT020 DI087
+pool: AV022 CK063
+pool: AZ026 AQ017
+pool: BH034 CT072
+pool: BJ036 DR096
+pool: BS045 ER122
+pool: CD056 FL142
+pool: CE057 FJ140
+pool: CF058 HN196
+pool: CI061 DO093
+pool: CK063 EK115
+pool: CQ069 GT176
+pool: CS071 HI191
+pool: CT072 AT020
+pool: CV074 CI061
+pool: CW075 AP016
+pool: DD082 CF058
+pool: DG085 EL116
+pool: DH086 GX180
+pool: DI087 BS045
+pool: DJ088 AA001
+pool: DM091 HC185
+pool: DO093 AR018
+pool: DR096 FO145
+pool: DU099 HP198
+pool: DZ104 AZ026
+pool: EK115 CQ069
+pool: EL116 GR174
+pool: EM117 DD082
+pool: ER122 GZ182
+pool: ET124 FU151
+pool: EX128 FW153
+pool: EY129 FN144
+pool: FA131 HR200
+pool: FB132 ET124
+pool: FJ140 GY181
+pool: FL142 HA183
+pool: FN144 DM091
+pool: FO145 DG085
+pool: FU151 CV074
+pool: FW153 BJ036
+pool: FZ156 DJ088
+pool: GR174 FA131
+pool: GT176 CS071
+pool: GX180 EM117
+pool: GY181 AV022
+pool: GZ182 CD056
+pool: HA183 HL194
+pool: HB184 DH086
+pool: HC185 FB132
+pool: HI191 CE057
+pool: HL194 DU099
+pool: HN196 BH034
+pool: HP198 EY129
+pool: HR200 FZ156
+EY129
+FA131
+FL142
+FN144
+FO145
+FU151
+FW153
+FZ156
+GR174
+GT176
+HC185
+can not find class combination!!

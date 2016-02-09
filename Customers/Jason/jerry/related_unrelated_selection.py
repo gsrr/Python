@@ -156,6 +156,7 @@ def nodesInOldClass(nodes, old_class):
 def random_selectClassFromPool(class_pool, nodes, fmap, total, old_class, index):
     sum_nodes = sumNodes(class_pool, nodes, fmap) 
     if sum_nodes == total:
+        debug("resursive final:" + str(nodes))
         return 0
 
     if sum_nodes > total:
@@ -165,7 +166,6 @@ def random_selectClassFromPool(class_pool, nodes, fmap, total, old_class, index)
     while i < len(class_pool):
         if (i not in nodes) and (i not in old_class):
             nodes.append(i)
-            debug(nodes)
             ret = random_selectClassFromPool(class_pool, nodes,  fmap, total, old_class, i+1)
             if ret == 0:
                 return 0
@@ -216,15 +216,11 @@ def secOutput(folder, index, nodes, class_pool, fmap):
 def random_unrelated_pop(index, paras):  # second
     global test_file
     old_class_list = paras['old_class']
-    data = readFile(test_file)
-    fmap = familyMap(data, paras)
     select_total = sumProb(fmap, paras['prob'])
-    class_pool = fmap.keys()
-    randomalize(class_pool)
+    class_pool = paras['class_pool']
     nodes = []
     random_selectClassFromPool(class_pool, nodes,  fmap, select_total, old_class_list, 0)
     if nodes:
-        debug(str(nodes))
         secOutput("unrelated_pop", index, nodes, class_pool, fmap)
         old_class_list += nodes
     else:
@@ -237,6 +233,7 @@ def unrelated_pop(index, paras):  # second
     fmap = familyMap(data, paras)
     select_total = sumProb(fmap, paras['prob'])
     class_pool = fmap.keys()
+    class_pool.sort()
     randomalize(class_pool)
     nodes = []
     selectClassFromPool(class_pool, nodes,  fmap, select_total, old_class_list)
@@ -273,7 +270,7 @@ if __name__ == "__main__":
     if len(sys.argv) < 4:
         print "format error , example: python family_choose.py related_pop 0.2 5 2"   # 0.2 is probability, 5 is N=5, 2 is family column, start from 0, 1, 2...
         sys.exit(0)
-    test_file = "com_pheno.csv"
+    test_file = "com_pheno_2.csv"
     paras = {}
     paras['op'] = sys.argv[1]
     paras['prob'] = float(sys.argv[2])
@@ -290,5 +287,10 @@ if __name__ == "__main__":
     if paras['op'] == "random_select" :
         func(paras)
     else:
+        data = readFile(test_file)
+        paras['fmap'] = familyMap(data, paras)
+        class_pool = fmap.keys()
+        randomalize(class_pool)
+        paras['class_pool'] = class_pool
         for i in range(paras['n']):
             func(i+1, paras)
