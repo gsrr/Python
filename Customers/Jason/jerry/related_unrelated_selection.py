@@ -55,6 +55,8 @@ def random_firSelectPeople(pmap, fmap):
     d1 = []
     d2 = []
     global selected
+    for i in range(len(selected)):
+        d2.append(selected[i])
     for key in pmap.keys():
         if pmap[key] != 0:
             i = 0
@@ -69,10 +71,11 @@ def random_firSelectPeople(pmap, fmap):
                     selected.append(item)
                     i += 1
 
+        
         for i in range(0, len(fmap[key])):
-            d2.append(fmap[key].pop())
-        for i in range(len(selected)):
-            d2.append(selected[i])
+            item = fmap[key].pop()
+            if item not in selected:
+                d2.append(item)
     return d1, d2
 
 def firSelectPeople(pmap, fmap):
@@ -119,7 +122,6 @@ def related_pop(index, paras): # first
     print len(data), len(d1), len(d2)
     related_output("related_pop", index, d1, d2)
 
-
 def sumProb(fmap, prob):
     sum_prob = 0
     for key in fmap.keys():
@@ -140,7 +142,6 @@ def sumNodes(class_pool, nodes, fmap):
         sum_nodes += len(fmap[class_pool[num]])
 
     return sum_nodes
-
 
 def nodesInOldClass(nodes, old_class):
     for ns in old_class:
@@ -253,15 +254,28 @@ def third_write_exp(data, length, i):
         if j != (i//length):
             open(path, "a").write(data[i] + "\n")
 
+
+def write_title(index):
+    path1 = "random_pop/pheno_v" + str(index) 
+    path2 = "random_pop/pheno_except_v" + str(index)
+    print path1, path2
+    open(path1, "w").write(file_title + "\n")
+    open(path2, "w").write(file_title + "\n")
+
 def random_pop(paras): 
     prob = paras['prob']
     data = readFile(test_file)
     randomalize(data)
     base = 0
     length = len(data) * prob
-    
+   
+    current = 1
     for i in range(len(data)):
-        third_write(data, int(i//length), i)
+        num = int(i//length) 
+        if (num+1) == current:
+            write_title(current)
+            current += 1
+        third_write(data, num, i)
         third_write_exp(data, length, i)    
         
 if __name__ == "__main__":
@@ -282,7 +296,7 @@ if __name__ == "__main__":
     except:
         pass
     func = getattr(sys.modules[__name__], paras['op'])
-    if paras['op'] == "random_select" :
+    if paras['op'] == "random_pop" :
         func(paras)
     else:
         data = readFile(test_file)
