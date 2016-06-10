@@ -27,31 +27,65 @@ class ChessBoard:
 		self.x = boardX
 		self.y = boardY
 		self.backImg = imgLoad("../chess/back.gif")
+		self.width = self.backImg.get_width()
+		self.height = self.backImg.get_height()
+		self.boardState = 0		# 0 --> no select , 1 --> select
+		self.selectChessPos = (0,0)		
 	
 	def init(self):
 		allChess = chess.initAllChess()
 		random.shuffle(allChess)
 		for i in range(0,4):
 			row = []
-			starty = BOARDY + i * self.backImg.get_height()
+			starty = BOARDY + i * self.height
 			for j in range(0,8):
-				startx = BOARDX + j * self.backImg.get_width()
+				startx = BOARDX + j * self.width
 				chs = allChess.pop()
 				chs.loadImg(imgLoad)
 				chs.setImg(self.backImg)
 				chs.setXY(startx, starty)
 				chs.setState(1)
 				row.append(chs)
-			self.board.append(copy.deepcopy(row))
+			self.board.append(row)
+	
+	def setState(self, state):
+		self.boardState = state
+
+	def changeState(self, i, j):
+		chs = self.board[i][j]
+		if chs == None:
+			return 
+
+		if chs.state == 1:
+			chs.setState(2)
+		elif chs.state == 2:
+			if self.boardState == 0:
+					chs.setState(3)
+					self.setState(1)
+					self.selectChess = (i,j)
+			elif self.boardState == 1:
+					x = self.selectChessPos[0]
+					y = self.selectChessPos[1]
+					selectChess = self.board[x][y]
+					if selectChess > chs :
+						chs.setState(0)
+						selectChess.setState(2)
+						self.board[i][j] = selectChess
+						self.board[x][y] = None 
+						self.setState(0)
+
+		elif chs.state == 3:
+			chs.setState(2)
+			self.setState(0)
+
+
 
 	def show(self, screen):	
 		for i in range(0,4):
 			for j in range(0,8):
 				chs = self.board[i][j]
-				print chs
-				print chs.x
-				print chs.y
-				#screen.blit(chs.getImg(), (chs.x, chs.y))
+				if chs != None:
+					screen.blit(chs.getImg(), (chs.x, chs.y))
 				
 def createScreen(width, height, caption):
 		screen = pygame.display.set_mode((width, height))
@@ -82,7 +116,10 @@ def emousemotion(paras):
 def emousebtnup(paras):
 	print "emousebtnup"
 	x,y = pygame.mouse.get_pos()
-	print x,y
+	board = paras['board']
+	i = int(((y + 1) - BOARDY) / board.height ) #row
+	j = int(((x + 1) - BOARDX) / board.width )	#col
+	board.changeState(i, j)
 
 def emousebtndown(paras):
 	print "emousebtndown"
@@ -108,6 +145,7 @@ def main():
 		paras = {
 			'screen' : 	screen,
 			'bg' : imgBg,
+			'board' : chess_board,
 		}
 		for event in pygame.event.get():
 			print event.type

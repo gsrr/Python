@@ -39,6 +39,7 @@ class Chess:
 		self.state = 0
 		self.name = os.path.splitext(img)[0]
 		self.s2path = CHESSDIRS2 + img
+		print self.s2path
 		self.s3path = CHESSDIRS3 + self.name + "S" + ".GIF"
 		self.s1Img = None
 		self.s2Img = None
@@ -54,8 +55,8 @@ class Chess:
 		return  img
 
 	def loadImg(self, loadFunc):
-		self.s2img = loadFunc(self.s2path)
-		self.s3img = loadFunc(self.s3path)
+		self.s2Img = loadFunc(self.s2path)
+		self.s3Img = loadFunc(self.s3path)
 	
 	def setImg(self, backImg):
 		self.s1Img = backImg
