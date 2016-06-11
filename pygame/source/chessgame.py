@@ -52,6 +52,7 @@ class ChessBoard:
 		self.boardState = state
 
 	def changeState(self, i, j):
+		print i,j
 		chs = self.board[i][j]
 		if chs == None:
 			return 
@@ -62,14 +63,16 @@ class ChessBoard:
 			if self.boardState == 0:
 					chs.setState(3)
 					self.setState(1)
-					self.selectChess = (i,j)
+					self.selectChessPos = (i,j)
 			elif self.boardState == 1:
 					x = self.selectChessPos[0]
 					y = self.selectChessPos[1]
 					selectChess = self.board[x][y]
-					if selectChess > chs :
+					if selectChess >= chs :
 						chs.setState(0)
 						selectChess.setState(2)
+						posX, posY = chs.getXY()
+						selectChess.setXY(posX, posY)
 						self.board[i][j] = selectChess
 						self.board[x][y] = None 
 						self.setState(0)

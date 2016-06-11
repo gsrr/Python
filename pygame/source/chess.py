@@ -5,6 +5,16 @@ from pygame.locals import *
 CHESSDIRS2 = "../chess/s2/"
 CHESSDIRS3 = "../chess/s3/"
 
+map2Num = {
+	'P' : 1,
+	'C' : 2,
+	'N' : 3,
+	'R' : 4,
+	'B' : 5,
+	'A' : 6,
+	'K' : 7,
+}
+
 def initAllChess():
 	chessNum = {
 		'BK' : 1,
@@ -68,8 +78,22 @@ class Chess:
 		self.x = x
 		self.y = y
 
+	def getXY(self):
+		return (self.x, self.y)
+
 	def showInfo(self):
 		print self.name
+	
+	def __ge__(self, other):
+		print "compare"
+		n1 = self.name
+		n2 = other.name
+		print n1, n2
+		if n1[0] != n2[0]:	# same color
+			if map2Num[n1[1]] >= map2Num[n2[1]]:
+				return True
+		return False
+
 	
 def test_initAllChess():
 	all = initAllChess()
