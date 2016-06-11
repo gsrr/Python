@@ -88,7 +88,6 @@ class Chess:
 		print "compare"
 		n1 = self.name
 		n2 = other.name
-		print n1, n2
 		if n1[0] != n2[0]:	# same color
 			if map2Num[n1[1]] >= map2Num[n2[1]]:
 				return True

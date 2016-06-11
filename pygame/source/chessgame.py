@@ -50,6 +50,47 @@ class ChessBoard:
 	
 	def setState(self, state):
 		self.boardState = state
+	
+	def BCinvalid(self, i, j1, j2):
+		print "BCinvalid : (i, j1, j2) = (%d,%d,%d)"%(i, j1, j2)
+		midchess = 0
+		for k in range(j1 + 1, j2, 1):
+			chs = self.board[i][k]
+			print chs
+			if chs != None:
+				midchess += 1
+		print midchess
+		return midchess
+
+	def invalid(self, x2, y2):
+		x1 = self.selectChessPos[0]
+		y1 = self.selectChessPos[1]
+		selectChess = self.board[x1][y1]
+		if selectChess.name == "BC" or selectChess.name == "RC":
+			if abs(x2 - x1) == 0:
+				midchess = 0
+				if y2 > y1:
+					midchess += self.BCinvalid(x1, y1, y2)
+				else:
+					midchess += self.BCinvalid(x1, y2, y1)
+				if midchess != 1:
+					return True
+				return False
+			elif abs(y2 - y1) == 0:
+				midchess = 0
+				if x2 > x1:
+					midchess += self.BCinvalid(y1, x1, x2)
+				else:
+					midchess += self.BCinvalid(y1, x2, x1)
+				if midchess != 1:
+					return True
+				return False
+			else:
+				return True
+		else:
+			if (abs(x2 - x1) + abs(y2 - y1)) > 1:
+				print "invalid"
+				return True
 
 	def changeState(self, i, j):
 		print i,j
@@ -68,6 +109,8 @@ class ChessBoard:
 					x = self.selectChessPos[0]
 					y = self.selectChessPos[1]
 					selectChess = self.board[x][y]
+					if self.invalid(i,j):
+						return
 					if selectChess >= chs :
 						chs.setState(0)
 						selectChess.setState(2)
