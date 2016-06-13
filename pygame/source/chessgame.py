@@ -51,17 +51,18 @@ class ChessBoard:
 	def setState(self, state):
 		self.boardState = state
 	
-	def BCinvalid(self, i, j1, j2):
-		print "BCinvalid : (i, j1, j2) = (%d,%d,%d)"%(i, j1, j2)
+	def BCinvalid(self, i, j1, j2, row):
 		midchess = 0
 		for k in range(j1 + 1, j2, 1):
-			chs = self.board[i][k]
-			print chs
+			chs = self.board[i][k] if row == 0 else self.board[k][i]
 			if chs != None:
 				midchess += 1
-		print midchess
 		return midchess
 
+	def invalidMove(self, x2, y2):
+		if (abs(x2 - x1) + abs(y2 - y1)) > 1:
+			return True
+		
 	def invalid(self, x2, y2):
 		x1 = self.selectChessPos[0]
 		y1 = self.selectChessPos[1]
@@ -70,18 +71,18 @@ class ChessBoard:
 			if abs(x2 - x1) == 0:
 				midchess = 0
 				if y2 > y1:
-					midchess += self.BCinvalid(x1, y1, y2)
+					midchess += self.BCinvalid(x1, y1, y2, x2-x1)
 				else:
-					midchess += self.BCinvalid(x1, y2, y1)
+					midchess += self.BCinvalid(x1, y2, y1, x2-x1)
 				if midchess != 1:
 					return True
 				return False
 			elif abs(y2 - y1) == 0:
 				midchess = 0
 				if x2 > x1:
-					midchess += self.BCinvalid(y1, x1, x2)
+					midchess += self.BCinvalid(y1, x1, x2, x2-x1)
 				else:
-					midchess += self.BCinvalid(y1, x2, x1)
+					midchess += self.BCinvalid(y1, x2, x1, x2-x1)
 				if midchess != 1:
 					return True
 				return False
@@ -93,12 +94,24 @@ class ChessBoard:
 				return True
 
 	def changeState(self, i, j):
-		print i,j
 		chs = self.board[i][j]
 		if chs == None:
+			if self.boardState == 1:
+				if self.invalid(i,j):
+					return
+				x = self.selectChessPos[0]
+				y = self.selectChessPos[1]
+				selectChess = self.board[x][y]
+				posx = BOARDX + j * self.width
+				posy = BOARDY + i * self.height
+				selectChess.setXY(posx, posy)
+				self.board[i][j] = selectChess
+				self.board[x][y] = None 
+				selectChess.setState(2)
+				self.setState(0)
 			return 
 
-		if chs.state == 1:
+		if chs.state == 1 and self.boardState == 0:
 			chs.setState(2)
 		elif chs.state == 2:
 			if self.boardState == 0:
@@ -165,6 +178,8 @@ def emousebtnup(paras):
 	board = paras['board']
 	i = int(((y + 1) - BOARDY) / board.height ) #row
 	j = int(((x + 1) - BOARDX) / board.width )	#col
+	if i > 3 or j > 7:
+		return
 	board.changeState(i, j)
 
 def emousebtndown(paras):

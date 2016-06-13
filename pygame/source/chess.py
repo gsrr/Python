@@ -1,19 +1,45 @@
 import os
 import pygame
 from pygame.locals import *
+import traceback
+import sys
 
 CHESSDIRS2 = "../chess/s2/"
 CHESSDIRS3 = "../chess/s3/"
 
-map2Num = {
-	'P' : 1,
-	'C' : 2,
-	'N' : 3,
-	'R' : 4,
-	'B' : 5,
-	'A' : 6,
-	'K' : 7,
-}
+def RC_compare(n1, n2):
+	return BC_compare(n1, n2)
+
+def BC_compare(n1, n2):
+	print "BC_compare"
+	map2Num = {
+		'P' : 0,
+		'N' : 0,
+		'R' : 0,
+		'B' : 0,
+		'A' : 0,
+		'K' : 0,
+		'C' : 1,
+	}
+	if map2Num[n1[1]] >= map2Num[n2[1]]:
+		return True
+	return False
+
+def Other_compare(n1, n2):
+	print "other_compare"
+	map2Num = {
+		'P' : 1,
+		'C' : 2,
+		'N' : 3,
+		'R' : 4,
+		'B' : 5,
+		'A' : 6,
+		'K' : 7,
+	}
+	if map2Num[n1[1]] >= map2Num[n2[1]]:
+		return True
+	return False
+
 
 def initAllChess():
 	chessNum = {
@@ -41,6 +67,8 @@ def initAllChess():
 
 	return allChess
 
+	
+
 # 4 states : notExist, back, front, dead
 class Chess:
 	def __init__(self, img):
@@ -49,7 +77,6 @@ class Chess:
 		self.state = 0
 		self.name = os.path.splitext(img)[0]
 		self.s2path = CHESSDIRS2 + img
-		print self.s2path
 		self.s3path = CHESSDIRS3 + self.name + "S" + ".GIF"
 		self.s1Img = None
 		self.s2Img = None
@@ -85,12 +112,16 @@ class Chess:
 		print self.name
 	
 	def __ge__(self, other):
-		print "compare"
 		n1 = self.name
 		n2 = other.name
+		print n1,n2
 		if n1[0] != n2[0]:	# same color
-			if map2Num[n1[1]] >= map2Num[n2[1]]:
-				return True
+			try:
+				func = getattr(sys.modules[__name__], n1 + "_compare")
+				return func(n1, n2)
+			except:
+				print traceback.format_exc()
+				return Other_compare(n1, n2)
 		return False
 
 	
