@@ -31,6 +31,9 @@ class ChessBoard:
 		self.height = self.backImg.get_height()
 		self.boardState = 0		# 0 --> no select , 1 --> select
 		self.selectChessPos = (0,0)		
+		self.players = [None, None]
+		self.role = 0
+		self.myfont = pygame.font.SysFont("monospace", 15)
 	
 	def init(self):
 		allChess = chess.initAllChess()
@@ -92,12 +95,17 @@ class ChessBoard:
 			if (abs(x2 - x1) + abs(y2 - y1)) > 1:
 				print "invalid"
 				return True
+	
+	def changeRole(self):
+		self.role  = (self.role + 1) % 2
 
 	def changeState(self, i, j):
+		if self.boardState == 2:
+			return
 		chs = self.board[i][j]
 		if chs == None:
 			if self.boardState == 1:
-				if self.invalid(i,j):
+				if self.invalidMove(i,j):
 					return
 				x = self.selectChessPos[0]
 				y = self.selectChessPos[1]
@@ -109,12 +117,21 @@ class ChessBoard:
 				self.board[x][y] = None 
 				selectChess.setState(2)
 				self.setState(0)
+				self.changeRole()
 			return 
 
 		if chs.state == 1 and self.boardState == 0:
 			chs.setState(2)
+			if self.players[self.role] == None:
+				if chs.name[0] != self.players[(self.role + 1) % 2]:
+					self.players[self.role] = chs.name[0]
+			self.changeRole()
+
+
 		elif chs.state == 2:
 			if self.boardState == 0:
+					if chs.name[0] != self.players[self.role]:
+						return
 					chs.setState(3)
 					self.setState(1)
 					self.selectChessPos = (i,j)
@@ -125,19 +142,22 @@ class ChessBoard:
 					if self.invalid(i,j):
 						return
 					if selectChess >= chs :
-						chs.setState(0)
-						selectChess.setState(2)
-						posX, posY = chs.getXY()
-						selectChess.setXY(posX, posY)
-						self.board[i][j] = selectChess
-						self.board[x][y] = None 
-						self.setState(0)
+						if chs.name == "BK" or chs.name == "RK":
+								chs.setState(4)
+								self.setState(2)
+						else:
+								chs.setState(0)
+								selectChess.setState(2)
+								posX, posY = chs.getXY()
+								selectChess.setXY(posX, posY)
+								self.board[i][j] = selectChess
+								self.board[x][y] = None 
+								self.setState(0)
+						self.changeRole()
 
 		elif chs.state == 3:
 			chs.setState(2)
 			self.setState(0)
-
-
 
 	def show(self, screen):	
 		for i in range(0,4):
@@ -145,6 +165,11 @@ class ChessBoard:
 				chs = self.board[i][j]
 				if chs != None:
 					screen.blit(chs.getImg(), (chs.x, chs.y))
+
+		if self.players[self.role] != None:
+				color = (255,0,0) if self.players[self.role] == "R" else (0,0,0)
+				label = self.myfont.render("Player-%d"%(self.role + 1), 1, color)
+				screen.blit(label, (215,0))
 				
 def createScreen(width, height, caption):
 		screen = pygame.display.set_mode((width, height))
@@ -168,7 +193,6 @@ def ekeyup(paras):
 	pass
 
 def emousemotion(paras):
-	print "emousemotion"
 	x,y = pygame.mouse.get_pos()
 	print x,y
 
