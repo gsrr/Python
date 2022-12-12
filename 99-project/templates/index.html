@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block head %}
+    <script>
+        function startTime() {
+            var today = new Date();
+            var h = today.getHours();
+            var m = today.getMinutes();
+            var s = today.getSeconds();
+            m = checkTime(m);
+            s = checkTime(s);
+            document.getElementById('clock').innerHTML =
+                h + ":" + m + ":" + s;
+            var t = setTimeout(startTime, 500);
+        }
+
+        function checkTime(i) {
+            if (i < 10) {
+                i = "0" + i
+            }
+            ;  // add zero in front of numbers < 10
+            return i;
+        }
+    </script>
+
+{% endblock %}
+{% block content %}
+    <h1>我的工作清單網站</h1>
+    <h2>現在時間
+
+        <body onload="startTime()">
+        <div id="clock"></div>
+    </h2>
+    <div class="container">
+
+        <h1>{{ location }}</h1>
+        <h1>{{ Name }}:{{ temp }}</h1>
+    </div>
+{% endblock content %}
