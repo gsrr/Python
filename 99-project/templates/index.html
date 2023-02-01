@@ -1,38 +1,228 @@
-{% extends "base.html" %}
-{% block head %}
-    <script>
-        function startTime() {
-            var today = new Date();
-            var h = today.getHours();
-            var m = today.getMinutes();
-            var s = today.getSeconds();
-            m = checkTime(m);
-            s = checkTime(s);
-            document.getElementById('clock').innerHTML =
-                h + ":" + m + ":" + s;
-            var t = setTimeout(startTime, 500);
+<!doctype html>
+<html lang="en">
+<head>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+   <script src="{{url_for('static', filename='js/math.js')}}"></script>
+   <script src="{{url_for('static', filename='js/game.js')}}"></script>
+   <script src="{{url_for('static', filename='js/mlc.js')}}"></script>
+   <script src="{{url_for('static', filename='js/recorder.js')}}"></script>
+   <script src="{{url_for('static', filename='js/app.js')}}"></script>
+	<style type="text/css">
+		body {
+            height: 100%;
+        }
+        #multi_elem {
+            height: 100%;
+            background: dark;
+            text-align: center;
+            color: black;
+            padding: 15px;
         }
 
-        function checkTime(i) {
-            if (i < 10) {
-                i = "0" + i
-            }
-            ;  // add zero in front of numbers < 10
-            return i;
-        }
-    </script>
+		hr {
+		  margin-top: 1rem;
+		  margin-bottom: 1rem;
+		  border: 0;
+		  border-top: 1px solid rgba(0, 0, 0, 0.1);
+		}
+		h1 {
+		  font-size: 100px;
+		}
+		input[type="text"]
+		{
+			font-size:100px;
+		}	
+    </style>
+	<script>
+		var timer;
+		function setTimer()
+		{
+			var countDownDate = new Date().getTime() + (60000 * 3);
 
-{% endblock %}
-{% block content %}
-    <h1>我的工作清單網站</h1>
-    <h2>現在時間
+			// Update the count down every 1 second
+			timer = setInterval(function() {
 
-        <body onload="startTime()">
-        <div id="clock"></div>
-    </h2>
-    <div class="container">
+			  var now = new Date().getTime();
 
-        <h1>{{ location }}</h1>
-        <h1>{{ Name }}:{{ temp }}</h1>
-    </div>
-{% endblock content %}
+			  var distance = countDownDate - now;
+			  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+			  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+			  document.getElementById("timer").innerHTML = "Timer :" + minutes + "m " + seconds + "s ";
+
+			  // If the count down is finished, write some text
+			  if (distance < 0) {
+				clearInterval(timer);
+				document.getElementById("timer").innerHTML = "EXPIRED";
+			  }
+			}, 1000);
+		}
+		
+		function clearTimer()
+		{
+			clearInterval(timer);
+		}
+		function myFunc()
+		{
+			var value = $("#btn_start").html();
+			
+			if(value == "START")
+			{
+				$("#btn_start").html('STOP');
+				 Math.type = 'multiplication';
+				 Math.words = MCLDict["2"];
+				Math.Init();
+				setTimer();
+			}
+			else
+			{
+				$("#btn_start").html('START');
+				clearTimer();
+			}
+		}
+		
+
+		$( document ).ready(function(){	
+			//webkitURL is deprecated but nevertheless
+			URL = window.URL || window.webkitURL;
+
+			var gumStream; 						//stream from getUserMedia()
+			var rec; 							//Recorder.js object
+			var input; 							//MediaStreamAudioSourceNode we'll be recording
+
+			// shim for AudioContext when it's not avb.
+			var AudioContext = window.AudioContext || window.webkitAudioContext;
+			var audioContext //audio context to help us record
+
+			var recordButton = document.getElementById("recordButton");
+			var stopButton = document.getElementById("stopButton");
+			var pauseButton = document.getElementById("pauseButton");
+
+
+			//add events to those 2 buttons
+			recordButton.addEventListener("click", startRecording);
+			stopButton.addEventListener("click", stopRecording);
+			pauseButton.addEventListener("click", pauseRecording);
+			$("#stopButton").hide();
+			$("#pauseButton").hide();
+		});
+
+		
+
+	</script>
+
+</head>
+<body>
+<div>
+	<nav class="navbar navbar-dark bg-dark">
+		  <div class="container-fluid">
+			<span class="navbar-text">
+			  99 乘法遊戲 (minutes)
+			</span>
+		  </div>
+		<div style="display:none;">
+			<audio src="{{url_for('static', filename='audio/count.mp3')}}" controls preload="auto" autobuffer></audio>
+			<audio src="{{url_for('static', filename='audio/correct.mp3')}}" controls preload="auto" autobuffer></audio>
+			<audio src="{{url_for('static', filename='audio/wrong.mp3')}}" controls preload="auto" autobuffer></audio>
+			<audio src="{{url_for('static', filename='audio/ending.mp3')}}" controls preload="auto" autobuffer></audio>
+			<audio src="" controls preload="auto" autobuffer></audio>
+        </div>
+	</nav>
+	<div class="container">
+	<div class="row h-100">
+		<div class="col-2" id="multi_elem">
+				<div class="form-check form-switch">
+					<label class="form-check-label" for="flexSwitchCheckDefault">
+					  <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+					  1 的乘法
+					</label>
+				</div>
+				<div class="form-check form-switch">
+					<label class="form-check-label" for="flexSwitchCheckDefault">
+					  <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+					  2 的乘法
+					</label>
+				</div>
+				<div class="form-check form-switch">
+					<label class="form-check-label" for="flexSwitchCheckDefault">
+					  <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+					  3 的乘法
+					</label>
+				</div>
+				<div class="form-check form-switch">
+					<label class="form-check-label" for="flexSwitchCheckDefault">
+					  <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+					  4 的乘法
+					</label>
+				</div>
+				<div class="form-check form-switch">
+					<label class="form-check-label" for="flexSwitchCheckDefault">
+					  <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+					  5 的乘法
+					</label>
+				</div>
+				<div class="form-check form-switch">
+					<label class="form-check-label" for="flexSwitchCheckDefault">
+					  <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+					  6 的乘法
+					</label>
+				</div>
+				<div class="form-check form-switch">
+					<label class="form-check-label" for="flexSwitchCheckDefault">
+					  <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+					  7 的乘法
+					</label>
+				</div>
+				<div class="form-check form-switch">
+					<label class="form-check-label" for="flexSwitchCheckDefault">
+					  <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+					  8 的乘法
+					</label>
+				</div>
+				<div class="form-check form-switch">
+					<label class="form-check-label" for="flexSwitchCheckDefault">
+					  <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+					  9 的乘法
+					</label>
+				</div>
+		</div>
+		<div class="col-10 text-center align-self-center" style="padding: 0;">
+			<div class="row lmask" style="height: 500px;display:none"></div>
+			<div class="row" id="work_area" style="height: 500px;">
+				<div class="row" style="height:50px;">
+					<div class="col">
+						<h2 id="timer" style="float: left;margin-top: 20px;margin-left: 20px;">Timer : 0</h2>
+					</div>
+					<div class="col">
+						<h2 id="score" style="float: left;margin-top: 20px;margin-left: 20px;">Score : 0</h2>
+					</div>
+				</div>
+				
+				<div class="row align-items-center" style="height:450px;">
+					<div class="col center-block"><h1 id="ch1">5</h1></div>
+					<div class="col center-block" id="op"><h1>X</h1></div>
+					<div class="col center-block"><h1 id="ch2">3</h1></div>
+					<div class="col center-block" id="equal"><h1>=</h1></div>
+					<div class="col center-block">
+						<input type="text" class="form-control" id="result" value=""/>
+					</div>
+					<div id="controls">
+						<button id="recordButton">Record</button>
+						<button id="pauseButton" disabled>Pausa</button>
+						<button id="stopButton" disabled>Stop</button>
+					</div>
+				</div>
+			</div>
+			
+			<hr/>
+			<div class="row">
+				<button class="btn btn-primary btn-lg btn-block" id="btn_start" onclick="myFunc();">START</button>
+			</div>
+		</div>
+	</div>
+	</div>
+</div>
+</body>
+
+</html>
