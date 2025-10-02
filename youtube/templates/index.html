@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>YouTube Audio Streamer</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body data-now-url="{{ now_url }}">
+  <div class="container">
+
+    <!-- 左側 Sidebar -->
+    <aside class="sidebar">
+      <h3>Queue</h3>
+      <ul class="queue-list">
+        {% if queue %}
+          {% for s in queue %}
+            <li>
+              {% if s.thumbnail %}
+                <img src="{{ s.thumbnail }}" alt="thumb">
+              {% endif %}
+              <span class="song-title">{{ s.title }}</span>
+              <form method="POST" action="{{ url_for('remove_from_queue') }}" style="display:inline;" data-overlay>
+                <input type="hidden" name="url" value="{{ s.url }}">
+                <button type="submit" class="remove-btn">🗑</button>
+              </form>
+            </li>
+          {% endfor %}
+        {% else %}
+          <li><em>No songs in queue</em></li>
+        {% endif %}
+      </ul>
+
+      <h3>Add to Queue</h3>
+      <form method="POST" action="{{ url_for('add_to_queue') }}" data-overlay>
+        <input type="text" name="url" placeholder="Paste YouTube URL" required>
+        <button type="submit">➕ Add</button>
+      </form>
+
+      <!-- Saved Songs -->
+      <h3>Saved Songs</h3>
+      <ul id="saved-songs" class="saved-songs-list">
+        {% for s in songs %}
+          <li data-url="{{ s.url }}" data-title="{{ s.title }}" data-thumbnail="{{ s.thumbnail }}"
+              {% if now_url == s.url %} class="active" {% endif %}>
+            {% if s.thumbnail %}
+              <img src="{{ s.thumbnail }}" alt="thumb">
+            {% endif %}
+
+            <span class="song-title">{{ s.title }}</span>
+
+            <!-- ➕ Queue (只顯示符號) -->
+            <form method="POST" action="{{ url_for('add_from_saved') }}" style="display:inline;" data-overlay>
+              <input type="hidden" name="url" value="{{ s.url }}">
+              <button type="submit" title="Add to Queue">➕</button>
+            </form>
+
+            {% if s.hash in downloaded_hashes %}
+              <!-- ✅ 已下載 (只顯示符號) -->
+              <span class="downloaded-tag" title="Downloaded">✅</span>
+            {% else %}
+              <form method="POST" action="{{ url_for('download') }}" style="display:inline;" data-overlay>
+                <input type="hidden" name="url" value="{{ s.url }}">
+                <button type="submit" title="Download">⬇</button>
+              </form>
+            {% endif %}
+
+            <!-- 移除 -->
+            <form method="POST" action="{{ url_for('remove_song') }}" style="display:inline;" data-overlay>
+              <input type="hidden" name="url" value="{{ s.url }}">
+              <button type="submit" class="remove-btn" title="Remove">🗑</button>
+            </form>
+          </li>
+        {% endfor %}
+      </ul>
+    </aside>
+
+    <!-- 右側 Player -->
+    <main class="player">
+      <div id="preview" class="current-song" style="text-align:center;">
+        {% if now_playing %}
+          {% if now_thumbnail %}
+            <img src="{{ now_thumbnail }}" class="thumbnail">
+          {% endif %}
+          <h2>{{ now_playing }}</h2>
+          <div class="playing-indicator">
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+        {% else %}
+          <p><em>No song is currently playing</em></p>
+        {% endif %}
+      </div>
+
+      <div class="controls">
+        <form id="play-form" method="POST" action="{{ url_for('play') }}" data-overlay style="display:inline;">
+          <input type="hidden" name="url" id="play-url">
+          <button type="submit">▶ Play Selected</button>
+        </form>
+        <form method="POST" action="{{ url_for('stop') }}" style="display:inline;" data-overlay>
+          <button type="submit">⏹ Stop</button>
+        </form>
+      </div>
+    </main>
+
+  </div>
+
+  <div id="overlay">⏳ Loading... Please wait</div>
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
+
