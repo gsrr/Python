@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import os
+import sys
 import socket
 import signal
 import tempfile
@@ -37,7 +37,7 @@ def save_map(data):
 
 def fetch_metadata(url):
     cmd = [
-        "yt-dlp",
+        "/root/myproject/venv/bin/yt-dlp",
         "-j",
         "--no-warnings",
         "--extractor-args", "youtube:player_js_version=actual",
@@ -76,7 +76,7 @@ def download(url, vid):
     print(meta)
 
     cmd = (
-        f'yt-dlp -x --audio-format mp3 '
+        f'/root/myproject/venv/bin/yt-dlp -x --audio-format mp3 '
         f'--no-check-certificate '
         f'--extractor-args youtube:player_js_version=actual '
         f'-o "{path}" "{url}" '
@@ -104,6 +104,7 @@ def download(url, vid):
 def play_url(url):
     global mpg_proc
 
+    print(url)
     vid = vid = url.split("v=")[1].split("&")[0]
     path = os.path.join(DOWNLOAD_DIR, f"{vid}.mp3")
 
@@ -119,16 +120,24 @@ def play_url(url):
     cmd = f"mpg123 -v {path} > {OUTPUT_FILE} 2>&1"
     print(cmd)
     mpg_proc = subprocess.Popen(cmd, shell=True)
+    print(mpg_proc.pid)
 
     return {"ok": True, "url": url}
 
 # -------------------------
 def stop():
     global mpg_proc
-    if mpg_proc and mpg_proc.poll() is None:
-        mpg_proc.terminate()
-        return {"ok": True}
-    return {"ok": False, "error": "nothing playing"}
+    if not mpg_proc:
+        return {"ok": False, "error": "nothing playing"}
+
+    if mpg_proc.poll() is None:
+        try:
+            os.system("pkill -9 mpg123")
+        except ProcessLookupError:
+            pass
+
+    mpg_proc = None
+    return {"ok": True}
 
 # -------------------------
 def handle(msg):
