@@ -1,110 +1,145 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-TW">
 <head>
-  <meta charset="utf-8">
-  <title>YouTube Audio Streamer</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<meta charset="utf-8">
+<title>MPG123 Terminal</title>
+<style>
+#terminal {
+  background: #000;
+  color: #0f0;
+  padding: 10px;
+  height: 300px;
+  overflow-y: auto;
+  font-family: monospace;
+  white-space: pre-wrap;
+}
+
+#downloads {
+  margin-top: 20px;
+  font-family: monospace;
+}
+
+#downloads ul {
+  list-style: none;
+  padding: 0;
+}
+
+#downloads li {
+  padding: 6px;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+}
+
+#downloads li:hover {
+  background: #eef;
+}
+
+.vid {
+  color: #888;
+  font-size: 12px;
+}
+
+.url {
+  color: #06c;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+</style>
 </head>
-<body data-now-url="{{ now_url }}">
-  <div class="container">
+<body>
 
-    <!-- 左側 Sidebar -->
-    <aside class="sidebar">
-      <h3>Queue</h3>
-      <ul class="queue-list">
-        {% if queue %}
-          {% for s in queue %}
-            <li>
-              {% if s.thumbnail %}
-                <img src="{{ s.thumbnail }}" alt="thumb">
-              {% endif %}
-              <span class="song-title">{{ s.title }}</span>
-              <form method="POST" action="{{ url_for('remove_from_queue') }}" style="display:inline;" data-overlay>
-                <input type="hidden" name="url" value="{{ s.url }}">
-                <button type="submit" class="remove-btn">🗑</button>
-              </form>
-            </li>
-          {% endfor %}
-        {% else %}
-          <li><em>No songs in queue</em></li>
-        {% endif %}
-      </ul>
+<h2>Player</h2>
+<input id="yurl" placeholder="ex: https://www.youtube.com/watch?v=lsUppR9qyD0">
+<button onclick="play()">Play</button>
 
-      <h3>Add to Queue</h3>
-      <form method="POST" action="{{ url_for('add_to_queue') }}" data-overlay>
-        <input type="text" name="url" placeholder="Paste YouTube URL" required>
-        <button type="submit">➕ Add</button>
-      </form>
+<pre id="terminal"></pre>
 
-      <!-- Saved Songs -->
-      <h3>Saved Songs</h3>
-      <ul id="saved-songs" class="saved-songs-list">
-        {% for s in songs %}
-          <li data-url="{{ s.url }}" data-title="{{ s.title }}" data-thumbnail="{{ s.thumbnail }}"
-              {% if now_url == s.url %} class="active" {% endif %}>
-            {% if s.thumbnail %}
-              <img src="{{ s.thumbnail }}" alt="thumb">
-            {% endif %}
+<div id="downloads">
+  <h3>Downloaded Songs</h3>
+  <ul id="downloadList"></ul>
+</div>
 
-            <span class="song-title">{{ s.title }}</span>
+<script>
+let pollTimer = null;
 
-            <!-- ➕ Queue (只顯示符號) -->
-            <form method="POST" action="{{ url_for('add_from_saved') }}" style="display:inline;" data-overlay>
-              <input type="hidden" name="url" value="{{ s.url }}">
-              <button type="submit" title="Add to Queue">➕</button>
-            </form>
+/* =======================
+ * Terminal polling
+ * ======================= */
+async function pollOutput() {
+  try {
+    const res = await fetch("/api/read_output");
+    if (!res.ok) return;
 
-            {% if s.hash in downloaded_hashes %}
-              <!-- ✅ 已下載 (只顯示符號) -->
-              <span class="downloaded-tag" title="Downloaded">✅</span>
-            {% else %}
-              <form method="POST" action="{{ url_for('download') }}" style="display:inline;" data-overlay>
-                <input type="hidden" name="url" value="{{ s.url }}">
-                <button type="submit" title="Download">⬇</button>
-              </form>
-            {% endif %}
+    const data = await res.json();
+    const terminal = document.getElementById("terminal");
 
-            <!-- 移除 -->
-            <form method="POST" action="{{ url_for('remove_song') }}" style="display:inline;" data-overlay>
-              <input type="hidden" name="url" value="{{ s.url }}">
-              <button type="submit" class="remove-btn" title="Remove">🗑</button>
-            </form>
-          </li>
-        {% endfor %}
-      </ul>
-    </aside>
+    terminal.textContent = data.content;
+    terminal.scrollTop = terminal.scrollHeight;
+  } catch (e) {
+    console.error(e);
+  }
+}
 
-    <!-- 右側 Player -->
-    <main class="player">
-      <div id="preview" class="current-song" style="text-align:center;">
-        {% if now_playing %}
-          {% if now_thumbnail %}
-            <img src="{{ now_thumbnail }}" class="thumbnail">
-          {% endif %}
-          <h2>{{ now_playing }}</h2>
-          <div class="playing-indicator">
-            <span></span><span></span><span></span><span></span><span></span>
-          </div>
-        {% else %}
-          <p><em>No song is currently playing</em></p>
-        {% endif %}
-      </div>
+function startPolling() {
+  if (pollTimer) return;
+  pollTimer = setInterval(pollOutput, 5000);
+}
 
-      <div class="controls">
-        <form id="play-form" method="POST" action="{{ url_for('play') }}" data-overlay style="display:inline;">
-          <input type="hidden" name="url" id="play-url">
-          <button type="submit">▶ Play Selected</button>
-        </form>
-        <form method="POST" action="{{ url_for('stop') }}" style="display:inline;" data-overlay>
-          <button type="submit">⏹ Stop</button>
-        </form>
-      </div>
-    </main>
+/* =======================
+ * Download list
+ * ======================= */
+async function loadDownloadList() {
+  try {
+    const res = await fetch("/api/list");
+    if (!res.ok) return;
 
-  </div>
+    const list = await res.json();
+    const ul = document.getElementById("downloadList");
+    ul.innerHTML = "";
 
-  <div id="overlay">⏳ Loading... Please wait</div>
-  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    list.forEach(item => {
+      const li = document.createElement("li");
+
+      li.innerHTML = `
+        <div><strong>${item.title || "(no title)"}</strong></div>
+        <div class="vid">vid: ${item.vid}</div>
+        <div class="url">${item.url}</div>
+      `;
+
+      // ✅ 點擊直接播放
+      li.onclick = () => play(item.url);
+
+      ul.appendChild(li);
+    });
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+/* =======================
+ * Controls
+ * ======================= */
+function play(url) {
+  const yurl = url || document.getElementById("yurl").value;
+
+  fetch("/api/play", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({ yurl })
+  });
+  loadDownloadList();
+}
+
+/* =======================
+ * Init
+ * ======================= */
+document.addEventListener("DOMContentLoaded", () => {
+  startPolling();
+  pollOutput();        // terminal 立刻更新
+  loadDownloadList(); // 下載清單載入
+});
+</script>
+
 </body>
 </html>
 
